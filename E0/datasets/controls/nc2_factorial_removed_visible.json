@@ -1,0 +1,9 @@
+{
+  "control": "NC2",
+  "patterns": [
+    "000",
+    "111"
+  ],
+  "n": 100000,
+  "learner_file_contains_hidden_labels": false
+}

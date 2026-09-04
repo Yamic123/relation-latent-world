@@ -1,0 +1,10 @@
+{
+  "valid": false,
+  "seed": 0,
+  "num_samples": 100,
+  "support_agreement": 0.89,
+  "support_agreement_pass": false,
+  "median_abs_J_diff": 3.725290298461914e-09,
+  "median_J_diff_pass": true,
+  "max_abs_J_diff": 0.014472784638404845
+}

@@ -1,0 +1,45 @@
+{
+  "experiment": "E0-ADP3-8GB-DEVELOPMENT",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "contrast_seed": 20260904,
+  "optimization_seed": 0,
+  "m_real_evaluator_only": 3,
+  "m_max": 5,
+  "mechanism_dim": 64,
+  "mechanism_heads": 4,
+  "base_groups": {
+    "train": 1024,
+    "val": 256,
+    "test": 512
+  },
+  "contrasts_per_base": 12,
+  "a1": {
+    "rounds": 40,
+    "inner_optimizer": "Adam",
+    "inner_learning_rate": 0.05,
+    "inner_steps": 20,
+    "inner_restarts": 2,
+    "v_bound": 1.5,
+    "e_step_chunk_size": 256,
+    "m_step_optimizer": "AdamW",
+    "m_step_learning_rate": 0.0003,
+    "m_step_weight_decay": 1e-05,
+    "m_step_batch_size": 128,
+    "m_step_epochs_per_round": 4,
+    "gradient_clip": 1.0,
+    "functional_probe_count": 2000
+  },
+  "pass_thresholds": {
+    "fragment_matching_accuracy_strict_gt": 0.9,
+    "matched_functional_r2_each": 0.8,
+    "matched_functional_r2_min": 0.7,
+    "last3_assignment_change_rate": 0.1
+  },
+  "gpu_adjustments": {
+    "source_plan_contrasts_per_base": 12,
+    "applied_contrasts_per_base": 12,
+    "justification": "A one-round 6-contrast probe used only 49 MiB of PyTorch allocated GPU memory, so the formal run retains all contrasts and all scientific parameters.",
+    "memory_control": "Chunk the differentiable inner solve into 256 fragments; do not reduce model width or change the algorithm."
+  }
+}

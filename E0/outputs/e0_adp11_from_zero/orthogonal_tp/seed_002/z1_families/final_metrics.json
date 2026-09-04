@@ -1,0 +1,16 @@
+{
+  "stage": "adp11_z1",
+  "source": "ADP5 leak-free family dataset",
+  "source_visible_only": true,
+  "family_counts": {
+    "train": 1521,
+    "val": 386
+  },
+  "members_per_family": {
+    "train": 6,
+    "heldout": 6
+  },
+  "local_family_id_only": true,
+  "family_p_hash": "e785c0243603f1927aaa9cf740d9479c5f1432b1ebdeb7eaa82ac97360ba74df",
+  "pass": true
+}

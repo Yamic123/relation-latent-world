@@ -1,0 +1,38 @@
+{
+  "experiment": "D2",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 1,
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "environment": {
+    "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.6.0",
+    "numpy": "2.3.1",
+    "scipy": "1.17.1",
+    "device": "cpu",
+    "cuda_available": false,
+    "cuda_device": null
+  },
+  "config": {
+    "experiment": "D2",
+    "tp": "identity",
+    "probe_input": "frozen failed-model v_hat[1:5] only",
+    "probe_types": [
+      "linear",
+      "two_layer_mlp"
+    ],
+    "tasks": [
+      "GT participation",
+      "GT active realization"
+    ],
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "batch_size": 1024,
+    "steps": 2000,
+    "frozen_original_model": true
+  },
+  "started_at_unix": 1788311314.5077333,
+  "diagnostic_only": true,
+  "original_e0a_decision_unchanged": "E0 FAIL"
+}

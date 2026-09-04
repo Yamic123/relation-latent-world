@@ -1,0 +1,27 @@
+{
+  "experiment": "E0-ADP10-FROM-ADP6-STABILITY",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 3,
+  "m_max": 5,
+  "mechanism_dim": 64,
+  "mechanism_heads": 4,
+  "rounds": 40,
+  "mechanism_learning_rate": 0.0003,
+  "coordinate_learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "family_batch_size": 32,
+  "epochs_per_round": 4,
+  "gradient_clip": 1.0,
+  "functional_probe_count": 2000,
+  "a1_initialization": "random",
+  "pc1_sign_convention": "Orient q_U so the first listed nonzero learner-visible action member has positive projection.",
+  "pass_thresholds": {
+    "median_order_accuracy": 0.95,
+    "candidate_affine_realization_r2": 0.9,
+    "heldout_realization_nrmse": 0.15,
+    "purity_high_functional_r2": 0.7,
+    "min_purity_high_candidates_above_threshold": 2
+  },
+  "scientific_scale_reduction": "none"
+}

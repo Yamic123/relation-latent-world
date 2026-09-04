@@ -1,0 +1,135 @@
+{
+  "experiment": "D1",
+  "tp": "orthogonal",
+  "optimization_seed": 2,
+  "splits": {
+    "test_iid": {
+      "full_nrmse": 0.09147314727306366,
+      "full_mse": 0.0010831397958099842,
+      "candidates": {
+        "candidate_1": {
+          "mean_gate": 0.9989727735519409,
+          "mean_effect_norm": 0.5360020399093628,
+          "full_mse": 0.0010831397958099842,
+          "leave_one_out_mse": 0.05714522674679756,
+          "G_l": 0.05606208695098758
+        },
+        "candidate_2": {
+          "mean_gate": 1.0,
+          "mean_effect_norm": 0.9509017467498779,
+          "full_mse": 0.0010831397958099842,
+          "leave_one_out_mse": 0.15753811597824097,
+          "G_l": 0.15645497618243098
+        },
+        "candidate_3": {
+          "mean_gate": 1.0,
+          "mean_effect_norm": 0.4689527750015259,
+          "full_mse": 0.0010831397958099842,
+          "leave_one_out_mse": 0.05332513153553009,
+          "G_l": 0.052241991739720106
+        },
+        "candidate_4": {
+          "mean_gate": 0.9999998211860657,
+          "mean_effect_norm": 0.4049409031867981,
+          "full_mse": 0.0010831397958099842,
+          "leave_one_out_mse": 0.040438342839479446,
+          "G_l": 0.03935520304366946
+        },
+        "candidate_5": {
+          "mean_gate": 0.867241621017456,
+          "mean_effect_norm": 0.27305838465690613,
+          "full_mse": 0.0010831397958099842,
+          "leave_one_out_mse": 0.023892425000667572,
+          "G_l": 0.022809285204857588
+        }
+      },
+      "all_candidates_necessary_G_positive": true
+    },
+    "test_context": {
+      "full_nrmse": 0.11670319736003876,
+      "full_mse": 0.0006344525027088821,
+      "candidates": {
+        "candidate_1": {
+          "mean_gate": 0.9999927878379822,
+          "mean_effect_norm": 0.49970322847366333,
+          "full_mse": 0.0006344525027088821,
+          "leave_one_out_mse": 0.049974095076322556,
+          "G_l": 0.04933964257361367
+        },
+        "candidate_2": {
+          "mean_gate": 1.0,
+          "mean_effect_norm": 0.8460038900375366,
+          "full_mse": 0.0006344525027088821,
+          "leave_one_out_mse": 0.11932936310768127,
+          "G_l": 0.11869491060497239
+        },
+        "candidate_3": {
+          "mean_gate": 1.0,
+          "mean_effect_norm": 0.34533149003982544,
+          "full_mse": 0.0006344525027088821,
+          "leave_one_out_mse": 0.025416061282157898,
+          "G_l": 0.024781608779449016
+        },
+        "candidate_4": {
+          "mean_gate": 0.9999998211860657,
+          "mean_effect_norm": 0.24488306045532227,
+          "full_mse": 0.0006344525027088821,
+          "leave_one_out_mse": 0.01329743955284357,
+          "G_l": 0.012662987050134689
+        },
+        "candidate_5": {
+          "mean_gate": 0.7900557518005371,
+          "mean_effect_norm": 0.12745241820812225,
+          "full_mse": 0.0006344525027088821,
+          "leave_one_out_mse": 0.005281777121126652,
+          "G_l": 0.00464732461841777
+        }
+      },
+      "all_candidates_necessary_G_positive": true
+    },
+    "test_combination_101": {
+      "full_nrmse": 0.12386847287416458,
+      "full_mse": 0.002063415478914976,
+      "candidates": {
+        "candidate_1": {
+          "mean_gate": 0.9914838075637817,
+          "mean_effect_norm": 0.5586236119270325,
+          "full_mse": 0.002063415478914976,
+          "leave_one_out_mse": 0.06501340121030807,
+          "G_l": 0.0629499857313931
+        },
+        "candidate_2": {
+          "mean_gate": 1.0,
+          "mean_effect_norm": 0.8916054964065552,
+          "full_mse": 0.002063415478914976,
+          "leave_one_out_mse": 0.13673202693462372,
+          "G_l": 0.13466861145570874
+        },
+        "candidate_3": {
+          "mean_gate": 1.0,
+          "mean_effect_norm": 0.4559408724308014,
+          "full_mse": 0.002063415478914976,
+          "leave_one_out_mse": 0.04953198879957199,
+          "G_l": 0.047468573320657015
+        },
+        "candidate_4": {
+          "mean_gate": 0.9999995827674866,
+          "mean_effect_norm": 0.4626869261264801,
+          "full_mse": 0.002063415478914976,
+          "leave_one_out_mse": 0.05455363541841507,
+          "G_l": 0.05249021993950009
+        },
+        "candidate_5": {
+          "mean_gate": 0.7888606190681458,
+          "mean_effect_norm": 0.28586894273757935,
+          "full_mse": 0.002063415478914976,
+          "leave_one_out_mse": 0.0299286637455225,
+          "G_l": 0.027865248266607523
+        }
+      },
+      "all_candidates_necessary_G_positive": true
+    }
+  },
+  "distributed_cooperative_code": true,
+  "wall_seconds": 2.034968376159668
+}

@@ -1,0 +1,28 @@
+{
+  "complete": true,
+  "generated_at_unix": 1788267986.3955936,
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "environment": {
+    "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch": "2.5.1+cu121",
+    "cuda_available": true,
+    "device": "cuda",
+    "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+    "torch_threads": 14
+  },
+  "sha256": {
+    "train\\visible.npz": "16c286a2014f6bee8f43707d7908732f9be9c740fc6821c3bec972d27e02e3ef",
+    "train\\hidden_gt.npz": "5f0efd14219fe67df5b6215ec108eb563f751a651747100ae088200c309aac68",
+    "val\\visible.npz": "cb0a8ddfaa2d2ff00c8b9d1fdf5b4ae0a8465e764b706a567e10c710b51fb5fe",
+    "val\\hidden_gt.npz": "5631de92fbbae2bddb038728cf2f2b2b0fbf5eb6a384e9f911f3b850d93813a3",
+    "test_iid\\visible.npz": "5937c0876d87b4de202fa2cc6f48970e2355ba2ca79c51e647819a8ce60c1cfa",
+    "test_iid\\hidden_gt.npz": "7748ed7b78b47861ec37202c1f495d5b85e9c17ae149121ab117f6e1e07dce58",
+    "test_context\\visible.npz": "2b5c700837004ac1ddcd4b27d7c97e0968b33bdf59339e776d524f57bf477634",
+    "test_context\\hidden_gt.npz": "02e65f71e9ee57ada8c85973dcc1aeb0c41cd1d7e32b350964c2b356a35cdf4a",
+    "test_combination_101\\visible.npz": "a17cbc0b936503d1fd9ceb345daadbf3d2812376a85661773a69f6f4d45f2f10",
+    "test_combination_101\\hidden_gt.npz": "7261490a25077629c41f3211ee30900654c790a6b80b5bc01f432867ecc46ccb"
+  }
+}

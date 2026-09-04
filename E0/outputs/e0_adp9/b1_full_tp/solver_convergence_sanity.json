@@ -1,0 +1,17 @@
+{
+  "subset": "fixed_prefix_2048",
+  "steps": 60,
+  "restarts": 3,
+  "formal_steps": 30,
+  "formal_restarts": 2,
+  "rows": {
+    "test_iid": {
+      "nrmse": 0.024489667266607285,
+      "seconds": 17.42126202583313
+    },
+    "test_combination_101": {
+      "nrmse": 0.024991707876324654,
+      "seconds": 16.034746170043945
+    }
+  }
+}

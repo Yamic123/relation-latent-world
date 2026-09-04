@@ -1,0 +1,110 @@
+{
+  "alive": [
+    1,
+    3,
+    4
+  ],
+  "M_discovered": 3,
+  "telemetry": [],
+  "metrics": {
+    "alive_candidates": [
+      "C2",
+      "C4",
+      "C5"
+    ],
+    "candidate_count": 3,
+    "train_nrmse": 0.01908508501946926,
+    "iid_heldout_nrmse": 0.023490656167268753,
+    "cross_state_nrmse": 0.025064323097467422,
+    "cross_realization_nrmse": 0.029110459610819817,
+    "cross_base_nrmse": 0.023624533787369728,
+    "functional_r2_matrix": [
+      [
+        0.248311988356253,
+        -0.35064196456280694,
+        -0.5385667065839512
+      ],
+      [
+        -1.480337880215341,
+        0.9996627508926081,
+        -1.7459716385936304
+      ],
+      [
+        -0.921273981538171,
+        -0.5614601544549438,
+        0.8718136738719122
+      ],
+      [
+        -1.3806084162585766,
+        -0.8178884095555277,
+        0.9996011908970489
+      ],
+      [
+        0.9996566675004431,
+        -0.6854936530565843,
+        -1.3807948897668143
+      ]
+    ],
+    "best_functional_r2_per_gt": [
+      0.9996566675004431,
+      0.9996627508926081,
+      0.9996011908970489
+    ],
+    "family_contingency": [
+      [
+        0,
+        133,
+        0
+      ],
+      [
+        0,
+        0,
+        124
+      ],
+      [
+        129,
+        0,
+        0
+      ]
+    ],
+    "family_hungarian_accuracy": 1.0,
+    "mean_fragmentation": 0.0,
+    "fragmentation_per_gt": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "candidate_family_count": {
+      "C2": 133,
+      "C4": 124,
+      "C5": 129
+    },
+    "candidate_usage": {
+      "C2": 0.344559585492228,
+      "C4": 0.32124352331606215,
+      "C5": 0.33419689119170987
+    },
+    "coordinate_a": {
+      "C2": 0.792967677116394,
+      "C4": 0.9937866926193237,
+      "C5": 0.9703937768936157
+    },
+    "coordinate_b": {
+      "C2": -0.09064698219299316,
+      "C4": 0.0020766761153936386,
+      "C5": -0.11497199535369873
+    }
+  },
+  "checks": {
+    "count": true,
+    "family": true,
+    "fragmentation": true,
+    "functional": true,
+    "iid": true,
+    "structured": true,
+    "assignment_stability": true
+  },
+  "pass": true,
+  "stop_reason": "no_valid_duplicate_edge",
+  "unsupported_slot_remaining": false
+}

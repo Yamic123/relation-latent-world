@@ -1,0 +1,7 @@
+# ADP2-A0 compact
+
+- PASS: **True**
+- Q90(O5): 0.01599425058811903
+- Q10(ADP1): 0.2830172345042229
+- tau_reuse: 0.14950574254617097
+- STOP required: False

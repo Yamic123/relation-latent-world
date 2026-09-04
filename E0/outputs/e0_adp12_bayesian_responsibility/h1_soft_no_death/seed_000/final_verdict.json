@@ -1,0 +1,14 @@
+{
+  "variant": "H1",
+  "seed": 0,
+  "z4_pass": false,
+  "death_events": 0,
+  "death_commits": 0,
+  "duplicate_prunes": 0,
+  "m_discovered": null,
+  "family_accuracy": 0.6139896373056994,
+  "fragmentation": 0.38472102361429955,
+  "b1_pass": false,
+  "final_pass": false,
+  "failure_mode": "F4_persistent_mixing_or_identity_failure"
+}

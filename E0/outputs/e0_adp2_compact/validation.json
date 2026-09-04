@@ -1,0 +1,71 @@
+{
+  "valid": true,
+  "files": {
+    "E:\\codes_python\\relation latent world\\E0\\configs\\e0_adp2_compact.json": true,
+    "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp1_mini\\seed_0\\adp1\\best_bank.pt": true,
+    "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp1_mini\\seed_0\\adp1\\final_assignments.npz": true,
+    "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp1_mini\\seed_0\\adp1\\outer_curves.json": true,
+    "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_diagnostics\\O5\\m5\\identity\\seed_0\\checkpoint.pt": true,
+    "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_diagnostics\\O5\\m5\\identity\\seed_0\\metrics.json": true
+  },
+  "metadata": {
+    "stage": "validate",
+    "python_executable": "E:\\conda\\envs\\wm\\python.exe",
+    "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+    "torch": "2.5.1+cu121",
+    "cuda_available": true,
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "optimization_seed": 0,
+    "context_seed": 20260903,
+    "config_sha256": "6c4563c400ef806fbf9a6d285543199aea70952f86edf66da7a8cc48990b5a6e",
+    "config": {
+      "experiment": "E0-ADP2-COMPACT-13H",
+      "world_seed": 20260901,
+      "dataset_seed": 20260902,
+      "context_seed": 20260903,
+      "optimization_seed": 0,
+      "m_max": 5,
+      "lambda_participation": 0.001,
+      "subset": {
+        "train": 1024,
+        "val": 256,
+        "test_iid": 512,
+        "test_context": 512,
+        "test_combination_101": 512
+      },
+      "e_step": {
+        "num_supports": 32,
+        "chunk_size": 2048,
+        "v_bound": 1.5,
+        "optimizer": "Adam",
+        "learning_rate": 0.05,
+        "max_steps": 20,
+        "restarts": 2,
+        "relative_tolerance": 1e-07,
+        "tolerance_patience": 10,
+        "tie_epsilon": 1e-08,
+        "lambda_p": 0.001
+      },
+      "m_step": {
+        "optimizer": "AdamW",
+        "learning_rate": 0.0003,
+        "weight_decay": 1e-05,
+        "batch_size": 128,
+        "steps_per_candidate_per_round": 16,
+        "gradient_clip": 1.0,
+        "target": "residual_backfitting"
+      },
+      "compact": {
+        "baseline_rounds": 4,
+        "tau_conf": 0.05,
+        "n_min_per_context": 32,
+        "min_context_coverage": 3
+      }
+    }
+  }
+}

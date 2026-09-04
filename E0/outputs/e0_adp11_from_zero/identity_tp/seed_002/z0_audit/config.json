@@ -1,0 +1,63 @@
+{
+  "experiment": "E0-ADP11-FROM-ZERO-PERFECT-TP-STABILITY",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "family_seed": 20260905,
+  "optimization_seed": 2,
+  "tp_condition": "identity",
+  "m_max": 5,
+  "mechanism_dim": 64,
+  "mechanism_heads": 4,
+  "rounds": 40,
+  "mechanism_learning_rate": 0.0003,
+  "coordinate_learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "family_batch_size": 32,
+  "epochs_per_round": 4,
+  "gradient_clip": 1.0,
+  "functional_probe_count": 2000,
+  "initial_assignment": "random_balanced",
+  "initial_coordinate_a": "random_sign_times_uniform_0.8_1.2",
+  "initial_coordinate_b": "uniform_-0.1_0.1",
+  "major_candidate_min_usage": 0.02,
+  "tp_usage_contract": "p is learner-visible and audited, but the preregistered Z2-Z4 family cost uses d and Z8 uses delta_S; p is not an argument of the specified optimization equations",
+  "edge_thresholds": {
+    "cross_state_prediction_r2": 0.995,
+    "cross_realization_prediction_r2": 0.995,
+    "cross_base_prediction_r2": 0.995,
+    "direct_replacement_max_nrmse_increase": 0.01
+  },
+  "survivor_weights": {
+    "heldout_loss": 0.5,
+    "assignment_instability": 0.2,
+    "coverage_penalty": 0.3
+  },
+  "prune_gate": {
+    "max_heldout_nrmse_increase": 0.01,
+    "min_best_functional_r2": 0.95,
+    "max_family_accuracy_drop": 0.03,
+    "max_fragmentation_increase": 0.03,
+    "max_repeated_assignment_change": 0.1
+  },
+  "final_gate": {
+    "iid_nrmse": 0.03,
+    "structured_nrmse": 0.05,
+    "min_best_functional_r2": 0.95,
+    "family_accuracy": 0.9,
+    "mean_fragmentation": 0.1,
+    "assignment_change": 0.1
+  },
+  "b1": {
+    "lambda_p": 0.001,
+    "alpha_bound": 1.5,
+    "learning_rate": 0.05,
+    "steps": 60,
+    "restarts": 3,
+    "chunk_size": 1024,
+    "splits": [
+      "test_iid",
+      "test_combination_101"
+    ]
+  },
+  "scientific_scale_reduction": "none"
+}

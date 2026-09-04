@@ -1,0 +1,14 @@
+{
+  "experiment": "E0-ADP9",
+  "development_seed": 0,
+  "development_pass": true,
+  "pruning_pass": true,
+  "b1_full_tp_pass": true,
+  "M_discovered": 3,
+  "stop_reason": "no_valid_duplicate_edge",
+  "alive_candidates": ["C1", "C2", "C3"],
+  "mechanism_parameter_updates_during_pruning": 0,
+  "multi_seed_status": "not_assessed_missing_independent_upstream_checkpoints",
+  "strong_pass_8_of_10": "not_assessed",
+  "conclusion": "For upstream seed 0, learner-visible functional equivalence pruning automatically removed C5 and C4, stopped without using M_real, preserved all structural gates, and enabled full-TP exact support inference to pass."
+}

@@ -1,0 +1,29 @@
+{
+  "experiment": "E0-ADP8-MERGE-DRIFT-DIAGNOSTIC",
+  "optimization_seed": 0,
+  "epochs": 40,
+  "coordinate_learning_rate": 0.001,
+  "response_batch_size": 192,
+  "gradient_clip": 1.0,
+  "functional_probe_count": 2000,
+  "correct_pairs": [
+    [
+      1,
+      4
+    ],
+    [
+      0,
+      3
+    ]
+  ],
+  "cross_realization_splits": [
+    "weak_to_strong",
+    "strong_to_weak",
+    "negative_to_positive",
+    "positive_to_negative"
+  ],
+  "nrmse_tolerance_over_separate": 0.03,
+  "functional_r2_threshold": 0.9,
+  "affine_r2_threshold": 0.95,
+  "order_accuracy_threshold": 0.95
+}

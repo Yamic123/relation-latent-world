@@ -1,0 +1,2484 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+% --- density settings -----------------------------------------------------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt plus 1pt minus 1pt}
+\setlength{\abovedisplayskip}{5pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{5pt plus 2pt minus 2pt}
+\setlength{\abovedisplayshortskip}{2pt plus 1pt}
+\setlength{\belowdisplayshortskip}{2pt plus 1pt}
+\setlist{nosep,leftmargin=2em}
+\allowdisplaybreaks
+
+% --- helper environments for plain-language notes and examples -------------
+\newenvironment{plainword}{%
+  \par\medskip\noindent\begin{minipage}{\textwidth}%
+  \color{gray!75!black}\small\itshape
+}{%
+  \end{minipage}\par\medskip}
+
+\newenvironment{example}{%
+  \par\smallskip\noindent\begin{minipage}{\textwidth}%
+  \color{teal!60!black}\small
+  \textbf{\color{teal!70!black}Real-world example.}\
+}{%
+  \end{minipage}\par\smallskip}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Relational Latent World Learning\par}
+\end{center}
+
+\begin{center}
+{\large An Interaction-Centred Research Position on Effective Variables, Task Constraints, and Action\par}
+\end{center}
+
+\vspace{0.6em}
+\begin{plainword}
+This paper describes a research plan, not finished results. Its one big question is:
+\emph{can a machine (or an agent) figure out how a part of the world works simply by trying things and watching what happens},
+and then \emph{reuse} that understanding both to keep learning and to actually get things done? The words are kept
+simple below, and every abstract idea is followed by a concrete example --- mostly from medicine, because
+"observing a system, acting on it, and learning from the response" is exactly what a doctor does every day.
+\end{plainword}
+
+\subsection*{How to read this paper (a short glossary)}
+
+Throughout the paper we use a small set of technical words. Here they are in plain language, each with a medical example.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.24\textwidth}p{0.38\textwidth}X@{}}
+\toprule
+Term & Plain meaning & Medical example \\
+\midrule
+Agent & Something that can see and act in a situation & A robot arm, or a doctor \\
+Observation $O_t$ & What you can see or measure at one moment & Vital signs, a blood test, an X-ray \\
+Action $a_t$ & What you actually do & Giving a drug, pushing an object \\
+State $S_t$ & A short useful summary of "where things stand now" & "Blood pressure high, kidneys failing" \\
+Transformation (TP) $p$ & \emph{What actually changed}, not the action that caused it & "Blood pressure fell by 20\,mmHg" (not "I gave lisinopril") \\
+Mechanism $Z_D$ & A reusable cause--effect unit that recurs & "This drug lowers BP via the kidney" \\
+Relation $R_D$ & A one-way effect of one mechanism on another & "Drug A makes drug B stronger" \\
+World $W_D$ & The whole learned "how this domain works" model & A doctor's understanding of cardiology \\
+Task $C_T$ & A goal, a desired outcome & "Get this patient's BP to normal" \\
+Exploration & Choosing the next action to reduce confusion & Ordering a test to tell two diagnoses apart \\
+Identifiability & Whether the data can tell two explanations apart & "Is it A or B? The data must decide." \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{plainword}
+The key move of the whole paper is this: the agent is allowed to describe what happened in terms of \emph{reusable mechanisms}
+and \emph{relations between them}, and is only allowed to keep a mechanism or a relation if it keeps being useful on new situations.
+A description is not accepted just because it looks pretty --- it must \emph{earn its place} by predicting things that were never shown to it.
+\end{plainword}
+
+\subsection*{Abstract}
+
+This paper asks whether an agent that can sense and act can discover a compact, relational account of a domain from
+interaction alone, and then reuse that account for two jobs at once: exploring on its own, and completing tasks.
+The proposed answer is neither a complete hand-written physics engine nor a black-box task robot. It is a stack of
+\emph{useful summaries}, each sitting on top of the last.
+
+In plain terms, the stack is built like this:
+
+\begin{itemize}
+\item A \emph{persistent state} $S_t$ makes "change" measurable, so we can compare one moment to the next.
+\item A \emph{transformation primitive} (TP) $p_i$ describes \emph{what happened} over a short stretch of time --- the change, not the action.
+\item \emph{Reusable domain variables} $Z_D$ and \emph{directed relation operators} $R_D$ explain the recurring parts of those changes.
+\item Together these form a \emph{relational latent world} $W_D=(Z_D,R_D)$: a compact model of "how this domain behaves."
+\end{itemize}
+
+\begin{example}
+A doctor does not memorize one unrelated fact per patient. She builds a reusable model: "this class of drugs lowers blood
+pressure through the kidney," "this second drug makes the first stronger." Those are mechanisms and relations. When a new
+patient arrives, she reuses the same model instead of starting from zero.
+\end{example}
+
+This world closes a learning loop: when it is confident, it asks for missing evidence; when it is not, it asks to try
+transformations at the edge of what it currently understands. In parallel, several demonstrations of the same task are used to
+learn a \emph{task constraint} $C_T$: a compact description of the goal, learned by predicting one demonstration from another.
+The task state is deliberately minimal, $Z_T=(S_t,C_T)$. The task is not stored as a new object; instead $C_T$ \emph{acts on} the
+explicit world $W_D$ to produce a distribution over "next transformations that fit the task," plus a "should I stop now" signal.
+Low-level control is then obtained by asking the already-learned model the reverse question: \emph{"which action would produce
+that transformation?"}
+
+There is no separate desired-transformation variable $D_T$, no explicit task graph $G_T$ in the first implementation, no learned
+uncertainty object $U_D$, and no separate exploration or task motor policy. The paper keeps these out deliberately, and says why.
+
+The paper also places this proposal against related ideas --- object-centric learning, equivariant representations, temporal
+abstraction, causal representation learning, relational inductive bias, active experiment design, task inference, imitation
+learning, and model-based control. For each, it states plainly what is borrowed, what is changed, and why existing guarantees do
+not carry over. The final product is a \emph{falsifiable} research programme: world variables must earn their status through
+reusable predictions; task context must earn its status through transfer across demonstrations; and every abstraction is judged
+by its held-out consequences, not by whether its learned "shape" looks clean.
+
+\section*{1. Scientific Problem Definition}
+
+\subsection*{1.1 The scientific question}
+
+Let an agent observe $O_t$, carry out a low-level action $a_t$, and receive the next observation $O_{t+1}$. The scientific question is:
+
+\[
+\boxed{
+\begin{minipage}{0.88\textwidth}
+Can the agent use time-aligned observation--action streams to discover reusable effective variables and their directed
+relations, actively gather the evidence needed to refine that structure, infer a persistent task constraint from different
+demonstrations of the same task, and turn that constraint back into actions --- \emph{without ever being told a human
+vocabulary} of objects, mechanisms, or named actions?
+\end{minipage}}
+\]
+
+\begin{example}
+The agent is never told "this is a drug, this is a kidney, this is 'blood pressure.'" It only sees: before (the numbers),
+what was done (the dose), and after (the new numbers). From many such triples it must discover that there is a stable thing
+called "blood pressure," that a certain intervention reliably changes it, and that this change can be undone or boosted by
+other interventions.
+\end{example}
+
+The primitive unit of data is a continuous interaction trajectory
+
+\[
+\boxed{\tau=(O_0,a_0,O_1,a_1,\ldots,a_{T-1},O_T),}
+\]
+
+with strict alignment in time between what was observed and what was actually done.
+
+The proposal rejects two shortcuts. First, an \emph{action label} is not the same as the \emph{transformation} it produces: the
+same action can have different effects in different situations, and different actions can produce the same effect. Second, a
+\emph{task label} or a \emph{final picture} is not a sufficient description of a task: different strategies can satisfy the same
+goal, while identical endpoints can hide different required processes.
+
+\begin{example}
+"Push the cup" is one action, but the \emph{change} depends on the cup: an empty cup slides, a full cup tips, a glued cup does
+not move. Conversely, "slide the cup left" can be achieved by pushing from the right or pulling from the left. So what the agent
+should record is the \emph{change}, not the name of the action. Likewise, "blood pressure returned to normal" can be reached by
+a diuretic, by a beta-blocker, or by fluid restriction --- the endpoint alone does not tell you the process.
+\end{example}
+
+\subsection*{1.2 Target explanatory hierarchy}
+
+The proposed hierarchy is
+
+\[
+\boxed{
+O_t\rightarrow S_t\rightarrow TP\rightarrow
+\left\{
+\begin{array}{l}
+Z_D\leftrightarrow R_D\rightarrow W_D\rightarrow \text{exploration},\\
+TP\text{ sequences}\rightarrow C_T\rightarrow \text{task transformation}
+\end{array}
+\right.
+\rightarrow \text{intervention}.}
+\]
+
+\begin{plainword}
+Reading left to right: raw observation $\to$ a persistent state $\to$ a "what changed" summary (TP). That summary then feeds two
+branches: (1) reusable mechanisms and their relations form a world model, used for exploration; (2) sequences of changes are used
+to learn a task goal. Both branches end back in a concrete action. The whole loop is "see, act, learn, act better."
+\end{plainword}
+
+The terms play deliberately different roles:
+
+\begin{itemize}
+\item $S_t$ is a persistent coordinate system for interaction-relevant state.
+\item $p_i$ is an experience-level description of one concrete local change over a variable-length stretch of time.
+\item $Z_D=\{Z_D^j\}$ is a domain-level bank of reusable effective mechanisms; $z_i^j$ is the value of mechanism $j$ in experience $i$.
+\item $R_D=\{R_D^{j\rightarrow k}\}$ is a set of stable directed operators describing how one mechanism changes another.
+\item $W_D=(Z_D,R_D)$ is the shared relational latent world for the chosen domain and scale.
+\item $C_T$ is a persistent task constraint inferred from a TP sequence and trained to transfer across different demonstrations of the same task.
+\item $Z_T=(S_t,C_T)$ is the minimal task state. $W_D$ stays an external, domain-shared structure rather than being folded into $Z_T$.
+\end{itemize}
+
+Task transformation is \emph{not} a new latent variable. It is the operation
+
+\[
+\boxed{
+\mathcal T_T:(S_t,W_D,C_T)\longmapsto
+P_T(p_{\mathrm{next}},y^{\mathrm{stop}}\mid S_t,W_D,C_T),}
+\]
+
+possibly also looking at the most recent TP as a short-term "progress cue." In plain terms, $C_T$ does not create a new world; it
+\emph{re-weights} the transformations that $W_D$ already makes possible, keeping the ones that fit the goal. The first
+implementation therefore has neither a stored "desired next transformation" $D_T$ nor a separately built task graph $G_T$.
+
+\subsection*{1.3 Why this problem is not ordinary representation learning}
+
+Predicting the next observation is not enough to pin down the right concepts: many different internal coordinate systems can
+reproduce the same one-step predictions. So this paper asks a stronger, functional question. Which variables keep explaining
+effects \emph{across} contexts? Which directed relations stay necessary under controlled comparisons? Which task code changes
+future transformation predictions when the world state is held the same? A latent variable is accepted not because it looks
+interpretable or statistically separated, but because it \emph{earns operational meaning} by being reusable.
+
+\begin{example}
+A student could memorise "this exact patient, this exact pill, this exact result" --- that predicts each case perfectly but
+generalises to nothing. What we want instead is the reusable rule "ACE inhibitors lower blood pressure," which transfers to new
+patients, new doses, and new contexts. The test of a concept is \emph{does it keep working somewhere it has never been?}
+\end{example}
+
+This also changes the role of action. Action is not merely a control target. It is \emph{experimental leverage}. Different actions
+supply the contrasts that passive watching cannot, and the learned structure in turn tells the agent which action would be
+informative next. The world model is therefore both an explanation and an experiment-design state.
+
+\subsection*{1.4 Scope and non-claims}
+
+The framework targets a bounded domain, sensor suite, action space, spatial scale, temporal scale, and abstraction level. It does
+not claim to recover fundamental physical variables, a unique object ontology, or a universally valid causal graph. $Z_D$ is an
+\emph{effective} description relative to what the agent can observe and change. Relations are functional modulation operators in
+latent effect space, not automatically causal effects in the formal interventionist sense.
+
+Four kinds of statements are kept strictly separate throughout:
+
+\begin{enumerate}
+\item \textbf{Physical or structural prior:} a claim about regularity in the domain or task family.
+\item \textbf{Identifiability condition:} a condition on the data needed to tell hypotheses apart.
+\item \textbf{First implementation:} an architectural, distributional, or optimisation choice.
+\item \textbf{Diagnostic:} an evaluation or evidence quantity that is not promoted into a latent object or a strong training loss.
+\end{enumerate}
+
+This distinction matters. A Transformer, a Gaussian posterior, a Hard-Concrete relaxation, pairwise message passing, task
+grouping supplied by a dataset, or local differentiability of a learned controller is \emph{not} a physical assumption.
+
+\begin{example}
+"We used a Transformer" is a statement about our implementation, like "we wrote the notes in this notebook." It says nothing
+about whether the body actually works the way our model imagines. Keeping these two kinds of claim apart is what stops a good
+prediction from being mistaken for a true explanation.
+\end{example}
+
+\section*{2. Literature Review and Research Positioning}
+
+\begin{plainword}
+This section says, for each neighbouring field: "here is the useful idea we take, here is the important way we differ, and here
+is a guarantee from that field that does \emph{not} carry over to us." You can read just the first sentence of each subsection to
+get the idea; the detail is there if you want it.
+\end{plainword}
+
+\subsection*{2.1 Object-centric and temporally persistent representations}
+
+Slot Attention introduced exchangeable "slots" that bind perceptual features into a set of task-dependent representations [1].
+SAVi added temporal conditioning for video, showing that earlier slots can guide binding in later frames [2]. SOLD showed the value
+of slot-structured latent dynamics for relational manipulation and model-based reinforcement learning [3]. We borrow the
+set-valued latent interface, temporal conditioning, and action-conditioned dynamics. We differ in ontology and purpose: a slot
+here is a persistent \emph{interaction unit}, not a claim that the world is made of objects, and slots are only the coordinate
+system from which transformations and mechanisms are discovered. Consequently, object-discovery results, segmentation quality, or
+empirical control gains do not guarantee TP, $Z_D$, or $R_D$ identifiability. Slot permutation, splitting, merging, and non-object
+solutions remain possible.
+
+Vision Transformers provide a convenient localised token interface [4], and Set Transformers and Deep Sets provide
+permutation-aware computation over sets [18,19]. These architectures are borrowed as implementation tools. No theorem about the
+world follows from choosing them, and no representation guarantee transfers from their universal-approximation or attention
+properties.
+
+\subsection*{2.2 Invariance, equivariance, and interaction-grounded change}
+
+Equivariant representation learning formalises "predictable latent change under known transformation groups." SIE explicitly
+splits invariant and equivariant components and stops equivariant information from collapsing into the invariant branch [29].
+Symmetry-based approaches clarify an important goal: irrelevant variation should be thrown away while action-relevant change stays
+predictable. We borrow this separation of stable content from structured change. We differ because robot interventions need not
+form a known group, be invertible, or act globally; contact, containment, irreversible change, and state-dependent effects all
+violate the clean symmetry setting. The proposed TP is therefore learned from \emph{realised} state change and executed actions,
+not from supervised relative group elements. Group-equivariance, losslessness, and disentanglement guarantees do not transfer.
+
+This difference is substantive. The target is not "invariance to action" but a representation in which
+
+\[
+\boxed{(S,A)\mapsto p\mapsto \Delta S}
+\]
+
+is stable enough to support mechanism discovery and inversion. What stays invariant is the reusable \emph{mechanism identity};
+what varies (equivariantly, in a loose operational sense) is its \emph{realisation and effect}.
+
+\begin{example}
+The mechanism "this drug dilates blood vessels" is the same thing across patients (the invariant identity). But \emph{how much}
+dilation happens varies with dose, weight, and other drugs present (the varying realisation). We want a representation that keeps
+the first fixed and lets the second vary.
+\end{example}
+
+\subsection*{2.3 Temporal abstraction, skills, and transformation primitives}
+
+The options framework formalised temporally extended actions in semi-Markov decision processes [5]. Temporal variational
+inference and later temporally abstract world models learn latent skills or options from trajectories [6,30]. We borrow variable
+duration, learned termination, and the principle that temporal segmentation should reflect a coherent latent regime. We differ in
+what the segment's latent \emph{denotes}. A skill or option is normally a policy-side object --- \emph{how to act} --- whereas a TP
+denotes the realised world-side transformation --- \emph{what happened}. The TP posterior therefore excludes action, while its
+prospective prior includes state and intervention. Option-value, policy-composition, and semi-MDP guarantees do not establish that
+the inferred TP is action-invariant, mechanism-reusable, or causally meaningful.
+
+\begin{example}
+A "skill" would be "the manoeuvre for inserting an IV" (how to act). A "transformation" would be "the needle is now inside the
+vein" (what changed). The same transformation can be reached by different skills, and the same skill can fail to produce the
+transformation in a different body. We model the transformation, because that is what both learning and task success depend on.
+\end{example}
+
+Latent dynamics and predictive world models show that useful representations can be learned through future prediction and used for
+planning [3,26--28,31]. Predictive invariant/equivariant world models further motivate separating stable content from predictable
+change [7]. Latent-action work shows both the promise of discovering action-like coordinates and the risk that distractors or
+missing intervention information contaminate them [8,9]. We borrow action-conditioned latent prediction and receding-horizon
+optimisation, but keep the executed intervention explicit and distinguish the \emph{effect} posterior from the
+\emph{intervention-conditioned} prior. We also insert explicit transformation, mechanism, and relation levels, and attribute errors
+across them. Predictive accuracy or latent-action cycle consistency alone does not identify the proposed hierarchy; a monolithic
+model can fit transitions while hiding exactly the structure we care about.
+
+\subsection*{2.4 Disentanglement and causal representation learning}
+
+Unsupervised disentanglement is non-identifiable without inductive biases on the model and data [32]. Nonlinear ICA becomes
+identifiable only with additional structure such as observed auxiliary variables [33]. These negative and positive results motivate
+the explicit statement of priors and coverage conditions in this paper. We do not claim that sparsity or prediction uniquely
+recovers true factors.
+
+CITRIS uses temporal sequences with observed intervention targets to identify multidimensional causal factors under its generative
+assumptions [10]. BISCUIT studies unknown binary interaction indicators that switch causal mechanisms [11]. Mechanism-sparsity work
+shows that sparse latent dependencies or intervention masks can yield identifiability under graph and data conditions [12].
+Multi-node and linear-system intervention analyses relax or clarify intervention requirements in more restricted mixing settings
+[13,14], while interventional causal representation learning derives identifiability from support changes under interventions [15].
+iCITRIS extends temporal causal representation learning to instantaneous effects [16]. We borrow four principles: temporal
+information, intervention diversity, sparse or structured mechanism participation, and the need to state what variation identifies
+an edge.
+
+The differences are equally important. The present model uses learned slots, variable-duration TPs, unknown many-to-many mechanism
+allocation, nonlinear mechanism modules, and directed residual relation operators. Intervention targets are not supplied. $Z_D$ is
+effective and domain-relative, not assumed to equal a ground-truth causal variable. The learned relation graph need not be acyclic.
+Hence the identifiability theorems of [10--16,33] do not transfer. They motivate diagnostics and experimental designs, not a proof
+that this neural hierarchy recovers a unique causal model.
+
+\begin{example}
+Most causal-representation results assume someone has \emph{labelled} which variable was intervened on ("I changed the dose of
+this one drug"). Here the agent gets no such labels --- it only sees that \emph{something} was done and \emph{something} changed. So
+the existing guarantees, which assume labels, cannot simply be imported.
+\end{example}
+
+\subsection*{2.5 Reusable mechanisms, latent feature allocation, and relational structure}
+
+The Indian Buffet Process supplies a conceptual precedent for sparse, many-to-many latent feature allocation [17]. We borrow the
+idea that one experience may activate several reusable features and one feature may recur across many experiences. We do not use the
+IBP generative process or its nonparametric inference guarantees; the first implementation uses an overcomplete finite bank and
+differentiable participation gates.
+
+Graph networks and relational inductive biases motivate representing entities and their interactions explicitly [22]. FiLM supplies
+a simple conditioning operator [21], and $L_0$ regularisation supplies differentiable sparse gates [20]. We borrow directed message
+passing, constrained modulation, and sparse structural selection. We differ in edge semantics: nodes are reusable effective
+mechanisms and an edge is the residual modulation of a target mechanism by a source mechanism. The graph is not an input object
+graph, and graph-network expressivity does not make an edge identifiable. Direction requires matched-context contrasts and held-out
+explanatory power.
+
+\subsection*{2.6 Active learning, experimental design, and curiosity}
+
+Bayesian experimental design defines experiment value through expected information gain [23], while D-optimal and log-determinant
+criteria reward measurements that expand rather than duplicate supported directions [24]. Curiosity methods reward prediction error
+as an intrinsic signal [25]. We borrow the principle that data collection should be driven by expected reduction of structural
+ambiguity, and use an explicit log-determinant coverage statistic as a first estimator.
+
+We differ from generic curiosity in two ways. First, novelty is not intrinsically valuable: evidence must bear on mechanism reuse
+or directional relation identification. Second, disagreement is rewarded only when the lower TP level is locally competent;
+otherwise the agent would chase sensor noise or exploit its own predictor. We also do not maintain a full Bayesian posterior over a
+neural world model. Therefore Bayesian optimality, submodularity, and regret guarantees do not transfer to the learned nonlinear
+objective.
+
+\begin{example}
+A curious student who is rewarded for "anything surprising" will waste time being surprised by noise. A good doctor is surprised
+only by things that change the diagnosis or the plan. We want the second kind of curiosity: surprise that is \emph{useful}.
+\end{example}
+
+\subsection*{2.7 Task representations from demonstrations}
+
+One-shot visual imitation and Task-Embedded Control Networks infer a task representation from demonstrations and condition a
+controller on it [34,35]. Probabilistic-context meta-RL separates task inference from control [36]. Conditional Neural Processes
+separate a context set from target prediction [37]. We borrow the context/query logic: infer $C_T$ from one demonstration and
+require it to predict \emph{another} demonstration of the same task. This is stronger than reconstructing its own trajectory,
+because it discourages a path-specific code.
+
+The proposed task variable differs from prior task embeddings in both supervision and interface. The first experiment receives
+episode boundaries and same-task grouping, but \emph{not} semantic task labels as inputs to the network. $C_T$ predicts
+transformations rather than direct motor commands or rewards. It acts on the explicit $W_D$, and the low-level action is found by
+TP-prior inversion. Meta-learning generalisation, imitation success, or neural-process consistency does not imply that $C_T$ has
+captured a \emph{task constraint} instead of strategy, initial state, demonstrator identity, or dataset bias. That claim must be
+tested with cross-strategy demonstrations, cross-initial-state transfer, and a no-$C_T$ predictive ablation.
+
+\begin{example}
+If two doctors both "reduce blood pressure" but one uses a diuretic and the other uses diet, a good task code should capture the
+shared \emph{goal} ("lower BP"), not "which doctor" or "which drug." We test this by asking the code learned from one doctor's
+demonstration to predict the other doctor's demonstration.
+\end{example}
+
+\subsection*{2.8 Multimodal task progression and model-based action realisation}
+
+Demonstrations of the same task can contain several valid next transformations. A unimodal regressor can average incompatible modes
+and pressure the task encoder to leak strategy identity. Mixture-density models provide a direct probabilistic representation of
+multimodal conditional outcomes [38]; diffusion policies show the practical importance of multimodal action distributions in robot
+imitation [39]. We borrow only the need for a multimodal output and choose a conditional Gaussian mixture in TP space for the first
+implementation. Diffusion-policy control performance and density-model expressivity do not guarantee that the modes correspond to
+meaningful task alternatives.
+
+\begin{example}
+"Lower blood pressure" can next be achieved by "more diuretic" or by "add a beta-blocker." Averaging the two would produce a
+meaningless half-measure. A mixture model keeps both options alive as separate choices, which is what real medicine (and real
+robotics) requires.
+\end{example}
+
+Differentiable MPC, PETS, visual foresight, and Universal Planning Networks optimise actions through learned predictive models
+[26--28,40]. We borrow direct action-sequence optimisation, uncertainty-aware or sampling baselines, and receding-horizon
+replanning. The difference is the objective: exploration maximises structural evidence and abstraction challenge; task execution
+matches the TP distribution demanded by $\mathcal T_T$. No independent motor policy is learned. Classical MPC guarantees do not
+transfer because the learned TP and world abstractions are approximate, stochastic, and only locally calibrated.
+
+\subsection*{2.9 Positioning summary}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.19\textwidth}XXX@{}}
+\toprule
+Line of work & Borrowed or inspired & Distinctive move here & Guarantee that does not transfer \\
+\midrule
+Object-centric video & persistent set-valued state & slot as interaction unit, not object ontology & object recovery or slot identifiability \\
+Equivariance & separate stable identity from structured change & interventions need not be known groups & group-equivariance and losslessness \\
+Temporal abstraction & variable duration and termination & TP represents realised effect, not a policy option & semi-MDP or option-control guarantees \\
+Causal representation learning & interventions, sparsity, contrast, identifiability discipline & unknown targets, learned TP mediator, effective mechanisms, possibly cyclic relations & recovery of true causal variables/graph \\
+Graph networks & explicit directed interactions & edge is source-to-target mechanism modulation & edge semantics or direction identifiability \\
+Experimental design & non-redundant evidence gain & structure-specific evidence plus TP-gated abstraction frontier & Bayesian optimality or submodularity \\
+Task/meta learning & demonstration-derived context & cross-demonstration TP prediction on explicit $W_D$ & strategy-invariant task identity \\
+Model-based control & optimise actions through predictions & invert TP prior for both exploration and tasks & stability or optimality under model error \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section*{3. Physical and Structural Priors}
+
+\begin{plainword}
+A "prior" here means an assumption we make \emph{before} looking at data --- a belief about how the world is organised. We list only
+assumptions about the domain itself here. Choices about networks, distributions, and optimisers come later. Each prior gets a
+plain-language restatement and an example.
+\end{plainword}
+
+\subsection*{P1. Domain-local effective compressibility}
+
+At a specified domain, spatial scale, temporal scale, and abstraction level, intervention-relevant change can be explained by fewer
+reusable effective mechanisms than raw observation dimensions:
+
+\[
+\boxed{\Delta S\approx F_W(S;Z_D,R_D),\qquad |Z_D|\ll \dim(O).}
+\]
+
+\begin{plainword}
+A small number of reusable causes can explain most of what changes, even though the raw measurements (pixels, readings) are huge in
+number.
+\end{plainword}
+
+\begin{example}
+A patient's full monitoring trace has thousands of numbers, but a doctor summarises "the blood pressure is dropping because of
+these two causes." The summary is short, but it explains the change. That is what P1 assumes: the domain \emph{allows} such short
+summaries.
+\end{example}
+
+The mechanisms are not asserted to be fundamental physical variables or unique across domains.
+
+\subsection*{P2. Intervention--response regularity}
+
+The effect of a low-level intervention depends systematically on the pre-intervention state:
+
+\[
+\boxed{P(S_{t+1}\mid S_t,a_t)\neq P(S_{t+1}\mid a_t)\ \text{in general}.}
+\]
+
+\begin{plainword}
+What an action does depends on where you are. The same action in different states generally gives different outcomes.
+\end{plainword}
+
+\begin{example}
+Giving a diuretic to a dehydrated patient is very different from giving it to an overloaded one. The drug is the same; the state is
+not. So "action $\to$ outcome" is not a clean fixed rule --- the state matters.
+\end{example}
+
+Comparable transformations can recur across different controls, and comparable controls can yield different transformations under
+different states. This regularity is what makes a transformation variable distinct from an action code.
+
+\subsection*{P3. Temporally local transformation regimes}
+
+Over some bounded intervals, a single latent transformation description is sufficient to explain the local evolution better than
+re-describing the code at every timestep. Boundaries need not coincide with action switches and need not be perfectly discrete in
+every domain. The prior is local persistence, not a preferred duration.
+
+\begin{example}
+"Steadily lowering the blood pressure over half an hour" is one coherent transformation, even though it is implemented by many
+small titration steps. It would be wasteful to describe each small step as a brand-new phenomenon.
+\end{example}
+
+\subsection*{P4. Reusable and locally compositional mechanisms}
+
+The same mechanism function can recur across contexts and tasks, while a local TP normally engages a subset of the mechanisms
+available in the domain:
+
+\[
+\boxed{e_i^j=\mathcal M_j(S_i^{\mathrm{pre}},v_i^j),\qquad
+\mathbb E\|m_i\|_0<M_{\max}.}
+\]
+
+\begin{plainword}
+Each mechanism is a reusable function. In any single change, only a \emph{few} mechanisms are usually active, and one change can
+activate several at once (many-to-many).
+\end{plainword}
+
+\begin{example}
+The mechanism "renin--angiotensin--aldosterone axis" is reused across many patients. A given clinical event might activate this
+mechanism together with "sympathetic activation" --- two mechanisms, one event. And the same mechanism shows up in thousands of
+different events. That reuse is what P4 assumes.
+\end{example}
+
+This does not impose one TP per mechanism. The mapping is many-to-many.
+
+\subsection*{P5. Stable directed relational modulation}
+
+Some effects cannot be explained by isolated mechanisms alone but admit reusable, directed source-to-target modulation:
+
+\[
+\boxed{R_D^{j\rightarrow k}\neq R_D^{k\rightarrow j}\ \text{in general}.}
+\]
+
+\begin{plainword}
+Some effects need two mechanisms plus a \emph{direction} between them. "A changes B" is not the same as "B changes A."
+\end{plainword}
+
+\begin{example}
+Drug A may increase the effect of drug B (A$\to$B), while B does nothing back to A. The arrow has a direction. Whether the current
+data actually \emph{support} that arrow is a separate question --- P5 only assumes such directed relations can exist.
+\end{example}
+
+Relation existence is a property of the domain-level mechanism system; whether the current dataset supports it is an epistemic
+question.
+
+\subsection*{P6. A shared domain world under task variation}
+
+Within the chosen domain, tasks normally change \emph{which} feasible transformations are relevant, not the underlying domain
+mechanisms themselves. Thus $W_D$ is shared, while $C_T$ reweights its currently realisable transformation possibilities. This prior
+motivates freezing the world representation when first learning task context.
+
+\begin{example}
+Cardiology (the domain) does not change between the goal "lower blood pressure" and the goal "raise blood pressure." The same
+mechanisms apply; the goals just pick different targets. So we learn the world once, and let each task re-weight it.
+\end{example}
+
+\subsection*{P7. Cross-realisation persistence of task constraint}
+
+Different successful trajectories can instantiate the same task constraint. Therefore a task has information that persists across
+variation in initial state, strategy, and low-level execution:
+
+\[
+\boxed{\tau_{g,r}\sim g,\ \tau_{g,s}\sim g
+\quad\Rightarrow\quad
+C_T^{g,r}\ \text{and}\ C_T^{g,s}\ \text{are functionally interchangeable}.}
+\]
+
+\begin{plainword}
+Two different successful attempts at the same task should give task codes that do the same job, even if their numbers differ.
+\end{plainword}
+
+\begin{example}
+Two different patients, two different doctors, two different drug regimens --- but the same goal "restore normal blood pressure."
+The task code learned from one should be able to predict sensible progress in the other. "Functionally interchangeable" means
+each code predicts the other's progression; it does not require identical coordinates.
+\end{example}
+
+\subsection*{P8. Task relevance is expressible in transformation space}
+
+For the first target domains, the information needed to tell task-consistent from task-inconsistent progress can be expressed as a
+distribution over TPs and termination conditional on the current world state. This is a genuine scope prior. If two tasks demand
+different information that never changes their TP progression or stop condition, the proposed $C_T$ interface cannot distinguish
+them.
+
+\subsection*{What is deliberately not a physical or structural prior}
+
+The following are implementation or experimental choices: ViT features, slots, Transformers, FiLM, diagonal Gaussians,
+Hard-Concrete gates, additive first-order effect composition, pairwise relations, kernel bandwidths, grouped task demonstrations
+supplied by the dataset, gradient optimisation, and thresholded TP competence. Their role is to make the first test finite and
+interpretable. Failure of one such choice does not by itself falsify P1--P8; failure across credible implementations and appropriate
+coverage does.
+
+\begin{example}
+If the first model fails, that tells us the \emph{implementation} was wrong --- not necessarily that "the body has no reusable
+mechanisms." We only conclude the prior is false if many different, reasonable implementations all fail under enough data.
+\end{example}
+
+\section*{4. Mathematical Modeling}
+
+\begin{plainword}
+This is the longest section. Each block of equations is followed by an italic plain-language translation. You can read only the
+italic lines and the examples and still follow the whole argument.
+\end{plainword}
+
+\subsection*{4.1 Data, notation, and the two learning branches}
+
+World-discovery data are temporally aligned interaction streams:
+
+\[
+\mathcal D_{\mathrm{world}}=
+\left\{(O_0,a_0,\ldots,a_{T-1},O_T)\right\}.
+\]
+
+No object category, semantic action, TP boundary, $Z_D$, $R_D$, mechanism, or causal-graph label is required for training.
+Simulation ground truth may be retained for evaluation only.
+
+Task data provide episode boundaries and same-task grouping:
+
+\[
+\boxed{
+\mathcal D_{\mathrm{task}}=\{\mathcal T_g\}_{g=1}^{G},\qquad
+\mathcal T_g=\{\tau_{g,1},\ldots,\tau_{g,R_g}\},\quad R_g\geq2.}
+\]
+
+\begin{plainword}
+For world learning we get raw "observe--act--observe" streams. For task learning we additionally get told which demonstrations
+belong to the same task (but not \emph{what} the task is). Each task group has at least two demonstrations.
+\end{plainword}
+
+This grouping is dataset supervision for the first theory test, not a claim that task equivalence is already solved. The branches
+share $S$, TP, and $W_D$:
+
+\[
+\boxed{
+\mathcal D_{\mathrm{world}}\rightarrow S\rightarrow TP\rightarrow W_D,
+\qquad
+\mathcal D_{\mathrm{task}}\rightarrow TP\text{ sequences}\rightarrow C_T.}
+\]
+
+\subsection*{4.2 Interaction representation}
+
+\subsubsection*{Temporally persistent latent state}
+
+Visual tokens are
+
+\[
+H_t=E_{\mathrm{vis}}(O_t)=\{h_t^1,\ldots,h_t^N\}.
+\]
+
+The latent state is a bounded-capacity set
+
+\[
+\boxed{S_t=E_S(H_t,S_{t-1})=\{s_t^1,\ldots,s_t^{K_{\max}}\},}
+\]
+
+with optional activity variables. The executed action is \emph{not} input to $E_S$; state inference and intervention remain
+distinct. The first implementation uses a ViT-style token encoder and a SAVi-like recurrent Slot Attention module. ``Slot'' denotes
+a persistent latent interaction unit.
+
+\begin{plainword}
+The raw pixels are turned into a small fixed set of "slots" --- persistent placeholders that follow the same thing across time. The
+action is deliberately kept out of this step, so that "what the state is" and "what we did" stay cleanly separate.
+\end{plainword}
+
+\begin{example}
+Think of the slots as the rows of a chart: one row keeps tracking "the blood pressure," another "the heart rate," across time. The
+row for blood pressure stays the same row as it changes, so we can talk about how \emph{much} it changed.
+\end{example}
+
+\subsubsection*{Action-conditioned dynamics and temporal correspondence}
+
+The transition model is
+
+\[
+\boxed{\widehat S_{t+1}=F_S(S_t,a_t).}
+\]
+
+The low-level control should be the command actually executed, for example
+
+\[
+a_t=(\Delta x_t,\Delta y_t,\Delta z_t,\Delta r_t,g_t),
+\]
+
+rather than a semantic label such as ``push''. A small MLP embeds $a_t$; a permutation-equivariant slot Transformer processes
+$S_t$; and FiLM injects the action condition:
+
+\[
+h_t^a=E_a(a_t),\qquad
+(\gamma_t,\beta_t)=G_a(h_t^a),\qquad
+\widetilde s_t^k=\gamma_t\odot \bar s_t^k+\beta_t.
+\]
+
+\begin{plainword}
+The model predicts the next state from the current state plus the action. The action is a raw number (how far the gripper moved),
+not a name like "push," because the model must learn from numbers what the action \emph{does}.
+\end{plainword}
+
+Residual slot-order ambiguity is resolved during training by
+
+\[
+\pi_t^*=\argmin_{\pi}\sum_{k=1}^{K_{\max}}
+D_s(\widehat s_{t+1}^k,s_{t+1}^{\pi(k)}),
+\]
+
+yielding
+
+\[
+\boxed{L_{\mathrm{dyn}}=\sum_{t,k}
+D_s(\widehat s_{t+1}^k,s_{t+1}^{\pi_t^*(k)}).}
+\]
+
+\begin{plainword}
+The slots are not labelled, so the model may store them in any order. Before comparing predicted vs.\ actual, we find the best
+matching of slots (a "Hungarian matching") so we compare like with like. The loss is the mismatch after this best matching.
+\end{plainword}
+
+The matched change is
+
+\[
+\Delta s_t^k=s_{t+1}^{\pi_t^*(k)}-s_t^k,
+\qquad
+\Delta S_t=\{\Delta s_t^k\}_{k=1}^{K_{\max}}.
+\]
+
+The minimal interaction-representation objective is
+
+\[
+\boxed{L_{\mathrm{IR}}=L_{\mathrm{dyn}}.}
+\]
+
+A weak observation reconstruction term $\lambda_{\mathrm{rec}}L_{\mathrm{rec}}$ may be used only to diagnose or prevent collapse.
+Strong reconstruction is avoided because it can preserve appearance detail irrelevant to intervention-induced change.
+
+\subsection*{4.3 Transformation primitives}
+
+\subsubsection*{Experience and variable duration}
+
+For segment $i$ with boundaries $b_i<e_i$,
+
+\[
+\boxed{
+\mathcal I_i=(S_i^{\mathrm{pre}},A_i,S_i^{\mathrm{post}}),\quad
+S_i^{\mathrm{pre}}=S_{b_i},\quad
+S_i^{\mathrm{post}}=S_{e_i},\quad
+A_i=a_{b_i:e_i-1}.}
+\]
+
+After matching, $\Delta S_i=S_i^{\mathrm{post}}-S_i^{\mathrm{pre}}$. A candidate duration satisfies $d_t\in\{1,\ldots,H_{\max}\}$.
+Transition tokens
+
+\[
+x_\tau=E_b(S_\tau,a_\tau,\Delta S_\tau)
+\]
+
+are processed by a temporal Transformer. A hazard head produces $b_{t+j}=\sigma(H_b(h_{t+j}))$ and
+
+\[
+\boxed{P(d_t=j)=b_{t+j}\prod_{r<j}(1-b_{t+r}).}
+\]
+
+The boundary is meaningful only if one TP remains sufficient inside the segment and ceases to be sufficient beyond it.
+
+\begin{plainword}
+A "transformation" is a stretch of time over which a single description of "what changed" is enough. The model learns where these
+stretches begin and end. The boundary is real only if one description works inside the stretch but fails once you cross the line.
+\end{plainword}
+
+\begin{example}
+"Blood pressure fell steadily for 20 minutes" is one transformation. If at minute 21 it suddenly starts rising, that is a new
+transformation --- the old description no longer fits. The model learns to cut the timeline at exactly such points.
+\end{example}
+
+\subsubsection*{Posterior: what happened}
+
+The transformation posterior excludes action:
+
+\[
+\boxed{q_\phi(p_i\mid S_i^{\mathrm{pre}},S_i^{\mathrm{post}}).}
+\]
+
+Matched slot pairs form tokens
+
+\[
+x_i^k=E_\Delta(s_{i,\mathrm{pre}}^k,\Delta s_i^k).
+\]
+
+A Set Transformer and TP query pool the multi-slot change:
+
+\[
+H_i^\Delta=\mathrm{SetTransformer}_{\mathrm{post}}(\{x_i^k\}),
+\qquad
+h_i^{\mathrm{post}}=\mathrm{CrossAttn}(q_{\mathrm{TP}},H_i^\Delta).
+\]
+
+The first posterior is diagonal Gaussian,
+
+\[
+q_\phi=\mathcal N(\mu_i^q,\operatorname{diag}((\sigma_i^q)^2)),
+\qquad
+p_i=\mu_i^q+\sigma_i^q\odot\epsilon.
+\]
+
+Gaussianity is an implementation baseline, not a world prior.
+
+\begin{plainword}
+Given the state before and the state after, the "posterior" answers: \emph{what happened?} Crucially it is \emph{not} given the
+action, so it must describe the change itself, not parrot back "you pushed."
+\end{plainword}
+
+\subsubsection*{Prior: what an intervention is expected to cause}
+
+The prospective TP prior is
+
+\[
+\boxed{p_\theta(p_i\mid S_i^{\mathrm{pre}},A_i).}
+\]
+
+A Transformer encodes the variable-length action sequence, a set encoder summarises the pre-state, and a fusion network predicts
+$(\mu_i^p,\log\sigma_i^p)$:
+
+\[
+h_i^A=E_A(A_i),\quad h_i^S=E_{\mathrm{set}}(S_i^{\mathrm{pre}}),\quad
+h_i^{\mathrm{prior}}=F_{\mathrm{prior}}(h_i^S,h_i^A).
+\]
+
+The prior is also diagonal Gaussian in the first implementation. Posterior and prior are aligned by
+
+\[
+\boxed{
+L_{\mathrm{align}}=
+D_{\mathrm{KL}}\!\left[
+q_\phi(p_i\mid S_i^{\mathrm{pre}},S_i^{\mathrm{post}})
+\Vert
+p_\theta(p_i\mid S_i^{\mathrm{pre}},A_i)
+\right].}
+\]
+
+\begin{plainword}
+The "prior" answers the forward question: \emph{given the state and the action, what change do we expect?} We train the two views to
+agree. This single agreement objective enforces the two contrasts that give the TP its meaning (below).
+\end{plainword}
+
+This objective permits the two contrasts essential to the intended semantics:
+
+\[
+\begin{aligned}
+S^{(1)}\neq S^{(2)},\ A^{(1)}\approx A^{(2)}
+&\Rightarrow p^{(1)}\not\approx p^{(2)}\ \text{when effects differ},\\
+A^{(1)}\neq A^{(2)},\ \Delta S^{(1)}\approx\Delta S^{(2)}
+&\Rightarrow p^{(1)}\approx p^{(2)}.
+\end{aligned}
+\]
+
+\begin{plainword}
+(1) Same action, different states, different effects $\Rightarrow$ the TP must differ (it tracks the \emph{effect}, not the action).
+(2) Different actions, same effect $\Rightarrow$ the TP must be the same (it merges equivalent outcomes).
+\end{plainword}
+
+\begin{example}
+Contrast (1): the same dose of diuretic in a dehydrated vs.\ overloaded patient gives different outcomes, so the "what happened"
+description differs. Contrast (2): lowering blood pressure by a diuretic vs.\ by a beta-blocker reaches the same outcome, so the
+"what happened" description should merge. This is exactly what separates "transformation" from "action name."
+\end{example}
+
+\subsubsection*{TP effect and boundary semantics}
+
+The TP must explain latent state change:
+
+\[
+\widehat{\Delta S}_i^{TP}=F_{\mathrm{TP}}(S_i^{\mathrm{pre}},p_i),
+\qquad
+\boxed{L_{\mathrm{effect}}^{TP}=D_S(\widehat{\Delta S}_i^{TP},\Delta S_i).}
+\]
+
+The first decoder is a TP-conditioned set-equivariant slot Transformer. For each time inside a segment,
+
+\[
+\widehat{\Delta S}_{i,t}^{TP}=F_{\mathrm{TP}}(S_t,p_i),
+\]
+
+and
+
+\[
+\boxed{L_{\mathrm{seg}}=\sum_i\sum_{t=b_i}^{e_i-1}
+D_S(\widehat{\Delta S}_{i,t}^{TP},\Delta S_t).}
+\]
+
+A weak minimum-description-length pressure prevents a boundary at every timestep:
+
+\[
+L_{\mathrm{complexity}}=N_{\mathrm{segments}}
+\quad\text{or}\quad
+L_{\mathrm{complexity}}=\sum_t b_t.
+\]
+
+The TP objective is
+
+\[
+\boxed{
+L_{\mathrm{TP}}=L_{\mathrm{effect}}^{TP}
++\lambda_A L_{\mathrm{align}}
++\lambda_S L_{\mathrm{seg}}
++\lambda_C L_{\mathrm{complexity}}.}
+\]
+
+\begin{plainword}
+The TP must actually reproduce the observed change (effect), agree between its two views (align), fit every step inside its own
+segment (seg), and avoid cutting the timeline into uselessly tiny pieces (complexity). These four pressures together define a good
+transformation.
+\end{plainword}
+
+During this stage $L_{\mathrm{TP}}$ may update $E_S$, allowing interaction units and transformation coordinates to co-adapt. TP
+dimensionality is selected by held-out prediction, reuse, and cross-context transfer; compactness is not assumed for aesthetic
+reasons.
+
+\subsection*{4.4 From TPs to the relational latent world $W_D$}
+
+\subsubsection*{TP experience and many-to-many mechanism allocation}
+
+Every TP retains its provenance:
+
+\[
+\boxed{
+\mathcal E_i=(S_i^{\mathrm{pre}},A_i,S_i^{\mathrm{post}},\Delta S_i,p_i).}
+\]
+
+Let $M_{\max}$ be an overcomplete capacity, not the assumed true number of mechanisms:
+
+\[
+Z_D=\{Z_D^1,\ldots,Z_D^{M_{\max}}\}.
+\]
+
+For experience $i$, $m_i^j\in\{0,1\}$ indicates participation, $v_i^j\in\mathbb R^{d_v}$ is the realisation conditional on
+participation, and
+
+\[
+\boxed{z_i^j=m_i^jv_i^j.}
+\]
+
+The distinction is necessary because $v_i^j=0$ cannot otherwise distinguish inactivity from an active zero-valued realisation. The
+abstraction posterior is
+
+\[
+\boxed{q_\eta(m_i,v_i\mid p_i,S_i^{\mathrm{pre}}).}
+\]
+
+\begin{plainword}
+We keep more candidate mechanisms ($M_{\max}$) than we expect to need. For each experience, each mechanism either participates or
+not (a switch $m$), and if it participates it has a value $v$. We keep the switch and the value separate, so that "off" is not
+confused with "on but currently zero."
+\end{plainword}
+
+\begin{example}
+A patient's chart: each mechanism is a row. "ACE-inhibitor active? yes/no" is the switch; "how much effect now" is the value. If the
+drug is off, that is different from the drug being on but having no current effect. The switch-vs-value split records this
+difference.
+\end{example}
+
+Learned mechanism queries $q_D^j$ attend to an embedded TP and pre-state slots:
+
+\[
+X_i=\{E_p(p_i),E_s(s_{i,\mathrm{pre}}^1),\ldots,E_s(s_{i,\mathrm{pre}}^{K_{\max}})\},
+\]
+
+\[
+\boxed{h_i^j=\mathrm{CrossAttn}(q_D^j,X_i).}
+\]
+
+Independent heads predict participation and realisation. The first implementation uses
+
+\[
+m_i^j\sim\mathrm{HardConcrete}(H_m(h_i^j)),
+\]
+
+and
+
+\[
+v_i^j=\mu_{v,i}^j+\sigma_{v,i}^j\odot\epsilon,
+\qquad
+(\mu_{v,i}^j,\log\sigma_{v,i}^j)=H_v(h_i^j).
+\]
+
+There is no categorical competition because several mechanisms may participate in one TP.
+
+\begin{plainword}
+Each mechanism is a learned "query" that looks at the change and the state and decides: am I involved, and with what value? Multiple
+mechanisms can be involved at once --- there is no single winner.
+\end{plainword}
+
+\subsubsection*{Reusable mechanism functions}
+
+Each candidate variable owns a reusable mechanism identity $\mathcal M_j$. Its effect in experience $i$ is
+
+\[
+\boxed{e_i^j=m_i^j\mathcal M_j(S_i^{\mathrm{pre}},v_i^j),}
+\]
+
+where $e_i^j$ lies in slot-change space. The first network is a shared set-dynamics Transformer with mechanism-specific query
+conditioning and small adapters. A shared backbone supplies generic state processing; the query, realisation, and adapter preserve
+mechanism identity.
+
+Before relation learning, effects compose additively:
+
+\[
+\boxed{\widehat{\Delta S}_i^Z=\sum_{j=1}^{M_{\max}}e_i^j,}
+\qquad
+\boxed{L_{\mathrm{effect}}^D=\sum_iD_S(\Delta S_i,\widehat{\Delta S}_i^Z).}
+\]
+
+\begin{plainword}
+For now, the total predicted change is simply the \emph{sum} of the active mechanisms' effects. This additive rule is a deliberate
+starting point, not a claim that the world is additive. It stops a clever network from secretly doing the relation-work that we want
+to study explicitly in the next step.
+\end{plainword}
+
+\begin{example}
+Predicted change = (effect of drug A) + (effect of drug B). The sum is the baseline. Any part of the outcome that the sum cannot
+explain (say A boosts B) is precisely what the \emph{relation} layer will be asked to capture.
+\end{example}
+
+An optional low-capacity decoder reconstructs the TP from active mechanism realisations:
+
+\[
+y_i^j=m_i^jE_Z(q_D^j,v_i^j),\quad
+h_i^P=\mathrm{CrossAttn}(q_P,\{y_i^j\}),\quad
+\widehat p_i=G_P(h_i^P),
+\]
+
+\[
+\boxed{L_{\mathrm{TP-rec}}=D_P(p_i,\widehat p_i).}
+\]
+
+This is a weak hierarchical consistency term, not the primary grounding objective. Sparse local participation is encouraged by
+
+\[
+\boxed{L_{\mathrm{participation}}=
+\sum_{i,j}\mathbb E[\mathbf 1(m_i^j\neq0)].}
+\]
+
+The Phase-I objective is
+
+\[
+\boxed{
+L_{Z_D}^{(0)}=L_{\mathrm{effect}}^D
++\lambda_P L_{\mathrm{participation}}
++\lambda_T L_{\mathrm{TP-rec}},}
+\]
+
+with $\lambda_T$ weak or zero. A useful mechanism is not one that is merely frequent; it must use the same $\mathcal M_j$ to predict
+held-out effects across diverse contexts and TP combinations.
+
+\begin{plainword}
+Three pressures: (1) the mechanisms must jointly reproduce the observed change; (2) only a few should be active at once (sparsity);
+(3) weakly, the mechanisms should still reconstruct the original transformation. A mechanism earns its keep only if it predicts
+\emph{new} situations with the same function.
+\end{plainword}
+
+\subsubsection*{Preserving the TP mediation}
+
+Prospective mechanism engagement must pass through the TP prior:
+
+\[
+\boxed{
+\widetilde q_\eta(m,v\mid S,A)=
+\int q_\eta(m,v\mid p,S)p_\theta(p\mid S,A)\,dp.}
+\]
+
+Monte Carlo estimation draws $p^{(l)}\sim p_\theta(p\mid S,A)$ and then $(m^{(l)},v^{(l)})\sim q_\eta(\cdot\mid p^{(l)},S)$.
+Expected engagement is
+
+\[
+\boxed{\rho_j(S,A)\approx\frac1L\sum_{l=1}^Lm_j^{(l)}.}
+\]
+
+A direct shortcut $(S,A)\rightarrow Z_D$ is excluded, because it would allow $Z_D$ to become a second action embedding and would
+sever the proposed explanatory hierarchy.
+
+\begin{plainword}
+To predict which mechanism will be engaged by a future action, the model must go \emph{through} the transformation: action $\to$
+expected change $\to$ engaged mechanisms. It is forbidden to jump straight from action to mechanism, because that shortcut would let
+the mechanism layer just memorise actions instead of modelling change.
+\end{plainword}
+
+\subsubsection*{Directed relations and the corrected gate placement}
+
+The domain relation set is
+
+\[
+\boxed{R_D=\{R_D^{j\rightarrow k}\}_{j\neq k}.}
+\]
+
+$R_D^{j\rightarrow k}$ is a reusable operator by which source mechanism $j$ modifies the effect expressed by target mechanism $k$.
+It is neither co-occurrence nor a separate effect generator. Let
+
+\[
+\mathcal T_{j\rightarrow k}
+(e_i^k;S_i^{\mathrm{pre}},v_i^j,v_i^k)
+\]
+
+be a directed modulation. The instance relation residual is defined \emph{without} a graph-existence gate:
+
+\[
+\boxed{
+r_i^{j\rightarrow k}=
+m_i^jm_i^k
+\left[
+\mathcal T_{j\rightarrow k}
+(e_i^k;S_i^{\mathrm{pre}},v_i^j,v_i^k)-e_i^k
+\right].}
+\]
+
+This notation separates three facts: mechanisms participate in an experience through $m_i^jm_i^k$; the relation operator has an
+experience-specific realisation $r_i^{j\rightarrow k}$; and the candidate edge belongs to the learned domain structure according to a
+global gate $g_{jk}$.
+
+The first relation network is a shared directed residual-FiLM network with a pair embedding $q_R^{j\rightarrow k}$. With
+$c_i=\mathrm{AttnPool}(S_i^{\mathrm{pre}})$,
+
+\[
+(\gamma_i^{jk},\beta_i^{jk})=
+F_R(v_i^j,v_i^k,c_i,q_R^{j\rightarrow k}),
+\]
+
+\[
+\widetilde e_{i,l}^{j\rightarrow k}
+=(1+\gamma_i^{jk})\odot e_{i,l}^k+\beta_i^{jk},
+\]
+
+and hence
+
+\[
+r_i^{j\rightarrow k}=m_i^jm_i^k
+(\widetilde e_i^{j\rightarrow k}-e_i^k).
+\]
+
+Candidate relation existence is a domain-global structural parameter
+
+\[
+\boxed{g_{jk}\sim\mathrm{HardConcrete}(\alpha_{jk}).}
+\]
+
+The gate is applied only when the world aggregates relation realisations:
+
+\[
+\boxed{
+\widehat{\Delta S}_i^W=
+\sum_j e_i^j+
+\sum_{j\neq k}g_{jk}r_i^{j\rightarrow k}.}
+\]
+
+Equivalently,
+
+\[
+\widetilde e_i^k=e_i^k+\sum_{j\neq k}g_{jk}r_i^{j\rightarrow k},
+\qquad
+\widehat{\Delta S}_i^W=\sum_k\widetilde e_i^k.
+\]
+
+This corrected placement avoids defining the same structural gate both inside the relation realisation and again in the world graph.
+The world grounding loss is
+
+\[
+\boxed{L_{\mathrm{world}}=\sum_iD_S(\Delta S_i,\widehat{\Delta S}_i^W).}
+\]
+
+\begin{plainword}
+A relation $j\to k$ says: "when mechanism $j$ and mechanism $k$ are both active, $j$ changes the effect of $k$." The final predicted
+change is the sum of all mechanism effects \emph{plus}, for each active relation, a small correction. The correction is gated by a
+global switch $g_{jk}$ that says whether this relation is part of the learned world at all.
+\end{plainword}
+
+\begin{example}
+Drug A and drug B each have their own effect (the sum). But A also \emph{potentiates} B --- B's effect is bigger when A is present.
+The relation $A\to B$ captures exactly that extra "bigger than the sum" part. If the model finds this relation never helps, the gate
+$g_{AB}$ turns it off.
+\end{example}
+
+The first implementation represents pairwise effect modulation observable when both mechanisms participate. Activation of an
+otherwise absent target and stable higher-order interactions are outside this first-order model; they should be introduced only if
+sufficiently supported residuals persist.
+
+\subsubsection*{Directional relation identifiability}
+
+Co-participation does not identify direction. Define the participation-aware source state
+
+\[
+\boxed{\bar z_i^j=(m_i^j,m_i^jv_i^j).}
+\]
+
+To support $j\rightarrow k$, experiences $a,b$ should approximately match pre-state and target realisation while source $j$ varies.
+Let
+
+\[
+w_{ab}^{(k)}=m_a^km_b^k
+K_S(S_a^{\mathrm{pre}},S_b^{\mathrm{pre}})
+K_v(v_a^k,v_b^k),
+\]
+
+\[
+d_{ab}^{(j)}=D_z(\bar z_a^j,\bar z_b^j).
+\]
+
+Directional contrastive support is
+
+\[
+\boxed{
+\mathcal E_{j\rightarrow k}^{R}=
+\Phi\!\left(\sum_{a<b}w_{ab}^{(k)}d_{ab}^{(j)}\right),}
+\]
+
+where $\Phi$ is monotone and saturating. This is an evidence statistic, not relation strength, and generally
+
+\[
+\mathcal E_{j\rightarrow k}^{R}\neq\mathcal E_{k\rightarrow j}^{R}.
+\]
+
+\begin{plainword}
+Just seeing A and B together does not tell us \emph{which way} the arrow points. To support "A affects B," we look for pairs of
+experiences where B's context is held fixed while A varies --- if the outcome changes with A, that is evidence for $A\to B$. The
+reverse direction needs its own, different evidence.
+\end{plainword}
+
+\begin{example}
+If A and B always appear together, we cannot tell whether A changes B or B changes A. We need cases where B is held constant and
+A varies. In medicine this is exactly the idea behind a controlled experiment: vary one factor, hold the rest fixed, watch the
+outcome.
+\end{example}
+
+To test whether an edge has functional value, let $\widehat{\Delta S}_i^{-jk}$ remove $g_{jk}r_i^{j\rightarrow k}$ from the world
+prediction. The held-out explanatory power is
+
+\[
+\boxed{
+EP_{j\rightarrow k}=
+\mathbb E_{i\sim\mathcal D_{\mathrm{held}}}
+\left[
+D_S(\Delta S_i,\widehat{\Delta S}_i^{-jk})
+-D_S(\Delta S_i,\widehat{\Delta S}_i^W)
+\right].}
+\]
+
+\begin{plainword}
+An edge earns its keep if, on data the model has never seen, removing the edge makes the prediction worse. That gap is its
+explanatory power.
+\end{plainword}
+
+An edge is unresolved when $\mathcal E_{j\rightarrow k}^{R}$ is insufficient; it is supported only when evidence is sufficient and
+$EP_{j\rightarrow k}$ remains positive across held-out contexts. Lack of evidence is not evidence of absence. Accordingly, let
+
+\[
+s_{jk}^R=f(\mathcal E_{j\rightarrow k}^R),
+\]
+
+with $s_{jk}^R\approx0$ under insufficient support. The support-conditioned edge penalty is
+
+\[
+\boxed{L_{\mathrm{edge}}^{\mathrm{support}}=
+\sum_{j\neq k}s_{jk}^R\mathbb E[g_{jk}].}
+\]
+
+Only candidates that the data could have adjudicated pay a strong absence pressure.
+
+\begin{plainword}
+We only strongly penalise an edge for being "absent" when the data actually had a chance to prove it. If the data never varied the
+right factor, we do not punish the edge for being uncertain --- "no evidence yet" is not the same as "no effect."
+\end{plainword}
+
+\begin{example}
+If we never tested drug A in the presence of drug B, we cannot conclude "A does not affect B." We simply have no data. The penalty
+must respect this: it only applies when the experiment \emph{could have} shown the effect.
+\end{example}
+
+\subsubsection*{$Z_D\leftrightarrow R_D$ co-refinement and staged training}
+
+Let $\Sigma_j^{\mathrm{int}}$ summarise how interventions engage mechanism $j$, and define its relational signature
+
+\[
+\mathcal R_j=\{R_D^{j\rightarrow k},R_D^{k\rightarrow j}\}_{k\neq j}.
+\]
+
+Operational identity is
+
+\[
+\boxed{
+\operatorname{Identity}(Z_D^j)=
+(\mathcal M_j,\Sigma_j^{\mathrm{int}},\mathcal R_j).}
+\]
+
+Relations refine variable identity but do not wholly define it. The overcomplete bank permits soft splitting when an inactive query
+acquires stable participation and soft deactivation when a redundant query's participation tends to zero.
+
+Training proceeds in three phases:
+
+\begin{enumerate}
+\item \textbf{Candidate mechanisms.} Set $R_D=0$ and optimise $L_{Z_D}^{(0)}$. Mechanisms must acquire baseline reusable roles
+before relation modules receive capacity.
+\item \textbf{Relation residuals.} Freeze or strongly slow $q_\eta$ and $\mathcal M_j$; enable $F_R$ and $g_{jk}$; optimise
+\[
+\boxed{L_R=L_{\mathrm{world}}+\lambda_RL_{\mathrm{edge}}^{\mathrm{support}}.}
+\]
+Relations must explain residual structure rather than replacing mechanism baselines.
+\item \textbf{Joint co-refinement.} Unfreeze both levels at smaller learning rates. If structurally single-mechanism experiences exist,
+\[
+\mathcal D_{\mathrm{base}}=\{i:\|m_i\|_0\approx1\},
+\]
+use
+\[
+\boxed{L_{\mathrm{base}}=
+\mathbb E_{i\in\mathcal D_{\mathrm{base}}}
+D_S\!\left(\Delta S_i,\sum_je_i^j\right).}
+\]
+If such data do not exist, set $\lambda_B=0$ rather than fabricating a baseline.
+\end{enumerate}
+
+\begin{plainword}
+We learn in stages, like teaching in order: first learn the mechanisms alone, then learn the relations as \emph{corrections} on top,
+then fine-tune both together slowly. This stops the relations from quietly doing the mechanisms' job.
+\end{plainword}
+
+The co-refinement objective is
+
+\[
+\boxed{
+L_{W_D}=L_{\mathrm{world}}
++\lambda_RL_{\mathrm{edge}}^{\mathrm{support}}
++\lambda_PL_{\mathrm{participation}}
++\lambda_BL_{\mathrm{base}}
++\lambda_TL_{\mathrm{TP-rec}}.}
+\]
+
+\subsection*{4.5 Active exploration: $W_D$ back to interaction}
+
+\subsubsection*{Structural evidence, not a learned $U_D$}
+
+Uncertainty is not introduced as an independent latent $U_D$. The relevant question is how much evidence the current dataset
+contains for mechanism reuse and directed relation identification. Retain reliable $Z_D$ experiences
+
+\[
+\mathcal D_t^Z=\{x_i^Z\}_{i=1}^{N_t},
+\qquad
+x_i^Z=(S_i^{\mathrm{pre}},m_i,v_i).
+\]
+
+For mechanism $j$, define
+
+\[
+\mathcal D_j=\{(S_i^{\mathrm{pre}},v_i^j):m_i^j\approx1\}.
+\]
+
+The first explicit evidence estimator uses
+
+\[
+K_j[a,b]=m_a^jm_b^j
+K_S(S_a^{\mathrm{pre}},S_b^{\mathrm{pre}})
+K_v(v_a^j,v_b^j),
+\]
+
+\[
+\boxed{\mathcal E_j^Z=\log\det(I+\alpha_ZK_j).}
+\]
+
+Near-duplicate experiences add little; new supported contexts or realisations expand evidence. Relation evidence reuses
+$\mathcal E_{j\rightarrow k}^R$. The total statistic is
+
+\[
+\boxed{
+\mathcal E_D(\mathcal D_t^Z;W_D)=
+\sum_j\mathcal E_j^Z+
+\lambda_E^R\sum_{j\neq k}\mathcal E_{j\rightarrow k}^R.}
+\]
+
+It is a functional of data and the current structural hypothesis, not a learned object.
+
+\begin{plainword}
+"Uncertainty" here is not a mysterious extra variable. It is simply a number that measures \emph{how much varied evidence we have}
+for each mechanism and relation. Repeating the same experiment twice adds little; a genuinely new situation adds a lot. We do not
+learn this number with a network --- we compute it directly from the data.
+\end{plainword}
+
+\begin{example}
+Seeing "drug A lowers blood pressure in 100 identical patients" gives you one fact, not 100 facts. One genuinely new situation (a
+different co-morbidity, a different dose) teaches you far more. The evidence statistic rewards the second kind of data.
+\end{example}
+
+\subsubsection*{Expected structural evidence gain}
+
+For a candidate intervention sequence $A$ at state $S_t$,
+
+\[
+p\sim p_\theta(p\mid S_t,A),
+\qquad
+(m,v)\sim q_\eta(m,v\mid p,S_t),
+\]
+
+which predicts $x_A^Z=(S_t,m,v)$. The expected evidence increment is
+
+\[
+\boxed{
+J_{\mathrm{evidence}}(A)=
+\mathbb E_{p,m,v}
+\left[
+\mathcal E_D(\mathcal D_t^Z\cup\{x_A^Z\};W_D)
+-\mathcal E_D(\mathcal D_t^Z;W_D)
+\right].}
+\]
+
+This single term replaces separate learned variable-, relation-, pair-, and uncertainty policies. Exploration supplies evidence;
+ordinary $Z_D\leftrightarrow R_D$ learning decides which structure is needed.
+
+\begin{plainword}
+To choose the next action, ask: \emph{if I do this, how much new evidence will I likely gain?} We estimate this by simulating the
+action through our model, adding the predicted result to our data, and measuring the increase. The action that maximises expected
+new evidence is the one we take.
+\end{plainword}
+
+\subsubsection*{TP competence and the abstraction frontier}
+
+Evidence completion alone confirms the current ontology. To search for omitted structure, compare the lower-level TP effect with the
+higher-level world explanation, but only where TP is locally reliable. Define
+
+\[
+\boxed{
+\mathcal C_{TP}=\{(S,A):
+\text{local prior--posterior error, TP effect error, and support are calibrated}\}.}
+\]
+
+Historical estimates use
+
+\[
+D_{TP}[q_\phi(p\mid S,S')\Vert p_\theta(p\mid S,A)],
+\qquad
+D_S(\Delta S,F_{TP}(S,p^{\mathrm{post}})),
+\]
+
+and neighbourhood support in $(S,A)$. No new competence network is required initially.
+
+For a predicted TP,
+
+\[
+F_W(S,p)=
+\mathbb E_{q_\eta(m,v\mid p,S)}
+\left[
+\sum_je^j+\sum_{j\neq k}g_{jk}r^{j\rightarrow k}
+\right],
+\]
+
+\[
+\boxed{F_D(S,p)=D_S(F_{TP}(S,p),F_W(S,p)).}
+\]
+
+The prospective abstraction-frontier utility is
+
+\[
+\boxed{
+J_{AF}(A)=
+\mathbb E_{p\sim p_\theta(p\mid S_t,A)}[F_D(S_t,p)],
+\quad (S_t,A)\in\mathcal C_{TP}.}
+\]
+
+\begin{plainword}
+A second signal tells the agent where its current world model is \emph{incomplete}. Where the low-level "what changed" prediction and
+the high-level "mechanism explanation" disagree, something is missing. The agent seeks out exactly those disagreements --- but only
+where its low-level model is trustworthy, so it does not chase its own noise.
+\end{plainword}
+
+\begin{example}
+If the low-level model reliably says "blood pressure fell 20 points" but the mechanism model can only explain "fell 5 points," there
+is a 15-point gap the mechanisms do not account for. That gap is a sign of a missing mechanism. The agent goes looking where such
+gaps appear.
+\end{example}
+
+Large discrepancy does not prove missing structure; it proposes an experiment. After real execution, error attribution decides
+whether TP or $W_D$ failed.
+
+\subsubsection*{Minimal exploration objective and optimisation}
+
+The complete knowledge objective has two terms:
+
+\[
+\boxed{J_{\mathrm{exp}}(A\mid S_t)=
+J_{\mathrm{evidence}}(A)+\lambda_FJ_{AF}(A).}
+\]
+
+Subject to physical, safety, and competence constraints,
+
+\[
+\boxed{
+A_t^*=\argmax_{A\in\mathcal A_{\mathrm{valid}}(S_t)\cap\mathcal C_{TP}(S_t)}
+J_{\mathrm{exp}}(A\mid S_t).}
+\]
+
+\begin{plainword}
+Exploration has exactly two goals: gather new evidence, and probe the frontier where the model is incomplete. The next action is the
+one that best serves these two goals, within safety limits.
+\end{plainword}
+
+The reparameterised TP prior supplies $\partial p/\partial A$, and relaxed mechanism gates supply $\partial(m,v)/\partial p$. The
+first optimiser is projected gradient ascent with multiple safe initialisations:
+
+\[
+\boxed{
+A^{(r+1)}=
+\Pi_{\mathcal A_{\mathrm{valid}}\cap\mathcal C_{TP}}
+\left[A^{(r)}+\eta_A\nabla_AJ_{\mathrm{exp}}\right].}
+\]
+
+Discrete modes such as gripper open/close are enumerated; continuous components are optimised within each mode. Only a short prefix
+is executed before observation and replanning. A sampling planner is an evaluation fallback when gradients are unreliable, not a
+second exploration policy. Before any model is competent, safe broad interactions form $\mathcal D_{\mathrm{seed}}$.
+
+\subsubsection*{Post-interaction error attribution}
+
+After executing $A$, infer the posterior TP from the real outcome. Define
+
+\[
+\boxed{
+E_{\mathrm{prior}}=
+D_{TP}[q_\phi(p\mid S^{\mathrm{pre}},S^{\mathrm{post}})
+\Vert p_\theta(p\mid S^{\mathrm{pre}},A)],}
+\]
+
+\[
+\boxed{
+E_{TP}=D_S(\Delta S_{\mathrm{real}},
+F_{TP}(S^{\mathrm{pre}},p^{\mathrm{post}})),}
+\]
+
+\[
+\boxed{
+E_W=D_S(\Delta S_{\mathrm{real}},
+F_W(S^{\mathrm{pre}},p^{\mathrm{post}})),
+\qquad
+G_W^{\mathrm{obs}}=E_W-E_{TP}.}
+\]
+
+\begin{plainword}
+After acting, we do an "autopsy" to find which layer was wrong. If the expected and actual transformation disagree, the
+action$\to$transformation link failed. If that agrees but the TP cannot reproduce the change, the transformation model failed. If
+both are fine but the world model is off, the abstraction failed. Each failure is attributed to the right layer.
+\end{plainword}
+
+Large $E_{\mathrm{prior}}$ indicates intervention-to-TP failure; small $E_{\mathrm{prior}}$ but large $E_{TP}$ indicates a TP
+representation/effect failure; small lower-level errors but large $E_W$ indicate a world-abstraction failure. An experience can first
+update TP and later, once reliably represented, contribute to $W_D$.
+
+\subsection*{4.6 Learning task constraint $C_T$ from grouped demonstrations}
+
+\subsubsection*{TP sequence extraction}
+
+The frozen interaction and TP models segment every task demonstration:
+
+\[
+\tau_{g,r}\longrightarrow
+P_{g,r}=(p_1^{g,r},\ldots,p_{N_{g,r}}^{g,r}),
+\]
+
+with associated boundary states $S_0^{g,r},\ldots,S_{N_{g,r}}^{g,r}$. The first dataset supplies the task episode boundary and
+grouping $g$. It does not supply TP labels or a task code.
+
+\subsubsection*{Task encoder}
+
+A causal or bidirectional sequence Transformer with positional encodings maps the complete support demonstration to
+
+\[
+\boxed{c_{g,r}=E_C(P_{g,r})\in\mathbb R^{d_C}.}
+\]
+
+When initial and terminal states carry information needed to disambiguate otherwise identical TP sequences, their set summaries may
+be included as tokens. This is an implementation interface; the scientific test is whether $c_{g,r}$ transfers functionally to other
+realisations of task $g$.
+
+\begin{plainword}
+We read one demonstration of a task and compress it into a short "task code" $C_T$. The real test is not whether this code can
+reconstruct its own demonstration, but whether it can predict a \emph{different} demonstration of the same task.
+\end{plainword}
+
+\subsubsection*{Explicit $W_D$ interface}
+
+The task predictor does not receive only a monolithic state embedding. It receives an explicit world-structure readout containing
+the currently instantiated mechanism nodes and gated directed relations. For query step $i$,
+
+\[
+(m_i,v_i)\sim q_\eta(m,v\mid p_i,S_i),
+\]
+
+\[
+\mathcal W_i=
+\left(
+\{q_D^j,m_i^j,v_i^j,e_i^j\}_j,
+\{g_{jk},r_i^{j\rightarrow k}\}_{j\neq k}
+\right).
+\]
+
+A one-layer set/graph encoder $E_W$ produces query features while preserving node and directed-edge identity:
+
+\[
+h_i^W=E_W(S_i,\mathcal W_i).
+\]
+
+This computation is an on-demand readout of $W_D$, not a persistent task graph $G_T$.
+
+\begin{plainword}
+The task model is not given a vague "situation number." It is given the actual learned structure: which mechanisms are active, what
+they are doing, and which relations are in play. This keeps the task model honest --- it must reason through the explicit world, not
+around it.
+\end{plainword}
+
+\subsubsection*{Multimodal task progression}
+
+Let
+
+\[
+x_i^{g,s}=(S_i^{g,s},h_i^{W,g,s},p_i^{g,s},c_{g,r})
+\]
+
+for a query demonstration $s\neq r$. The next-TP distribution is a conditional Gaussian mixture:
+
+\[
+\boxed{
+P_T(p_{i+1}^{g,s}\mid x_i^{g,s})=
+\sum_{q=1}^{Q}\pi_q(x_i^{g,s})
+\mathcal N\!\left(
+p_{i+1}^{g,s};\mu_q(x_i^{g,s}),
+\operatorname{diag}(\sigma_q^2(x_i^{g,s}))
+\right).}
+\]
+
+The start distribution omits a previous TP:
+
+\[
+P_T(p_1^{g,s}\mid S_0^{g,s},h_0^{W,g,s},c_{g,r}),
+\]
+
+and a Bernoulli head predicts
+
+\[
+P_T(y_i^{\mathrm{stop}}\mid S_i^{g,s},h_i^{W,g,s},p_i^{g,s},c_{g,r}).
+\]
+
+Multimodality prevents the mean of two valid strategies from becoming an invalid next TP and reduces pressure to encode strategy
+identity in $C_T$.
+
+\begin{plainword}
+"Given the goal, what happens next?" often has several valid answers. We predict a \emph{mixture} of possibilities rather than a
+single average, and separately predict "should we stop now." The mixture keeps genuinely different next steps separate.
+\end{plainword}
+
+\begin{example}
+For the goal "lower blood pressure," the next valid step could be "more diuretic" or "start a beta-blocker." A mixture model keeps
+these as two options. A single average would be a meaningless blend. The stop signal answers "have we reached the target yet?"
+\end{example}
+
+\subsubsection*{Cross-demonstration objective}
+
+The support code from demonstration $r$ must explain a different query demonstration $s$ of the same task:
+
+\[
+\boxed{
+L_{\mathrm{start}}^{r\rightarrow s}=
+-\log P_T(p_1^{g,s}\mid
+S_0^{g,s},h_0^{W,g,s},c_{g,r}),}
+\]
+
+\[
+\boxed{
+L_{\mathrm{next}}^{r\rightarrow s}=
+-\sum_{i=1}^{N_s-1}
+\log P_T(p_{i+1}^{g,s}\mid
+S_i^{g,s},h_i^{W,g,s},p_i^{g,s},c_{g,r}),}
+\]
+
+\[
+\boxed{
+L_{\mathrm{stop}}^{r\rightarrow s}=
+-\sum_{i=0}^{N_s}
+\log P_T(y_i^{\mathrm{stop},g,s}\mid
+S_i^{g,s},h_i^{W,g,s},p_i^{g,s},c_{g,r}).}
+\]
+
+The task objective is
+
+\[
+\boxed{
+L_{C_T}=\mathbb E_{g,r\neq s}
+\left[
+L_{\mathrm{start}}^{r\rightarrow s}
++L_{\mathrm{next}}^{r\rightarrow s}
++\lambda_{\mathrm{stop}}L_{\mathrm{stop}}^{r\rightarrow s}
+\right].}
+\]
+
+There is no required Euclidean consistency penalty $\|c_{g,r}-c_{g,s}\|$. Task codes are equivalent when they induce the same
+predictive function on held-out realisations. Self-reconstruction alone is not used because it admits a trajectory-identity solution.
+
+\begin{plainword}
+Training: take the code from demonstration $r$ and make it predict the start, the next steps, and the stopping of a \emph{different}
+demonstration $s$. We do not force the two codes to be numerically equal --- only to make the same predictions. This is what stops
+the code from just memorising one trajectory.
+\end{plainword}
+
+\subsubsection*{Task state and task transformation}
+
+The minimal task state is
+
+\[
+\boxed{Z_T=(S_t,C_T).}
+\]
+
+The last TP $p_t$ may be supplied to the next-TP head as a transient order-one progress cue, but it is not a new persistent
+component of $Z_T$. If an experiment shows that longer history is necessary, a progress memory can be added as a tested extension
+rather than assumed in advance.
+
+Task transformation is the conditional operator
+
+\[
+\boxed{
+\mathcal T_T(W_D,Z_T;p_t)=
+P_T(p_{\mathrm{next}},y^{\mathrm{stop}}\mid
+S_t,W_D,C_T;p_t).}
+\]
+
+$C_T$ acts on $W_D$ by selecting, restricting, and reweighting its feasible transformation structure. The output remains a
+distribution. No independent $D_T$ is needed to store one desired TP, and no explicit $G_T$ is needed to store a task-specific
+subgraph before evidence shows that such a persistent object improves explanation or transfer.
+
+\subsubsection*{$C_T$ identifiability and necessity diagnostics}
+
+If $(S_i,p_i,W_D)$ already predicts the query future, the optimum may ignore $C_T$. This is not necessarily optimisation failure; the
+dataset has not made task information necessary. Train a no-context baseline
+
+\[
+P_0(p_{\mathrm{next}},y^{\mathrm{stop}}\mid S,p,W_D)
+\]
+
+and report
+
+\[
+\boxed{
+\Delta_{C_T}=
+\mathbb E_{\mathrm{held}}
+\left[
+\log P_T(p_{\mathrm{next}},y^{\mathrm{stop}}\mid S,p,W_D,C_T)
+-\log P_0(p_{\mathrm{next}},y^{\mathrm{stop}}\mid S,p,W_D)
+\right].}
+\]
+
+Positive held-out $\Delta_{C_T}$ under new initial states and demonstrations is evidence that $C_T$ contributes information
+unavailable from the current world state. Strategy invariance is separately tested by transferring $c_{g,r}$ across demonstrations
+with different valid TP paths. World necessity is tested by comparing the full model against a predictor that removes $W_D$ under the
+same task but different world configurations.
+
+\begin{plainword}
+We must check that the task code is actually \emph{doing something}. If a model without the task code predicts just as well, then the
+task code is unnecessary --- the data did not require it. The gap between "with task code" and "without task code" on held-out data
+is our measure of necessity.
+\end{plainword}
+
+\begin{example}
+If the state alone ("BP is high") already tells you the next step, then "the goal is to lower BP" adds nothing. The task code earns
+its place only when it changes the prediction in situations the state alone cannot disambiguate.
+\end{example}
+
+\subsection*{4.7 Task action generation by TP-prior inversion}
+
+\subsubsection*{Distribution-level objective}
+
+At execution time, infer $C_T$ from one or more support demonstrations, observe $S_t$, instantiate the explicit $W_D$ readout, and
+obtain the desired distribution
+
+\[
+P_T^*(p)=P_T(p_{\mathrm{next}}=p\mid S_t,W_D,C_T;p_t).
+\]
+
+For candidate low-level intervention sequence $A$, the learned TP prior predicts
+
+\[
+P_A(p)=p_\theta(p\mid S_t,A).
+\]
+
+Action realisation is distribution matching:
+
+\[
+\boxed{
+A_t^*=\argmin_{A\in\mathcal A_{\mathrm{valid}}\cap\mathcal C_{TP}}
+\left\{
+D_{TP}(P_A,P_T^*)+\lambda_aC_a(A)
+\right\}.}
+\]
+
+where $C_a$ penalises unsafe, excessive, or unnecessarily long control. A Monte Carlo cross-entropy form that remains differentiable
+through $p_\theta$ is
+
+\[
+\boxed{
+D_{TP}(P_A,P_T^*)=
+\mathbb E_{p\sim p_\theta(p\mid S_t,A)}[-\log P_T^*(p)].}
+\]
+
+To avoid exploiting an overly broad $P_A$, an entropy or variance penalty may be included as a controller regulariser. It is not a
+task-model loss.
+
+\begin{plainword}
+To actually \emph{do} the task, we work backwards. The task model tells us the distribution of "good next changes." We then search
+over actions for the one whose predicted change best matches that desired distribution. In plain terms: know what change you want,
+then find the action that produces it.
+\end{plainword}
+
+\begin{example}
+The goal says "lower blood pressure by a moderate amount." We do not have a memorised "lower-BP action." Instead we ask the world
+model "which action would produce a moderate fall?" and pick that action. The action is found by inverting the model, not by a
+separate policy.
+\end{example}
+
+\subsubsection*{First execution procedure}
+
+The first implementation uses the same projected multi-start gradient optimiser as exploration, but minimises the task objective.
+For highly separated TP modes, select or sample a valid mixture component $q^*$ and minimise expected distance to its mean under
+component confidence. Enumerate discrete control modes, optimise continuous controls, execute a short prefix, observe, update $S_t$,
+and replan. Terminate when the stop posterior and safety checks agree.
+
+No neural task motor policy $\pi_{\omega}^{\mathrm{task}}$ and no extra supervised action loss are introduced. Exploration and task
+execution reuse the same learned map from intervention to transformation:
+
+\[
+\boxed{
+\begin{array}{rcl}
+W_D&\rightarrow&J_{\mathrm{exp}}\rightarrow A,\\
+(W_D,S_t,C_T)&\rightarrow&P_T^*(p)\rightarrow p_\theta(p\mid S_t,A)^{-1}\rightarrow A.
+\end{array}}
+\]
+
+This is the unifying control principle of the framework: higher levels assign value to transformations; the TP prior supplies their
+motor realisation.
+
+\begin{plainword}
+One and the same "action $\to$ change" model is used twice: forward for exploration, and inverted for task execution. The only
+difference is what value the higher levels place on each possible change.
+\end{plainword}
+
+\subsection*{4.8 Gradient boundaries and staged optimisation}
+
+The hierarchy is intended to abstract lower-level evidence, not rewrite it to fit a preferred high-level ontology. The first
+implementation therefore uses explicit stop-gradient boundaries.
+
+During interaction and TP learning,
+
+\[
+L_{\mathrm{IR}},L_{\mathrm{TP}}
+\rightarrow E_{\mathrm{vis}},E_S,F_S,q_\phi,p_\theta,F_{TP}.
+\]
+
+During world abstraction,
+
+\[
+\boxed{\operatorname{stopgrad}(p),\qquad
+L_{W_D}\rightarrow q_\eta,\mathcal M_j,F_R,g_{jk},}
+\]
+
+but $L_{W_D}\nrightarrow q_\phi,p_\theta,E_S$. During task learning,
+
+\[
+\boxed{
+\operatorname{stopgrad}(TP),\quad
+\operatorname{stopgrad}(W_D),\quad
+L_{C_T}\rightarrow E_C,P_T,E_W,}
+\]
+
+where $E_W$ is only the task-side readout of the frozen explicit world structure. During exploration or task execution, all model
+parameters are frozen and gradients update only $A$.
+
+\begin{plainword}
+"Stop-gradient" means: when the higher level is learning, the lower level's parameters are \emph{frozen}. The higher level must
+explain what the lower level already produced, and is not allowed to reach down and reshape the lower level to make itself look good.
+\end{plainword}
+
+\begin{example}
+A professor grading students should not be allowed to change the students' answers to make the grading look successful. Similarly,
+the mechanism layer must explain the transformations as they are --- it cannot quietly edit the transformations to fit its theory.
+\end{example}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lXX@{}}
+\toprule
+Stage & Optimised quantities & Frozen boundary \\
+\midrule
+Interaction/TP & state encoder, dynamics, TP posterior/prior/effect, boundary & none between $S$ and TP \\
+Candidate $Z_D$ & allocation and mechanism bank & TP representation \\
+Relation discovery & relation network and edge gates & TP; initially mechanism bank \\
+Co-refinement & $Z_D$ and $R_D$ at small learning rates & TP \\
+Exploration & candidate intervention $A$ & all model parameters \\
+$C_T$ learning & task encoder, multimodal predictor, $W_D$ readout & TP and $W_D$ \\
+Task execution & candidate intervention $A$ & all model parameters \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+High-level feedback still exists through data: $W_D$ changes exploration, exploration changes the interaction distribution, and new
+reliable interactions update TP and $W_D$. This is system-level feedback rather than a direct gradient that could make lower evidence
+conform to the current ontology.
+
+\subsection*{4.9 Unified objectives and closed loops}
+
+The training objectives are
+
+\[
+\boxed{L_{IR}=L_{\mathrm{dyn}},}
+\]
+
+\[
+\boxed{L_{TP}=L_{\mathrm{effect}}^{TP}
++\lambda_AL_{\mathrm{align}}
++\lambda_SL_{\mathrm{seg}}
++\lambda_CL_{\mathrm{complexity}},}
+\]
+
+\[
+\boxed{L_{Z_D}^{(0)}=L_{\mathrm{effect}}^D
++\lambda_PL_{\mathrm{participation}}
++\lambda_TL_{\mathrm{TP-rec}},}
+\]
+
+\[
+\boxed{L_R=L_{\mathrm{world}}
++\lambda_RL_{\mathrm{edge}}^{\mathrm{support}},}
+\]
+
+\[
+\boxed{L_{W_D}=L_{\mathrm{world}}
++\lambda_RL_{\mathrm{edge}}^{\mathrm{support}}
++\lambda_PL_{\mathrm{participation}}
++\lambda_BL_{\mathrm{base}}
++\lambda_TL_{\mathrm{TP-rec}},}
+\]
+
+and the cross-demonstration $L_{C_T}$ defined above. Exploration and task action selection are action-space objectives, not
+model-training losses.
+
+The world-discovery loop is
+
+{\footnotesize
+\[
+\boxed{
+Interaction\rightarrow TP\rightarrow Z_D\leftrightarrow R_D\rightarrow W_D
+\rightarrow
+\left\{
+\begin{array}{c}
+Evidence\ Completion\\
+Abstraction\ Challenge
+\end{array}
+\right.
+\rightarrow Intervention\rightarrow New\ Interaction.}
+\]}
+
+\begin{plainword}
+World learning is a loop: interact $\to$ describe changes $\to$ build mechanisms and relations $\to$ form a world model $\to$ either
+fill in missing evidence or probe the frontier $\to$ act $\to$ learn from the new outcome, and around again.
+\end{plainword}
+
+The task loop is
+
+{\footnotesize
+\[
+\boxed{
+\begin{aligned}
+Grouped\ Demonstrations&\rightarrow TP\ Sequences\rightarrow C_T,\\
+(S_t,C_T)+W_D&\rightarrow P_T(p_{\mathrm{next}},stop)
+\rightarrow TP\ Prior\ Inversion\\
+&\rightarrow A_t\rightarrow S_{t+1}\rightarrow Replan.
+\end{aligned}}
+\]}
+
+\begin{plainword}
+Task loop: several demonstrations of one task $\to$ a task code $\to$ (with the world model) a prediction of the next good change and
+whether to stop $\to$ invert to find the action $\to$ act $\to$ observe $\to$ replan.
+\end{plainword}
+
+Together they yield the full theory:
+
+\[
+\boxed{
+\begin{aligned}
+Interaction\ Representation&\rightarrow TP
+\rightarrow
+\left\{
+\begin{array}{l}
+Z_D\leftrightarrow R_D\rightarrow W_D\rightarrow exploration,\\
+TP\ sequences\rightarrow C_T
+\end{array}
+\right.\\
+&\rightarrow task\ transformation\ on\ W_D
+\rightarrow action.
+\end{aligned}}
+\]
+
+\section*{5. Computation and Experiments --- Future Work}
+
+\subsection*{5.1 Status of this section}
+
+This section is a preregistered computational plan. It specifies the first implementation and the observations that would support or
+falsify each layer. It reports no completed experiment. Its purpose is to prevent later empirical convenience from silently
+redefining the theory.
+
+\begin{plainword}
+"Preregistered" means: we write down what would count as success or failure \emph{before} running the experiment, so we cannot move
+the goalposts afterwards. This is the scientific equivalent of registering a clinical trial protocol before enrolling patients.
+\end{plainword}
+
+\subsection*{5.2 First-implementation network and algorithm specification}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.18\textwidth}p{0.35\textwidth}X@{}}
+\toprule
+Component & First implementation & Reason for this first test \\
+\midrule
+$E_{\mathrm{vis}}$ & ViT patch-token encoder & localised token interface for latent grouping \\
+$E_S$ & SAVi-like recurrent Slot Attention & persistent bounded-capacity set of interaction units \\
+$F_S$ & set Transformer with action FiLM & state-dependent intervention effects without concatenating action into state inference \\
+correspondence & Hungarian matching & resolve residual training-time slot permutation \\
+TP boundary & temporal Transformer with hazard head & variable duration and explicit termination probability \\
+$q_\phi(p\mid S^{pre},S^{post})$ & Set Transformer plus TP query; diagonal Gaussian & permutation-aware multi-slot effect encoding and reparameterised baseline \\
+$p_\theta(p\mid S^{pre},A)$ & state-set encoder plus action Transformer; diagonal Gaussian & prospective intervention-to-transformation map \\
+$F_{TP}$ & TP-conditioned set Transformer & distribute one TP effect across persistent interaction units \\
+$q_\eta(m,v\mid p,S)$ & mechanism-query cross-attention & simultaneous many-to-many allocation \\
+$m^j$ & Hard-Concrete participation gate & differentiable sparse local activation \\
+$v^j$ & diagonal-Gaussian realisation head & context-specific stochastic realisation \\
+$\mathcal M_j$ & shared set-dynamics backbone plus mechanism adapter & reuse generic dynamics while retaining mechanism identity \\
+$R_D^{j\rightarrow k}$ & shared directed residual-FiLM network plus pair embedding & constrain an edge to modify a target mechanism effect \\
+$g_{jk}$ & global Hard-Concrete edge gate & sparse domain-level candidate relation structure \\
+world executor & one directed message-passing layer and explicit gated sum & preserve inspectable node/edge contribution \\
+mechanism evidence & kernel log-determinant & explicit non-redundant coverage statistic \\
+relation evidence & matched-context directional kernel support & measure whether source variation exists under comparable target context \\
+exploration & projected multi-start gradient optimisation, receding horizon & use the differentiable TP bridge without a learned exploration policy \\
+$E_C$ & sequence Transformer over TP tokens & encode long-horizon persistent task constraint \\
+$P_T$ & task/world-conditioned Gaussian mixture plus stop head & represent multiple valid next transformations \\
+task control & TP-prior distribution matching, projected multi-start optimisation, receding horizon & reuse intervention competence without a separate task motor policy \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+These choices define the first falsifiable system. If gradients are numerically unreliable, a sampling optimiser is a controller
+ablation; if a diagonal-Gaussian TP cannot represent observed transformations, the distribution may be enriched. Such changes test
+implementation adequacy and do not alter the physical priors unless failure persists across credible realisations.
+
+\subsection*{5.3 Training-data design implied by the theory}
+
+\subsubsection*{World data}
+
+The unit of collection is the continuous, time-aligned trajectory, not an isolated image/action pair and not a video pre-cut at
+semantic action boundaries. The first dataset is organised as
+
+\[
+\boxed{
+\mathcal D_{\mathrm{world}}=
+\mathcal D_{\mathrm{broad}}
+\cup\mathcal D_{\mathrm{contrast}}
+\cup\mathcal D_{\mathrm{explore}}.}
+\]
+
+\begin{itemize}
+\item $\mathcal D_{\mathrm{broad}}$ uses safe low-level coverage to bootstrap $S$ and TP.
+\item $\mathcal D_{\mathrm{contrast}}$ varies initial conditions and controllable physical configurations to expose diverse mechanism
+combinations and directional contrasts. Environment design is not latent supervision: the model still receives only observations and
+executed interventions.
+\item $\mathcal D_{\mathrm{explore}}$ is collected by the learned evidence/frontier objective after TP calibration.
+\end{itemize}
+
+Five coverage axes matter more than raw sample count:
+
+\begin{enumerate}
+\item \textbf{State coverage:} comparable interventions in different $S$.
+\item \textbf{Intervention coverage:} different $A$ from comparable $S$.
+\item \textbf{Mechanism-combination coverage:} reusable mechanisms occur alone when possible and in varied combinations rather than
+always co-varying.
+\item \textbf{Realisation coverage:} each active mechanism spans multiple $v^j$ values and contexts.
+\item \textbf{Directional contrast coverage:} target $k$ and its context are approximately controlled while source $j$ varies, and
+separate data support the reverse direction.
+\end{enumerate}
+
+\begin{plainword}
+What matters is not "more data" but "data with the right contrasts": the same action in different states, different actions in the
+same state, each mechanism seen alone and in combinations, each mechanism seen at many strengths, and each relation tested in both
+directions.
+\end{plainword}
+
+The first proof-of-concept should use a simulator in which the experimenter knows, but does not train on, controllable mechanisms
+such as contact, friction, support, containment, attachment, collision, blocking, and grasp-mediated motion. Ground truth then
+evaluates whether learned variables are reusable and structurally aligned without supplying their names.
+
+\subsubsection*{Task data}
+
+Every task group must contain multiple demonstrations. For the first experiment, $R_g=5$--$10$ is a practical target, although the
+objective only requires $R_g\geq2$. Within a task group, demonstrations deliberately vary:
+
+\begin{itemize}
+\item initial state;
+\item valid strategy and TP path;
+\item world configuration, including constraints and obstacles;
+\item low-level execution details such as speed and precise motor trajectory.
+\end{itemize}
+
+Across task groups, the dataset must contain locally similar states and TPs with different valid futures:
+
+\[
+\boxed{
+(S_i^g,p_i^g,W_D)\approx(S_j^h,p_j^h,W_D),\ g\neq h,
+\quad
+P(p_{\mathrm{next}}\mid C_T^g)
+\neq P(p_{\mathrm{next}}\mid C_T^h).}
+\]
+
+\begin{plainword}
+For the task code to be learnable, there must be situations that look the same in the world but belong to different tasks, so the
+only thing that decides "what next" is the task itself.
+\end{plainword}
+
+\begin{example}
+"Blood pressure is high" looks the same, but the task might be "lower it" or "keep it steady for surgery." The world state alone
+cannot decide; the task code must. That is why such data are necessary.
+\end{example}
+
+Otherwise $C_T$ is not identifiable as a necessary predictor. Within one task, the data must also contain different world
+configurations requiring different valid next TPs:
+
+\[
+\boxed{
+C_T\ \text{fixed},\quad (S,W_D)\ \text{varies}
+\quad\Rightarrow\quad
+P_T(p_{\mathrm{next}})\ \text{varies}.}
+\]
+
+Otherwise the task predictor can memorise a fixed script and ignore $W_D$. Cases with the same start and end but different middle
+processes test $C_T\neq$ trajectory; cases where the start and end are similar but a specific intermediate transformation is
+required test $C_T\neq$ terminal state.
+
+Finally, task TP support must overlap the action-realisable world TP support:
+
+\[
+\boxed{
+\operatorname{supp}(TP_{\mathrm{task}})
+\subseteq\operatorname{supp}_{\mathrm{competent}}(p_\theta(p\mid S,A))
+\ \text{approximately}.}
+\]
+
+This separates failure of task inference from failure to realise a correctly requested TP.
+
+\begin{plainword}
+The transformations the task demands must be ones the world model can actually produce with some action. Otherwise we cannot tell
+"the task was understood wrong" from "the task was understood right but could not be performed."
+\end{plainword}
+
+\subsection*{5.4 Staged computational protocol}
+
+\begin{enumerate}
+\item Collect $\mathcal D_{\mathrm{seed}}$ with broad safe low-level controls and strict sensor/action synchronisation.
+\item Train $E_{\mathrm{vis}},E_S,F_S$ and validate temporal state correspondence under held-out trajectories.
+\item Train boundary inference, $q_\phi$, $p_\theta$, and $F_{TP}$; validate both action/state contrasts and action realisability.
+\item Freeze TP; train candidate $Z_D$ without relations; select weak sparsity by held-out mechanism reuse, not by the prettiest
+decomposition.
+\item Freeze or slow $Z_D$; train directional relation residuals only where contrast support is nontrivial.
+\item Jointly co-refine $Z_D\leftrightarrow R_D$ at small learning rates; report gauge sensitivity across seeds.
+\item Activate evidence/frontier exploration; interleave short collection batches with recalibration and staged retraining.
+\item Freeze TP and $W_D$; segment grouped task demonstrations and train $E_C,P_T$ with support/query pairs $r\neq s$.
+\item Evaluate $C_T$ and $W_D$ necessity before attempting closed-loop control.
+\item Execute task control by TP-prior inversion with receding-horizon replanning and error attribution.
+\end{enumerate}
+
+\begin{plainword}
+This is the recipe, in order: gather data $\to$ learn state $\to$ learn transformations $\to$ learn mechanisms $\to$ learn relations
+$\to$ refine both $\to$ explore actively $\to$ learn the task $\to$ verify the task and world are necessary $\to$ act. Each step is
+validated before moving on.
+\end{plainword}
+
+\subsection*{5.5 Identifiability, necessity, and falsification diagnostics}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.17\textwidth}XX@{}}
+\toprule
+Claim & Required diagnostic & Evidence against the claim \\
+\midrule
+Persistent $S$ & matching stability, held-out action-conditioned transition error, slot perturbation consistency & arbitrary rematching or equal performance from unstable framewise latents \\
+TP is transformation, not action & same-action/different-state and different-action/similar-effect retrieval; prior--posterior calibration & TP predicted from action alone or unable to merge equivalent effects \\
+TP boundary is meaningful & within-segment effect sufficiency and boundary perturbation test & boundaries coincide mechanically with action switches or every timestep \\
+$Z_D$ is reusable & cross-context and held-out-combination prediction by fixed $\mathcal M_j$ & query-specific memorisation, universal participation, or no compositional transfer \\
+$R_D$ is directed structure & $\mathcal E_{j\rightarrow k}^R$, edge removal $EP_{j\rightarrow k}$, reverse-direction comparison & edge survives without contrast, has no held-out gain, or flips across seeds/contexts \\
+$W_D$ adds abstraction & world prediction relative to TP decoder, held-out recombination, description length & monolithic TP decoder matches all performance and structure is unstable \\
+exploration is structural & evidence gained per interaction, edge/variable resolution rate, frontier discoveries & novelty/random coverage matches or beats the objective at equal budget \\
+$C_T$ is necessary & held-out $\Delta_{C_T}$ on locally matched cross-task states & no-context predictor performs equally \\
+$C_T$ is strategy-invariant & cross-strategy $r\rightarrow s$ likelihood and task retrieval by functional transfer & code follows trajectory/demonstrator rather than task group \\
+$C_T$ acts on $W_D$ & same-task/different-world next-TP prediction; remove-$W_D$ ablation & fixed script succeeds equally or $W_D$ removal has no cost \\
+Task TP is realisable & distribution match before/after action, execution success within TP competence & correct next-TP prediction but systematic inversion failure \\
+No $D_T/G_T$ needed & compare minimal operator with explicit-latent/graph ablations only after minimal failure & persistent residual requiring stable desired state or task graph \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{plainword}
+For every claim the framework makes, this table states the experiment that would confirm it and the result that would refute it.
+For example, "the TP is a transformation, not an action code" is confirmed if the same action in different states gives different TPs
+and different actions giving the same effect give the same TP; it is refuted if the TP can be predicted from the action alone.
+\end{plainword}
+
+Latent alignment metrics against simulator ground truth are secondary. Because representations have permutation and
+invertible-coordinate freedoms, the primary measurements are intervention prediction, held-out recombination, cross-context reuse,
+relation removal, cross-demonstration prediction, and control consequences.
+
+\subsection*{5.6 Core ablations}
+
+The first study should isolate scientific necessity rather than enumerate every architecture. The mandatory ablations are:
+
+\begin{enumerate}
+\item action-conditioned versus action-free latent dynamics;
+\item posterior without action versus posterior with action, to expose action-code leakage;
+\item fixed one-step TP versus learned variable duration;
+\item one-to-one TP clustering versus many-to-many mechanism allocation;
+\item mechanisms only versus $Z_D+R_D$;
+\item naive edge sparsity versus support-conditioned edge sparsity;
+\item random/novelty exploration versus evidence only versus evidence plus abstraction frontier;
+\item self-demonstration task reconstruction versus cross-demonstration prediction;
+\item unimodal versus mixture next-TP prediction;
+\item no $C_T$, full $C_T$, and shuffled task grouping;
+\item no $W_D$, frozen explicit $W_D$, and a capacity-matched monolithic world embedding;
+\item direct behaviour cloning versus TP-prior inversion at equal task data budget.
+\end{enumerate}
+
+\begin{plainword}
+An "ablation" is the scientific version of "remove one part and see if it was doing anything." Each line removes or swaps one piece
+and asks whether the result gets worse. This isolates which pieces are \emph{necessary} rather than decorative.
+\end{plainword}
+
+\subsection*{5.7 Failure modes to monitor}
+
+\begin{itemize}
+\item \textbf{Slot gauge failure:} temporally unstable interaction units make change meaningless.
+\item \textbf{TP leakage:} the posterior memorises the post-state or the prior becomes an action embedding.
+\item \textbf{Mechanism collapse:} all $m^j$ activate or one mechanism explains all effects.
+\item \textbf{Mechanism/relation gauge exchange:} $\mathcal M_j$ and $R_D$ trade explanatory mass without stable held-out identity.
+\item \textbf{False edge absence:} sparse penalties prune an edge before directional evidence exists.
+\item \textbf{Ontology confirmation:} evidence-only exploration never proposes transformations outside the current $Z_D$ support.
+\item \textbf{Model exploitation:} action optimisation finds adversarial controls outside calibrated TP support.
+\item \textbf{Task-code shortcut:} $C_T$ encodes initial state, strategy, trajectory length, or demonstrator identity.
+\item \textbf{World bypass:} $P_T$ predicts a memorised task script and ignores explicit $W_D$.
+\item \textbf{Control confounding:} task inference is blamed for an unrealisable TP or a poor local optimiser.
+\item \textbf{Partial observability:} hidden state makes identical observed $S$ respond differently; longer memory or additional
+sensing is then required.
+\end{itemize}
+
+\begin{plainword}
+These are the ways the project is most likely to fail, written down in advance so that a failure can be \emph{diagnosed} rather than
+just noticed. Each failure has a known signature and a known fix.
+\end{plainword}
+
+\section*{6. Preliminary Experimental Results Analysis --- Future Work}
+
+\subsection*{6.1 Status of this section}
+
+No preliminary result is claimed in the present positioning paper. This section is intentionally reserved so that the eventual
+analysis follows the causal order of the model rather than reporting only end-task success.
+
+\subsection*{6.2 Required reporting order}
+
+Results will be analysed in the following order:
+
+\begin{enumerate}
+\item data coverage and calibration, including the five world coverage axes and task support/query variation;
+\item interaction-state stability and TP competence;
+\item mechanism reuse and participation structure;
+\item directional relation evidence and held-out explanatory power;
+\item exploration efficiency and discoveries at the abstraction frontier;
+\item $C_T$ necessity, cross-strategy transfer, and multimodal progression;
+\item dependence of task prediction on explicit $W_D$;
+\item TP-prior inversion accuracy and closed-loop task success;
+\item robustness across seeds, domains, and representation gauges.
+\end{enumerate}
+
+An end-to-end success rate is interpretable only after the lower-level competence conditions have been reported. Otherwise a failure
+cannot be assigned to perception, TP segmentation, intervention prediction, world abstraction, task inference, or action optimisation.
+
+\begin{example}
+In a clinical trial you would not report only "the patient recovered" --- you would report each link in the chain: was the diagnosis
+right, was the drug given correctly, did the drug do what was expected, did the goal match the mechanism? The same discipline applies
+here.
+\end{example}
+
+\subsection*{6.3 Result-interpretation template}
+
+For every major claim, the eventual text should state:
+
+\begin{enumerate}
+\item the data contrast that made the variable or relation identifiable;
+\item the held-out intervention or demonstration split;
+\item the relevant baseline and capacity control;
+\item uncertainty across random seeds;
+\item whether improvement is predictive, structural, exploratory, or control-level;
+\item which lower-level competence conditions held;
+\item the narrowest warranted conclusion and the guarantees that remain absent.
+\end{enumerate}
+
+The strongest acceptable early claim is not that the model has discovered ``the true physics.'' It is that, in a controlled domain
+with known but unlabelled generative mechanisms, the learned $Z_D/R_D$ system provides more stable cross-context effect decomposition
+and more efficient evidence-directed interaction than plausible alternatives, while $C_T$ transfers across strategies and changes
+transformation predictions beyond what $S$ and $W_D$ alone explain.
+
+\section*{7. Research Position and Open Problems}
+
+\subsection*{7.1 The central position}
+
+The proposal takes a middle position between end-to-end control and fully symbolic world recovery. An agent does not need a complete
+human ontology before acting, but it needs more than a predictive black box if it is to decide which uncertainty matters, recognise
+when its ontology is incomplete, and reuse world knowledge across tasks. Transformation is the appropriate interface because it is
+simultaneously observable after action, predictable before action, decomposable into reusable mechanisms, and invertible into control.
+
+\begin{example}
+The framework sits between two extremes. At one end, a pure black box that says "do this now" with no explanation (like a reflex).
+At the other end, a full textbook of physics and anatomy written out in advance. This work claims the useful middle: a compact,
+reusable model that is learned from experience and that can be \emph{inspected} and \emph{reused}, but that does not pretend to be a
+complete theory.
+\end{example}
+
+The framework's strongest conceptual commitments are therefore:
+
+\begin{enumerate}
+\item effective variables should be defined by reusable effects, not visual axes alone;
+\item relations should be identified by directional contrasts and held-out necessity, not co-occurrence;
+\item uncertainty should remain an evidence status of a structural hypothesis, not automatically become another latent object;
+\item task identity should be a cross-realisation predictive constraint, not a trajectory code;
+\item task transformation should be the action of $C_T$ on explicit $W_D$, not an additional ontological layer unless experiments
+require one;
+\item exploration and task execution should reuse one intervention-to-transformation model and differ primarily in how higher levels
+value transformations.
+\end{enumerate}
+
+\subsection*{7.2 Open scientific questions}
+
+Several questions remain genuinely open rather than being disguised as design choices.
+
+\begin{itemize}
+\item Under what nonlinear conditions can TP-mediated effective variables be identifiable beyond permutation and invertible
+reparameterisation?
+\item Which intervention-coverage criterion is sufficient to separate mechanism baselines from directed relation residuals?
+\item When does a pairwise relational world remain adequate, and how should higher-order structure be introduced without destroying
+interpretability?
+\item Can an abstraction frontier reliably expose unknown mechanisms when the lower TP model is itself trained on incomplete coverage?
+\item What minimal diversity of demonstrations makes $C_T$ distinguish task constraint from strategy and terminal state?
+\item When is an order-one TP progress cue sufficient, and when is explicit task-progress memory unavoidable?
+\item Can one derive calibrated bounds linking TP-prior error, task distribution-matching error, and closed-loop task failure?
+\item Across which domain changes does $W_D$ remain reusable, and when should the agent infer that it has entered a new domain rather
+than refine the old one?
+\end{itemize}
+
+\subsection*{7.3 Final definition}
+
+The complete research object is
+
+\[
+\boxed{
+\begin{aligned}
+O_t&\rightarrow S_t,\\
+(S^{\mathrm{pre}},A,S^{\mathrm{post}})&\rightarrow p,\\
+p&\rightarrow (m,v)\rightarrow Z_D,\\
+Z_D&\leftrightarrow R_D\rightarrow W_D,\\
+W_D&\rightarrow J_{\mathrm{exp}}\rightarrow A\rightarrow\text{new evidence},\\
+\{p_{1:N}^{g,r}\}_{r\in\mathcal T_g}&\rightarrow C_T,\\
+Z_T&=(S_t,C_T),\\
+\mathcal T_T(W_D,Z_T)&\rightarrow P_T(p_{\mathrm{next}},stop),\\
+P_T(p_{\mathrm{next}})&\xrightarrow{\ p_\theta(p\mid S,A)^{-1}\ } A_t.
+\end{aligned}}
+\]
+
+\begin{plainword}
+The whole theory in one chain: observe $\to$ state $\to$ transformation $\to$ mechanisms $\to$ relations $\to$ world $\to$ explore
+$\to$ new evidence; and, separately, demonstrations $\to$ task code $\to$ (with the world) a desired next change $\to$ invert to an
+action. Every arrow is a claim that must be tested, in order.
+\end{plainword}
+
+Its empirical burden is equally concise: show that each higher level contributes stable held-out explanatory or control value that
+its lower inputs alone do not, under data with the contrasts needed to make that contribution identifiable.
+
+\begin{example}
+The one-line summary of the burden of proof: for every level, show it predicts or controls \emph{new} situations better than the level
+below it alone. If the mechanism layer does not beat the transformation layer alone on new data, it has not earned its place.
+\end{example}
+
+\section*{References}
+
+\noindent\hangindent=2.5em\hangafter=1 [1] Locatello, F., Weissenborn, D., Unterthiner, T., Mahendran, A., Heigold, G., Uszkoreit, J., Dosovitskiy, A., \& Kipf, T. \textbf{Object-Centric Learning with Slot Attention.} NeurIPS, 2020.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [2] Kipf, T., Elsayed, G. F., Mahendran, A., Stone, A., Sabour, S., Heigold, G., Jonschkowski, R., Dosovitskiy, A., \& Greff, K. \textbf{Conditional Object-Centric Learning from Video.} ICLR, 2022.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [3] Mosbach, M., Ewertz, J. N., Villar-Corrales, A., \& Behnke, S. \textbf{SOLD: Slot Object-Centric Latent Dynamics Models for Relational Manipulation Learning from Pixels.} ICML, 2025.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [4] Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X., Unterthiner, T., Dehghani, M., Minderer, M., Heigold, G., Gelly, S., Uszkoreit, J., \& Houlsby, N. \textbf{An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale.} ICLR, 2021.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [5] Sutton, R. S., Precup, D., \& Singh, S. \textbf{Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning.} Artificial Intelligence, 112(1--2):181--211, 1999.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [6] Shankar, T., \& Gupta, A. \textbf{Learning Robot Skills with Temporal Variational Inference.} ICML, 2020.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [7] Ghaemi, H., Muller, E. B., \& Bakhtiari, S. \textbf{seq-JEPA: Autoregressive Predictive Learning of Invariant-Equivariant World Models.} NeurIPS, 2025.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [8] Nikulin, A., Zisman, I., Tarasov, D., Lyubaykin, N., Polubarov, A., Kiselev, I., \& Kurenkov, V. \textbf{Latent Action Learning Requires Supervision in the Presence of Distractors.} ICML, 2025.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [9] Chen, G., Shao, Q., Cui, T., Zhou, Z., Mao, W., Yang, L., Wang, M., Yang, Y., Chen, H., \& Yue, Y. \textbf{Learning a Unified Latent Action Space from Videos with Action-centric Cycle Consistency.} CVPR, 2026.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [10] Lippe, P., Magliacane, S., L\"owe, S., Asano, Y. M., Cohen, T., \& Gavves, E. \textbf{CITRIS: Causal Identifiability from Temporal Intervened Sequences.} ICML, 2022.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [11] Lippe, P., Magliacane, S., L\"owe, S., Asano, Y. M., Cohen, T., \& Gavves, E. \textbf{BISCUIT: Causal Representation Learning from Binary Interactions.} UAI, 2023.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [12] Lachapelle, S., Rodriguez, P., Sharma, Y., Everett, K. E., Le Priol, R., Lacoste, A., \& Lacoste-Julien, S. \textbf{Disentanglement via Mechanism Sparsity Regularization: A New Principle for Nonlinear ICA.} Conference on Causal Learning and Reasoning, 2022.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [13] Bing, S., Ninad, U., Wahl, J., \& Runge, J. \textbf{Identifying Linearly-Mixed Causal Representations from Multi-Node Interventions.} Conference on Causal Learning and Reasoning, 2024.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [14] Rajendran, G., Reizinger, P., Brendel, W., \& Ravikumar, P. K. \textbf{An Interventional Perspective on Identifiability in Gaussian LTI Systems with Independent Component Analysis.} Conference on Causal Learning and Reasoning, 2024.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [15] Ahuja, K., Mahajan, D., Wang, Y., \& Bengio, Y. \textbf{Interventional Causal Representation Learning.} ICML, 2023.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [16] Lippe, P., Magliacane, S., L\"owe, S., Asano, Y. M., Cohen, T., \& Gavves, E. \textbf{Causal Representation Learning for Instantaneous and Temporal Effects in Interactive Systems.} ICLR, 2023.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [17] Griffiths, T. L., \& Ghahramani, Z. \textbf{Infinite Latent Feature Models and the Indian Buffet Process.} NeurIPS, 2005.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [18] Lee, J., Lee, Y., Kim, J., Kosiorek, A., Choi, S., \& Teh, Y. W. \textbf{Set Transformer: A Framework for Attention-based Permutation-Invariant Neural Networks.} ICML, 2019.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [19] Zaheer, M., Kottur, S., Ravanbakhsh, S., P\'oczos, B., Salakhutdinov, R., \& Smola, A. J. \textbf{Deep Sets.} NeurIPS, 2017.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [20] Louizos, C., Welling, M., \& Kingma, D. P. \textbf{Learning Sparse Neural Networks through $L_0$ Regularization.} ICLR, 2018.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [21] Perez, E., Strub, F., de Vries, H., Dumoulin, V., \& Courville, A. \textbf{FiLM: Visual Reasoning with a General Conditioning Layer.} AAAI, 2018.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [22] Battaglia, P. W., Hamrick, J. B., Bapst, V., et al. \textbf{Relational Inductive Biases, Deep Learning, and Graph Networks.} arXiv:1806.01261, 2018.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [23] Lindley, D. V. \textbf{On a Measure of the Information Provided by an Experiment.} The Annals of Mathematical Statistics, 27(4):986--1005, 1956.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [24] Krause, A., Singh, A., \& Guestrin, C. \textbf{Near-Optimal Sensor Placements in Gaussian Processes: Theory, Efficient Algorithms and Empirical Studies.} Journal of Machine Learning Research, 9:235--284, 2008.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [25] Pathak, D., Agrawal, P., Efros, A. A., \& Darrell, T. \textbf{Curiosity-driven Exploration by Self-supervised Prediction.} ICML, 2017.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [26] Amos, B., Jimenez Rodriguez, I. D., Sacks, J., Boots, B., \& Kolter, J. Z. \textbf{Differentiable MPC for End-to-end Planning and Control.} NeurIPS, 2018.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [27] Chua, K., Calandra, R., McAllister, R., \& Levine, S. \textbf{Deep Reinforcement Learning in a Handful of Trials using Probabilistic Dynamics Models.} NeurIPS, 2018.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [28] Ebert, F., Finn, C., Dasari, S., Xie, A., Lee, A. X., \& Levine, S. \textbf{Visual Foresight: Model-Based Deep Reinforcement Learning for Vision-Based Robotic Control.} arXiv:1812.00568, 2018.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [29] Garrido, Q., Najman, L., \& LeCun, Y. \textbf{Self-supervised Learning of Split Invariant Equivariant Representations.} ICML, 2023.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [30] Freed, B., James, S., Sartoretti, G., \& Choset, H. \textbf{Learning Temporally Abstract World Models without Online Experimentation.} ICML, 2023.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [31] Mishra, N., Abbeel, P., \& Mordatch, I. \textbf{Prediction and Control with Temporal Segment Models.} ICML, 2017.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [32] Locatello, F., Bauer, S., Lucic, M., Raetsch, G., Gelly, S., Sch\"olkopf, B., \& Bachem, O. \textbf{Challenging Common Assumptions in the Unsupervised Learning of Disentangled Representations.} ICML, 2019.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [33] Khemakhem, I., Kingma, D. P., Monti, R. P., \& Hyv\"arinen, A. \textbf{Variational Autoencoders and Nonlinear ICA: A Unifying Framework.} AISTATS, 2020.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [34] Finn, C., Yu, T., Zhang, T., Abbeel, P., \& Levine, S. \textbf{One-Shot Visual Imitation Learning via Meta-Learning.} Conference on Robot Learning, 2017.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [35] James, S., Bloesch, M., \& Davison, A. J. \textbf{Task-Embedded Control Networks for Few-Shot Imitation Learning.} Conference on Robot Learning, 2018.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [36] Rakelly, K., Zhou, A., Finn, C., Levine, S., \& Quillen, D. \textbf{Efficient Off-Policy Meta-Reinforcement Learning via Probabilistic Context Variables.} ICML, 2019.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [37] Garnelo, M., Rosenbaum, D., Maddison, C. J., Ramalho, T., Saxton, D., Shanahan, M., Teh, Y. W., Rezende, D. J., \& Eslami, S. M. A. \textbf{Conditional Neural Processes.} ICML, 2018.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [38] Bishop, C. M. \textbf{Mixture Density Networks.} Aston University Technical Report NCRG/94/004, 1994.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [39] Chi, C., Feng, S., Du, Y., Xu, Z., Cousineau, E., Burchfiel, B., \& Song, S. \textbf{Diffusion Policy: Visuomotor Policy Learning via Action Diffusion.} Robotics: Science and Systems, 2023.\par
+
+\noindent\hangindent=2.5em\hangafter=1 [40] Srinivas, A., Jabri, A., Abbeel, P., Levine, S., \& Finn, C. \textbf{Universal Planning Networks: Learning Generalizable Representations for Visuomotor Control.} ICML, 2018.\par
+
+\end{document}

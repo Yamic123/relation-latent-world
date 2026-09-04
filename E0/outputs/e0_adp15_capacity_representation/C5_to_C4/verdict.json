@@ -1,0 +1,14 @@
+{
+  "pair": "C5:C4",
+  "levels": {
+    "L0": false,
+    "L1": false,
+    "L2": true,
+    "L3": false
+  },
+  "minimum_successful_level": "L2",
+  "classification": "capacity_bottleneck",
+  "stop_1": false,
+  "controls_required": "L2",
+  "auxiliary_pair_required": true
+}

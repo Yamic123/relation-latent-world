@@ -1,0 +1,45 @@
+{
+  "experiment": "O3-E",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "environment": {
+    "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.5.1+cu121",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_device": "NVIDIA GeForce RTX 3070 Ti Laptop GPU"
+  },
+  "config": {
+    "experiment": "O3-E",
+    "support": "learner",
+    "split": "test_iid",
+    "num_samples": 1000,
+    "patterns": [
+      "000",
+      "001",
+      "010",
+      "011",
+      "100",
+      "101",
+      "110",
+      "111"
+    ],
+    "lambda_participation": 0.001,
+    "multiple_v_initializations": 5,
+    "batched_optimizer": "Adam",
+    "batched_steps": 500,
+    "batched_learning_rate": 0.05,
+    "final_optimizer": "scipy L-BFGS-B",
+    "matched_active_support": "[-1,-0.3] union [0.3,1]",
+    "learner_active_support": "[-1.5,1.5] (actual 1.5*tanh range)",
+    "margin_approximately_zero_tolerance": 1e-06
+  },
+  "started_at_unix": 1788282737.8370855,
+  "diagnostic_only": true,
+  "original_e0a_decision_unchanged": "E0 FAIL"
+}

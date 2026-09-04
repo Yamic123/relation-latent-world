@@ -1,0 +1,18 @@
+{
+  "pass": true,
+  "device": "cuda",
+  "top_k_checked": [
+    1,
+    2,
+    3
+  ],
+  "integration_rounds": 1,
+  "existence_files": 5,
+  "integration_alive": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
+}

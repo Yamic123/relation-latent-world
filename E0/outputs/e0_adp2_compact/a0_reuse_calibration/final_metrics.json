@@ -1,0 +1,271 @@
+{
+  "stage": "adp2_a0",
+  "positive_o5": [
+    {
+      "candidate": 0,
+      "folds": [
+        {
+          "group": 0,
+          "n": 119,
+          "eligible": true,
+          "error": 0.013804205693304539
+        },
+        {
+          "group": 1,
+          "n": 145,
+          "eligible": true,
+          "error": 0.007561312057077885
+        },
+        {
+          "group": 2,
+          "n": 108,
+          "eligible": true,
+          "error": 0.011570018716156483
+        },
+        {
+          "group": 3,
+          "n": 121,
+          "eligible": true,
+          "error": 0.013029561378061771
+        }
+      ],
+      "coverage": 4,
+      "sufficient": true,
+      "reuse_error": 0.012299790047109127
+    },
+    {
+      "candidate": 1,
+      "folds": [
+        {
+          "group": 0,
+          "n": 156,
+          "eligible": true,
+          "error": 0.019033201038837433
+        },
+        {
+          "group": 1,
+          "n": 152,
+          "eligible": true,
+          "error": 0.008297359570860863
+        },
+        {
+          "group": 2,
+          "n": 161,
+          "eligible": true,
+          "error": 0.007777806371450424
+        },
+        {
+          "group": 3,
+          "n": 180,
+          "eligible": true,
+          "error": 0.009439084678888321
+        }
+      ],
+      "coverage": 4,
+      "sufficient": true,
+      "reuse_error": 0.008868222124874592
+    },
+    {
+      "candidate": 2,
+      "folds": [
+        {
+          "group": 0,
+          "n": 118,
+          "eligible": true,
+          "error": 0.014910627156496048
+        },
+        {
+          "group": 1,
+          "n": 122,
+          "eligible": true,
+          "error": 0.019277136772871017
+        },
+        {
+          "group": 2,
+          "n": 131,
+          "eligible": true,
+          "error": 0.009862812235951424
+        },
+        {
+          "group": 3,
+          "n": 126,
+          "eligible": true,
+          "error": 0.018925104290246964
+        }
+      ],
+      "coverage": 4,
+      "sufficient": true,
+      "reuse_error": 0.016917865723371506
+    }
+  ],
+  "negative_adp1": [
+    {
+      "candidate": 0,
+      "folds": [
+        {
+          "group": 0,
+          "n": 110,
+          "eligible": true,
+          "error": 0.2883426249027252
+        },
+        {
+          "group": 1,
+          "n": 131,
+          "eligible": true,
+          "error": 0.34274542331695557
+        },
+        {
+          "group": 2,
+          "n": 121,
+          "eligible": true,
+          "error": 0.3471013307571411
+        },
+        {
+          "group": 3,
+          "n": 131,
+          "eligible": true,
+          "error": 0.4309804439544678
+        }
+      ],
+      "coverage": 4,
+      "sufficient": true,
+      "reuse_error": 0.34492337703704834
+    },
+    {
+      "candidate": 1,
+      "folds": [
+        {
+          "group": 0,
+          "n": 124,
+          "eligible": true,
+          "error": 0.27913567423820496
+        },
+        {
+          "group": 1,
+          "n": 123,
+          "eligible": true,
+          "error": 0.38425472378730774
+        },
+        {
+          "group": 2,
+          "n": 132,
+          "eligible": true,
+          "error": 0.3313676416873932
+        },
+        {
+          "group": 3,
+          "n": 142,
+          "eligible": true,
+          "error": 0.3315061330795288
+        }
+      ],
+      "coverage": 4,
+      "sufficient": true,
+      "reuse_error": 0.331436887383461
+    },
+    {
+      "candidate": 2,
+      "folds": [
+        {
+          "group": 0,
+          "n": 112,
+          "eligible": true,
+          "error": 0.3062972128391266
+        },
+        {
+          "group": 1,
+          "n": 121,
+          "eligible": true,
+          "error": 0.5391145944595337
+        },
+        {
+          "group": 2,
+          "n": 123,
+          "eligible": true,
+          "error": 0.4218677580356598
+        },
+        {
+          "group": 3,
+          "n": 138,
+          "eligible": true,
+          "error": 0.4528074860572815
+        }
+      ],
+      "coverage": 4,
+      "sufficient": true,
+      "reuse_error": 0.43733762204647064
+    },
+    {
+      "candidate": 3,
+      "folds": [
+        {
+          "group": 0,
+          "n": 127,
+          "eligible": true,
+          "error": 0.2202831208705902
+        },
+        {
+          "group": 1,
+          "n": 154,
+          "eligible": true,
+          "error": 0.3137851059436798
+        },
+        {
+          "group": 2,
+          "n": 131,
+          "eligible": true,
+          "error": 0.256147176027298
+        },
+        {
+          "group": 3,
+          "n": 118,
+          "eligible": true,
+          "error": 0.24532775580883026
+        }
+      ],
+      "coverage": 4,
+      "sufficient": true,
+      "reuse_error": 0.2507374659180641
+    },
+    {
+      "candidate": 4,
+      "folds": [
+        {
+          "group": 0,
+          "n": 112,
+          "eligible": true,
+          "error": 0.3170319199562073
+        },
+        {
+          "group": 1,
+          "n": 110,
+          "eligible": true,
+          "error": 0.4363225996494293
+        },
+        {
+          "group": 2,
+          "n": 144,
+          "eligible": true,
+          "error": 0.3787215054035187
+        },
+        {
+          "group": 3,
+          "n": 123,
+          "eligible": true,
+          "error": 0.42968520522117615
+        }
+      ],
+      "coverage": 4,
+      "sufficient": true,
+      "reuse_error": 0.4042033553123474
+    }
+  ],
+  "q90_o5": 0.01599425058811903,
+  "q10_adp1": 0.2830172345042229,
+  "tau_reuse": 0.14950574254617097,
+  "pass": true,
+  "stop_required": false,
+  "reason": "clear separation",
+  "wall_seconds": 21.626516342163086,
+  "next_stage_allowed": true
+}

@@ -1,0 +1,24 @@
+{
+  "pass": true,
+  "device": "cuda",
+  "weighted_loss": 0.11676150932908058,
+  "cost_shape": [
+    8,
+    5
+  ],
+  "soft_row_sum_max_error": 1.1920928955078125e-07,
+  "hard_row_sum_max_error": 0.0,
+  "median_gap": 0.0041668713092803955,
+  "temperature": 0.016667485237121582,
+  "death_test_checks": {
+    "global": true,
+    "bootstrap": false,
+    "subgroup": false
+  },
+  "b1_prediction_shape": [
+    4,
+    3,
+    2
+  ],
+  "cuda_peak_allocated_mib": 20.591796875
+}

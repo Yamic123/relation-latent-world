@@ -1,0 +1,54 @@
+{
+  "stage_a_complete": true,
+  "A1_commits": 0,
+  "A2_commits": 0,
+  "A3_wrong_parent_pass": false,
+  "A4_frozen_delete_pass": false,
+  "stop_A": true,
+  "stage_b_executed": false,
+  "measured_absorption_trial_seconds": 174.01817274093628,
+  "A1_pairs": [
+    {
+      "pair": "C5->C4",
+      "P_train": 1.0,
+      "P_val": 1.0,
+      "median_gap_val": 0.002419118070974946,
+      "max_bootstrap_upper95": 0.028740206640213727,
+      "max_subgroup_delta": 0.017096560448408127,
+      "parent_old_delta": 0.02958299219608307,
+      "child_keep_nrmse": 0.1235419437289238,
+      "child_absorb_nrmse": 0.2267431765794754,
+      "commit": false
+    },
+    {
+      "pair": "C4->C5",
+      "P_train": 1.0,
+      "P_val": 1.0,
+      "median_gap_val": 0.008806025609374046,
+      "max_bootstrap_upper95": 0.22629067627713084,
+      "max_subgroup_delta": 0.1868121474981308,
+      "parent_old_delta": 0.11814973503351212,
+      "child_keep_nrmse": 0.06242195516824722,
+      "child_absorb_nrmse": 0.5088018774986267,
+      "commit": false
+    },
+    {
+      "pair": "C2->C3",
+      "P_train": 0.948051948051948,
+      "P_val": 0.975,
+      "median_gap_val": 0.0011880744714289904,
+      "max_bootstrap_upper95": 0.03141357954591512,
+      "max_subgroup_delta": 0.023361418396234512,
+      "parent_old_delta": 0.030683957040309906,
+      "child_keep_nrmse": 0.08128079026937485,
+      "child_absorb_nrmse": 0.17518317699432373,
+      "commit": false
+    }
+  ],
+  "figures": [
+    "A_directional_replacement_graph.png",
+    "B_absorption_learning_curves.png",
+    "C_before_after_context_coverage.png",
+    "D_frozen_vs_adapted_drop.png"
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "read_only_no_training": true,
+  "true_amplitudes": [
+    -1.0,
+    -0.699999988079071,
+    -0.4000000059604645,
+    0.4000000059604645,
+    0.699999988079071,
+    1.0
+  ],
+  "candidates": [
+    {
+      "candidate": 0,
+      "family_count": 68,
+      "GT_counts": [
+        0,
+        0,
+        68
+      ],
+      "mean_inferred_latent_by_true_amplitude": [
+        0.18554265797138214,
+        0.15816724300384521,
+        0.21492257714271545,
+        -0.011126914992928505,
+        -0.3196014165878296,
+        -0.69355708360672
+      ],
+      "std_inferred_latent_by_true_amplitude": [
+        0.14870503544807434,
+        0.3518877327442169,
+        0.5072891712188721,
+        0.8435101509094238,
+        0.949088454246521,
+        0.8878070712089539
+      ],
+      "pooled_true_vs_inferred_correlation": -0.3860870897769928,
+      "mean_within_family_correlation": -0.49435308270211165,
+      "mean_abs_within_family_correlation": 0.5721520950387725,
+      "negative_orientation_fraction": 0.8529411764705882
+    },
+    {
+      "candidate": 1,
+      "family_count": 71,
+      "GT_counts": [
+        71,
+        0,
+        0
+      ],
+      "mean_inferred_latent_by_true_amplitude": [
+        -0.06109124794602394,
+        0.29506802558898926,
+        0.5564377903938293,
+        0.1405947208404541,
+        -0.02106570452451706,
+        -0.23598596453666687
+      ],
+      "std_inferred_latent_by_true_amplitude": [
+        1.2855890989303589,
+        1.1487772464752197,
+        0.9268141984939575,
+        0.5700907111167908,
+        0.326683908700943,
+        0.09627535939216614
+      ],
+      "pooled_true_vs_inferred_correlation": -0.14324723184108734,
+      "mean_within_family_correlation": -0.17007003561921522,
+      "mean_abs_within_family_correlation": 0.45239913757418243,
+      "negative_orientation_fraction": 0.6056338028169014
+    },
+    {
+      "candidate": 2,
+      "family_count": 133,
+      "GT_counts": [
+        0,
+        133,
+        0
+      ],
+      "mean_inferred_latent_by_true_amplitude": [
+        0.2570621073246002,
+        0.5246385931968689,
+        0.7563234567642212,
+        0.19342303276062012,
+        -0.046859338879585266,
+        -0.36063751578330994
+      ],
+      "std_inferred_latent_by_true_amplitude": [
+        1.2370290756225586,
+        1.0705256462097168,
+        0.7485485672950745,
+        0.6308978199958801,
+        0.40524426102638245,
+        0.15980997681617737
+      ],
+      "pooled_true_vs_inferred_correlation": -0.3184812664985657,
+      "mean_within_family_correlation": -0.40010793218604696,
+      "mean_abs_within_family_correlation": 0.5027556520243043,
+      "negative_orientation_fraction": 0.7894736842105263
+    },
+    {
+      "candidate": 3,
+      "family_count": 56,
+      "GT_counts": [
+        0,
+        0,
+        56
+      ],
+      "mean_inferred_latent_by_true_amplitude": [
+        0.2117994874715805,
+        0.10328226536512375,
+        0.17131264507770538,
+        0.13096196949481964,
+        -0.38296619057655334,
+        -0.6298280358314514
+      ],
+      "std_inferred_latent_by_true_amplitude": [
+        0.14566898345947266,
+        0.33720850944519043,
+        0.5205309391021729,
+        0.9061676263809204,
+        0.9477638602256775,
+        0.977887749671936
+      ],
+      "pooled_true_vs_inferred_correlation": -0.34284698963165283,
+      "mean_within_family_correlation": -0.41278805691919324,
+      "mean_abs_within_family_correlation": 0.5495716393748548,
+      "negative_orientation_fraction": 0.7857142857142857
+    },
+    {
+      "candidate": 4,
+      "family_count": 58,
+      "GT_counts": [
+        58,
+        0,
+        0
+      ],
+      "mean_inferred_latent_by_true_amplitude": [
+        0.3401123881340027,
+        0.26968157291412354,
+        0.3854883015155792,
+        0.09379260987043381,
+        0.04233827441930771,
+        -0.19961528480052948
+      ],
+      "std_inferred_latent_by_true_amplitude": [
+        1.2375948429107666,
+        1.1735707521438599,
+        1.0383269786834717,
+        0.6362090706825256,
+        0.35267454385757446,
+        0.11571095138788223
+      ],
+      "pooled_true_vs_inferred_correlation": -0.20550763607025146,
+      "mean_within_family_correlation": -0.2585084916349372,
+      "mean_abs_within_family_correlation": 0.38572999460879587,
+      "negative_orientation_fraction": 0.6206896551724138
+    }
+  ]
+}

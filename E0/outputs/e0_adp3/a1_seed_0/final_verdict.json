@@ -1,0 +1,94 @@
+{
+  "stage": "adp3_a1",
+  "authoritative_corrected_evaluator": true,
+  "rounds": 40,
+  "final_train_fragment_mse": 0.0015072899404913187,
+  "final_val_fragment_nrmse": 0.14591152966022491,
+  "final_fragment_matching_accuracy": 0.5673828125,
+  "final_matched_functional_r2": [
+    0.8886233901626354,
+    0.3232086104391918,
+    -0.17600167620277585
+  ],
+  "final_functional_r2_matrix": [
+    [
+      0.8886233901626354,
+      -0.6671794421504871,
+      -0.26921775639211964
+    ],
+    [
+      -1.9102255990921178,
+      -1.013828524682804,
+      -3.0286927380423005
+    ],
+    [
+      0.3478151839026572,
+      -0.93589356557226,
+      -0.17600167620277585
+    ],
+    [
+      -1.6855970184262716,
+      -0.05068391434350206,
+      -1.0365052711052543
+    ],
+    [
+      -0.10994306611698912,
+      0.3232086104391918,
+      -0.0035196103182499883
+    ]
+  ],
+  "final_candidate_usage": [
+    0.21004231770833334,
+    0.14054361979166666,
+    0.3116048177083333,
+    0.10994466145833333,
+    0.22786458333333334
+  ],
+  "final_candidate_sample_count": [
+    2581,
+    1727,
+    3829,
+    1351,
+    2800
+  ],
+  "final_assignment_contingency": [
+    [
+      661,
+      3,
+      2
+    ],
+    [
+      4,
+      308,
+      128
+    ],
+    [
+      238,
+      473,
+      214
+    ],
+    [
+      110,
+      108,
+      71
+    ],
+    [
+      11,
+      132,
+      609
+    ]
+  ],
+  "last3_assignment_change_rate": 0.3196614583333333,
+  "restart_assignment_agreement": 0.617431640625,
+  "cuda_peak_allocated_mib": 48.93798828125,
+  "checks": {
+    "fragment_matching_accuracy_gt_0_90": false,
+    "each_matched_functional_r2_gt_0_80": false,
+    "min_best3_functional_r2_gt_0_70": false,
+    "last3_assignment_change_lt_0_10": false
+  },
+  "pass": false,
+  "stop_after_a1": true,
+  "a2_b1_b2_c_executed": false,
+  "stop_reason": "A1 identity formation gate failed; execution plan requires stopping before A2."
+}

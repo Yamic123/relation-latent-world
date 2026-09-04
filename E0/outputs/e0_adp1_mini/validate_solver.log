@@ -1,0 +1,29 @@
+{
+  "selected": null,
+  "ladder": [
+    {
+      "rung": "20/2",
+      "max_steps": 20,
+      "restarts": 2,
+      "support_agreement": 0.8125,
+      "median_abs_J_diff": 0.0,
+      "pass": false
+    },
+    {
+      "rung": "30/2",
+      "max_steps": 30,
+      "restarts": 2,
+      "support_agreement": 0.8125,
+      "median_abs_J_diff": 0.0,
+      "pass": false
+    },
+    {
+      "rung": "30/3",
+      "max_steps": 30,
+      "restarts": 3,
+      "support_agreement": 0.875,
+      "median_abs_J_diff": 0.0,
+      "pass": false
+    }
+  ]
+}

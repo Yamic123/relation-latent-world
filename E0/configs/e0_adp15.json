@@ -1,0 +1,22 @@
+{
+  "experiment": "E0-ADP15-CAPACITY-VS-REPRESENTATION",
+  "source_seed": 1,
+  "mechanism_dim": 64,
+  "mechanism_heads": 4,
+  "epochs": 20,
+  "family_batch_size": 32,
+  "mechanism_learning_rate": 0.0003,
+  "coordinate_learning_rate": 0.001,
+  "trunk_learning_rate": 0.0001,
+  "weight_decay": 0.00001,
+  "gradient_clip": 1.0,
+  "lambda_anchor": 1.0,
+  "lambda_protect": 1.0,
+  "bootstrap_repeats": 500,
+  "global_delta_nrmse": 0.01,
+  "subgroup_delta_nrmse": 0.02,
+  "parent_old_delta_nrmse": 0.01,
+  "child_old_slack_nrmse": 0.01,
+  "other_candidate_drift_nrmse": 0.01,
+  "functional_probe_count": 2000
+}

@@ -1,0 +1,212 @@
+[
+  {
+    "epoch": 0,
+    "stage": "before_unsupervised_training",
+    "candidate_usage": [
+      0.4896213412284851,
+      0.6433345079421997,
+      0.4900505244731903
+    ],
+    "expected_active": 1.623004674911499
+  },
+  {
+    "epoch": 10,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.4854111671447754,
+      0.6405395269393921,
+      0.4813329577445984
+    ],
+    "expected_active": 1.607285976409912
+  },
+  {
+    "epoch": 20,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.5000946521759033,
+      0.6381738781929016,
+      0.48644742369651794
+    ],
+    "expected_active": 1.6247199773788452
+  },
+  {
+    "epoch": 30,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.46956270933151245,
+      0.6379762887954712,
+      0.48310035467147827
+    ],
+    "expected_active": 1.5906429290771484
+  },
+  {
+    "epoch": 40,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.4965018033981323,
+      0.644356906414032,
+      0.48274198174476624
+    ],
+    "expected_active": 1.6236052513122559
+  },
+  {
+    "epoch": 50,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.4842084050178528,
+      0.6417402625083923,
+      0.48245078325271606
+    ],
+    "expected_active": 1.6084024906158447
+  },
+  {
+    "epoch": 60,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.481198787689209,
+      0.6388747692108154,
+      0.484805166721344
+    ],
+    "expected_active": 1.6048816442489624
+  },
+  {
+    "epoch": 70,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.4818408191204071,
+      0.630699634552002,
+      0.48341646790504456
+    ],
+    "expected_active": 1.5959609746932983
+  },
+  {
+    "epoch": 80,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.5073096752166748,
+      0.6348727345466614,
+      0.4839995503425598
+    ],
+    "expected_active": 1.6261855363845825
+  },
+  {
+    "epoch": 90,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.48682159185409546,
+      0.6370778679847717,
+      0.48174017667770386
+    ],
+    "expected_active": 1.6056429147720337
+  },
+  {
+    "epoch": 100,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.4853134751319885,
+      0.6365689039230347,
+      0.5111860632896423
+    ],
+    "expected_active": 1.633072018623352
+  },
+  {
+    "epoch": 110,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.4894982874393463,
+      0.6359830498695374,
+      0.4803615212440491
+    ],
+    "expected_active": 1.6058460474014282
+  },
+  {
+    "epoch": 120,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.47777822613716125,
+      0.637260913848877,
+      0.48503485321998596
+    ],
+    "expected_active": 1.6000765562057495
+  },
+  {
+    "epoch": 130,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.5082982182502747,
+      0.6336201429367065,
+      0.48480093479156494
+    ],
+    "expected_active": 1.626723051071167
+  },
+  {
+    "epoch": 140,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.5020577907562256,
+      0.6380899548530579,
+      0.48640313744544983
+    ],
+    "expected_active": 1.6265535354614258
+  },
+  {
+    "epoch": 150,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.465623140335083,
+      0.6432979702949524,
+      0.48606693744659424
+    ],
+    "expected_active": 1.594990849494934
+  },
+  {
+    "epoch": 160,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.4776608347892761,
+      0.635858952999115,
+      0.4791419804096222
+    ],
+    "expected_active": 1.5926645994186401
+  },
+  {
+    "epoch": 170,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.47559115290641785,
+      0.6333716511726379,
+      0.48777294158935547
+    ],
+    "expected_active": 1.596738338470459
+  },
+  {
+    "epoch": 180,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.4724475145339966,
+      0.6360341906547546,
+      0.48149144649505615
+    ],
+    "expected_active": 1.5899763107299805
+  },
+  {
+    "epoch": 190,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.47309258580207825,
+      0.6382614970207214,
+      0.48685312271118164
+    ],
+    "expected_active": 1.598209261894226
+  },
+  {
+    "epoch": 200,
+    "stage": "unsupervised",
+    "candidate_usage": [
+      0.4608951807022095,
+      0.6374699473381042,
+      0.4773695766925812
+    ],
+    "expected_active": 1.575736403465271
+  }
+]

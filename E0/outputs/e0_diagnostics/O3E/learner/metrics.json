@@ -1,0 +1,18 @@
+{
+  "experiment": "O3-E",
+  "support": "learner",
+  "num_samples": 1000,
+  "gt_participation_top1_recovery": 0.997,
+  "median_objective_margin": 0.0009999999999999948,
+  "positive_margin_fraction": 0.997,
+  "approximately_zero_margin_fraction": 0.0,
+  "alternative_beats_gt_fraction": 0.003,
+  "active_v_mae_selected_pattern": 0.0007501127146508583,
+  "lbfgsb_success_fraction": 0.999875,
+  "pass_components": {
+    "top1_recovery_gt_0.95": true,
+    "positive_margin_gt_0.95": true
+  },
+  "wall_seconds": 8.237425565719604,
+  "pass": true
+}

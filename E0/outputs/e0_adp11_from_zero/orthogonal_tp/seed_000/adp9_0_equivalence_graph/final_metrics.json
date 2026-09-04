@@ -1,0 +1,270 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp9_0",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "config": {
+    "experiment": "E0-ADP11-FROM-ZERO-PERFECT-TP-STABILITY",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "family_seed": 20260905,
+    "optimization_seed": 0,
+    "tp_condition": "orthogonal",
+    "m_max": 5,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "rounds": 40,
+    "mechanism_learning_rate": 0.0003,
+    "coordinate_learning_rate": 0.001,
+    "weight_decay": 1e-05,
+    "family_batch_size": 32,
+    "epochs_per_round": 4,
+    "gradient_clip": 1.0,
+    "functional_probe_count": 2000,
+    "initial_assignment": "random_balanced",
+    "initial_coordinate_a": "random_sign_times_uniform_0.8_1.2",
+    "initial_coordinate_b": "uniform_-0.1_0.1",
+    "major_candidate_min_usage": 0.02,
+    "tp_usage_contract": "p is learner-visible and audited, but the preregistered Z2-Z4 family cost uses d and Z8 uses delta_S; p is not an argument of the specified optimization equations",
+    "edge_thresholds": {
+      "cross_state_prediction_r2": 0.995,
+      "cross_realization_prediction_r2": 0.995,
+      "cross_base_prediction_r2": 0.995,
+      "direct_replacement_max_nrmse_increase": 0.01
+    },
+    "survivor_weights": {
+      "heldout_loss": 0.5,
+      "assignment_instability": 0.2,
+      "coverage_penalty": 0.3
+    },
+    "prune_gate": {
+      "max_heldout_nrmse_increase": 0.01,
+      "min_best_functional_r2": 0.95,
+      "max_family_accuracy_drop": 0.03,
+      "max_fragmentation_increase": 0.03,
+      "max_repeated_assignment_change": 0.1
+    },
+    "final_gate": {
+      "iid_nrmse": 0.03,
+      "structured_nrmse": 0.05,
+      "min_best_functional_r2": 0.95,
+      "family_accuracy": 0.9,
+      "mean_fragmentation": 0.1,
+      "assignment_change": 0.1
+    },
+    "b1": {
+      "lambda_p": 0.001,
+      "alpha_bound": 1.5,
+      "learning_rate": 0.05,
+      "steps": 60,
+      "restarts": 3,
+      "chunk_size": 1024,
+      "splits": [
+        "test_iid",
+        "test_combination_101"
+      ]
+    },
+    "scientific_scale_reduction": "none"
+  },
+  "config_sha256": "3111e3e6b3b33b4d7bcf442ce58c275e334a07df1cd6bdb2386d84e345ab7e80",
+  "script_sha256": "b59ce322fb38fef1b8517e4b8cac3bc4c7d807e5d5f57a202e9a1f846ddaeb10",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "source_checkpoint": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp11_from_zero\\orthogonal_tp\\seed_000\\z4_joint\\checkpoints\\round_039.pt",
+  "source_assignment": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp11_from_zero\\orthogonal_tp\\seed_000\\z4_joint\\assignments\\round_039.npz",
+  "alive_candidates": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5"
+  ],
+  "all_pair_count": 6,
+  "valid_duplicate_edges": [],
+  "all_pairs": [
+    {
+      "pair": [
+        1,
+        3
+      ],
+      "pair_name": "C2+C4",
+      "cross_state_prediction_r2": 0.44641113192860504,
+      "cross_realization_prediction_r2": 0.46924196815747454,
+      "cross_base_prediction_r2": 0.5037431392344172,
+      "direct_replacement_max_nrmse_increase": 0.5137190762907267,
+      "direct_replacement_increases": [
+        0.4247389379888773,
+        0.4350954070687294,
+        0.4083351567387581,
+        0.5137190762907267,
+        0.43772144243121147,
+        0.00021617673337459564,
+        0.00030404143035411835,
+        9.818747639656067e-05,
+        0.00027922727167606354,
+        0.0002076849341392517
+      ],
+      "separate_pair_nrmse": 0.031750306487083435,
+      "family_response_disagreement_mse": 0.01034538447856903,
+      "abs_delta_a": 0.05269324779510498,
+      "abs_delta_b": 0.09149900078773499,
+      "valid_duplicate_edge": false,
+      "equivalence_confidence": -50.92549649714406
+    },
+    {
+      "pair": [
+        2,
+        3
+      ],
+      "pair_name": "C3+C4",
+      "cross_state_prediction_r2": -2.0791450440104655,
+      "cross_realization_prediction_r2": -1.9165956078060447,
+      "cross_base_prediction_r2": -2.2017280406466426,
+      "direct_replacement_max_nrmse_increase": 1.1195688471198082,
+      "direct_replacement_increases": [
+        0.966832822188735,
+        0.9764680378139019,
+        0.954282034188509,
+        1.099291943013668,
+        1.1024199724197388,
+        0.9784361775964499,
+        0.9864514581859112,
+        0.9689761884510517,
+        1.1195688471198082,
+        1.1089038848876953
+      ],
+      "separate_pair_nrmse": 0.03457280620932579,
+      "family_response_disagreement_mse": 0.12891043722629547,
+      "abs_delta_a": 0.21318566799163818,
+      "abs_delta_b": 0.029469646513462067,
+      "valid_duplicate_edge": false,
+      "equivalence_confidence": -114.15861275262746
+    },
+    {
+      "pair": [
+        0,
+        2
+      ],
+      "pair_name": "C1+C3",
+      "cross_state_prediction_r2": -3.7209432214812654,
+      "cross_realization_prediction_r2": -2.759334802508584,
+      "cross_base_prediction_r2": -2.8121081264423156,
+      "direct_replacement_max_nrmse_increase": 1.1092408820986748,
+      "direct_replacement_increases": [
+        1.0503029599785805,
+        1.0600601993501186,
+        1.0389776825904846,
+        1.0587671026587486,
+        1.1092408820986748,
+        1.055651880800724,
+        1.0646812282502651,
+        1.0457116961479187,
+        1.0734479650855064,
+        1.106947772204876
+      ],
+      "separate_pair_nrmse": 0.03329014033079147,
+      "family_response_disagreement_mse": 0.14457641541957855,
+      "abs_delta_a": 0.14003539085388184,
+      "abs_delta_b": 0.022853992879390717,
+      "valid_duplicate_edge": false,
+      "equivalence_confidence": -114.64503143134874
+    },
+    {
+      "pair": [
+        0,
+        3
+      ],
+      "pair_name": "C1+C4",
+      "cross_state_prediction_r2": -2.0290119893315697,
+      "cross_realization_prediction_r2": -1.978929236737272,
+      "cross_base_prediction_r2": -2.2062035419377852,
+      "direct_replacement_max_nrmse_increase": 1.1622548289597034,
+      "direct_replacement_increases": [
+        1.0897869169712067,
+        1.0967325307428837,
+        1.0801062621176243,
+        1.1410525441169739,
+        1.1622548289597034,
+        1.0156256258487701,
+        1.0219503976404667,
+        1.0069643296301365,
+        1.0716175436973572,
+        1.0754617638885975
+      ],
+      "separate_pair_nrmse": 0.0326831191778183,
+      "family_response_disagreement_mse": 0.11613418906927109,
+      "abs_delta_a": 0.07315027713775635,
+      "abs_delta_b": 0.05232363939285278,
+      "valid_duplicate_edge": false,
+      "equivalence_confidence": -118.43168643790813
+    },
+    {
+      "pair": [
+        1,
+        2
+      ],
+      "pair_name": "C2+C3",
+      "cross_state_prediction_r2": -4.653957134064661,
+      "cross_realization_prediction_r2": -3.660946865350666,
+      "cross_base_prediction_r2": -4.211813006402469,
+      "direct_replacement_max_nrmse_increase": 1.4040200635790825,
+      "direct_replacement_increases": [
+        1.1258456408977509,
+        1.1368363592773676,
+        1.121501188725233,
+        1.3962169028818607,
+        1.4040200635790825,
+        0.15061162412166595,
+        0.15608387626707554,
+        0.1439540944993496,
+        0.19074099138379097,
+        0.18400002270936966
+      ],
+      "separate_pair_nrmse": 0.0406077541410923,
+      "family_response_disagreement_mse": 0.10294706374406815,
+      "abs_delta_a": 0.1604924201965332,
+      "abs_delta_b": 0.06202935427427292,
+      "valid_duplicate_edge": false,
+      "equivalence_confidence": -145.0559634919729
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "pair_name": "C1+C2",
+      "cross_state_prediction_r2": -1.2202746770290194,
+      "cross_realization_prediction_r2": -1.2552577461500611,
+      "cross_base_prediction_r2": -1.3912259100179707,
+      "direct_replacement_max_nrmse_increase": 1.4552059769630432,
+      "direct_replacement_increases": [
+        0.10972589254379272,
+        0.11429254151880741,
+        0.10330520942807198,
+        0.13041117787361145,
+        0.11287415027618408,
+        1.2849407345056534,
+        1.2869440708309412,
+        1.2859155870974064,
+        1.3923121094703674,
+        1.4552059769630432
+      ],
+      "separate_pair_nrmse": 0.03808879852294922,
+      "family_response_disagreement_mse": 0.08221888542175293,
+      "abs_delta_a": 0.020457029342651367,
+      "abs_delta_b": 0.0391753613948822,
+      "valid_duplicate_edge": false,
+      "equivalence_confidence": -146.9118236063223
+    }
+  ],
+  "gt_used_for_graph": false,
+  "pass": false
+}

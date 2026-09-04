@@ -1,0 +1,140 @@
+{
+  "prune_round": 0,
+  "alive_before": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5"
+  ],
+  "duplicate_edges": [
+    {
+      "pair": [
+        0,
+        3
+      ],
+      "pair_name": "C1+C4",
+      "cross_state_prediction_r2": 0.999943623963325,
+      "cross_realization_prediction_r2": 0.9999559128607206,
+      "cross_base_prediction_r2": 0.999957903362536,
+      "direct_replacement_max_nrmse_increase": 0.0016287900507450104,
+      "direct_replacement_increases": [
+        0.0010912250727415085,
+        0.0009400304406881332,
+        0.0013287141919136047,
+        0.0016287900507450104,
+        0.0007839463651180267,
+        -9.94652509689331e-07,
+        -1.8831342458724976e-06,
+        2.1979212760925293e-07,
+        2.2720545530319214e-05,
+        -2.538040280342102e-05
+      ],
+      "separate_pair_nrmse": 0.03411019966006279,
+      "family_response_disagreement_mse": 1.5916207303234842e-06,
+      "abs_delta_a": 5.5789947509765625e-05,
+      "abs_delta_b": 0.0005668774247169495,
+      "valid_duplicate_edge": true,
+      "equivalence_confidence": 0.837064618888824
+    },
+    {
+      "pair": [
+        1,
+        4
+      ],
+      "pair_name": "C2+C5",
+      "cross_state_prediction_r2": 0.9997324905399223,
+      "cross_realization_prediction_r2": 0.9997348200271273,
+      "cross_base_prediction_r2": 0.9997199435175746,
+      "direct_replacement_max_nrmse_increase": 0.005108807235956192,
+      "direct_replacement_increases": [
+        0.0014873091131448746,
+        0.002568161115050316,
+        -6.388500332832336e-05,
+        0.0021188482642173767,
+        0.0012471973896026611,
+        0.0026598814874887466,
+        0.0008531156927347183,
+        0.005108807235956192,
+        0.0022764913737773895,
+        0.0036393124610185623
+      ],
+      "separate_pair_nrmse": 0.028745675459504128,
+      "family_response_disagreement_mse": 1.0726250366133172e-05,
+      "abs_delta_a": 0.00925743579864502,
+      "abs_delta_b": 0.0017437785863876343,
+      "valid_duplicate_edge": true,
+      "equivalence_confidence": 0.48883921992195545
+    }
+  ],
+  "selected_pair": {
+    "pair": [
+      0,
+      3
+    ],
+    "pair_name": "C1+C4",
+    "cross_state_prediction_r2": 0.999943623963325,
+    "cross_realization_prediction_r2": 0.9999559128607206,
+    "cross_base_prediction_r2": 0.999957903362536,
+    "direct_replacement_max_nrmse_increase": 0.0016287900507450104,
+    "direct_replacement_increases": [
+      0.0010912250727415085,
+      0.0009400304406881332,
+      0.0013287141919136047,
+      0.0016287900507450104,
+      0.0007839463651180267,
+      -9.94652509689331e-07,
+      -1.8831342458724976e-06,
+      2.1979212760925293e-07,
+      2.2720545530319214e-05,
+      -2.538040280342102e-05
+    ],
+    "separate_pair_nrmse": 0.03411019966006279,
+    "family_response_disagreement_mse": 1.5916207303234842e-06,
+    "abs_delta_a": 5.5789947509765625e-05,
+    "abs_delta_b": 0.0005668774247169495,
+    "valid_duplicate_edge": true,
+    "equivalence_confidence": 0.837064618888824
+  },
+  "survivor_quality": [
+    {
+      "candidate": 3,
+      "name": "C4",
+      "heldout_loss": 4.1874936869135126e-05,
+      "assignment_instability": 0.14378238341968913,
+      "coverage_penalty": 0.09160284718681866,
+      "Q": 0.056258268308417986
+    },
+    {
+      "candidate": 0,
+      "name": "C1",
+      "heldout_loss": 3.8733753171982244e-05,
+      "assignment_instability": 0.14378238341968913,
+      "coverage_penalty": 0.3999736910370666,
+      "Q": 0.1487679508716438
+    }
+  ],
+  "survivor": "C4",
+  "dropped_candidate": "C1",
+  "alive_after": [
+    "C2",
+    "C3",
+    "C4",
+    "C5"
+  ],
+  "assignment_changes": [
+    0.015544041450777202,
+    0.0,
+    0.0
+  ],
+  "max_heldout_nrmse_increase": 9.067356586456299e-06,
+  "gate_checks": {
+    "max_heldout_nrmse_increase": true,
+    "functional": true,
+    "family_accuracy": true,
+    "fragmentation": true,
+    "assignment_stability": true
+  },
+  "commit": true,
+  "rollback": false
+}

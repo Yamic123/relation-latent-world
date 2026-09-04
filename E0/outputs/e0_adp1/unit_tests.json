@@ -1,0 +1,68 @@
+{
+  "experiment": "E0-ADP1",
+  "n_tests": 12,
+  "n_pass": 12,
+  "all_pass": true,
+  "results": [
+    {
+      "test": "support_enumeration",
+      "pass": true,
+      "detail": "32 supports, MSB order, popcounts verified"
+    },
+    {
+      "test": "penalty",
+      "pass": true,
+      "detail": "J == effect_mse + 0.001*|m| (max |diff|=0.00e+00)"
+    },
+    {
+      "test": "empty_support",
+      "pass": true,
+      "detail": "empty support -> prediction 0 (no penalty), inactive v == 0"
+    },
+    {
+      "test": "freeze_unfreeze",
+      "pass": true,
+      "detail": "freeze sets eval + requires_grad False; unfreeze restores"
+    },
+    {
+      "test": "e_step_freezes_bank",
+      "pass": true,
+      "detail": "E-step leaves bank state_dict bit-identical"
+    },
+    {
+      "test": "adapter_isolation",
+      "pass": true,
+      "detail": "non-target rows bit-identical, target changed, skipped=[0, 1, 3, 4]"
+    },
+    {
+      "test": "residual_identity",
+      "pass": true,
+      "detail": "sole active candidate fits delta directly (MSE 0.3553 -> 0.3280)"
+    },
+    {
+      "test": "hidden_label_isolation",
+      "pass": true,
+      "detail": "discovery/amortization source never references hidden GT"
+    },
+    {
+      "test": "permutation_equivalence",
+      "pass": true,
+      "detail": "Hungarian alignment on synthetic matrix -> {1: 0, 0: 1, 2: 2}"
+    },
+    {
+      "test": "nrmse_parity",
+      "pass": true,
+      "detail": "nrmse matches manual formula (0.109728 vs 0.109728)"
+    },
+    {
+      "test": "seed_replay",
+      "pass": true,
+      "detail": "same seed -> identical init, assignment and objective"
+    },
+    {
+      "test": "resume",
+      "pass": true,
+      "detail": "assignment round-trip + stability.json resume short-circuit"
+    }
+  ]
+}

@@ -1,0 +1,440 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp9_prune",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 2,
+  "config": {
+    "experiment": "E0-ADP10-FROM-ADP6-STABILITY",
+    "optimization_seed": 2,
+    "m_max": 5,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "functional_probe_count": 2000,
+    "edge_thresholds": {
+      "cross_state_prediction_r2": 0.995,
+      "cross_realization_prediction_r2": 0.995,
+      "cross_base_prediction_r2": 0.995,
+      "direct_replacement_max_nrmse_increase": 0.01
+    },
+    "survivor_weights": {
+      "heldout_loss": 0.5,
+      "assignment_instability": 0.2,
+      "coverage_penalty": 0.3
+    },
+    "prune_gate": {
+      "max_heldout_nrmse_increase": 0.01,
+      "min_best_functional_r2": 0.95,
+      "max_family_accuracy_drop": 0.03,
+      "max_fragmentation_increase": 0.03,
+      "max_repeated_assignment_change": 0.1
+    },
+    "final_gate": {
+      "iid_nrmse": 0.03,
+      "structured_nrmse": 0.05,
+      "min_best_functional_r2": 0.95,
+      "family_accuracy": 0.9,
+      "mean_fragmentation": 0.1,
+      "assignment_change": 0.1
+    },
+    "b1": {
+      "lambda_p": 0.001,
+      "alpha_bound": 1.5,
+      "learning_rate": 0.05,
+      "steps": 60,
+      "restarts": 3,
+      "chunk_size": 1024,
+      "splits": [
+        "test_iid",
+        "test_combination_101"
+      ]
+    },
+    "joint_control": {
+      "epochs": 40,
+      "response_batch_size": 192,
+      "gradient_clip": 1.0
+    }
+  },
+  "config_sha256": "d1c4f9c5e18d8a3da6830dde9baa7f3f9a370db325a9186590513da3bc786098",
+  "script_sha256": "b59ce322fb38fef1b8517e4b8cac3bc4c7d807e5d5f57a202e9a1f846ddaeb10",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "source_checkpoint": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp10_from_adp6\\seed_002\\a2_joint_family_coordinate\\checkpoints\\round_039.pt",
+  "source_assignment": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp10_from_adp6\\seed_002\\a2_joint_family_coordinate\\assignments\\round_039.npz",
+  "mechanisms_frozen": true,
+  "mechanism_parameter_updates": 0,
+  "telemetry": [
+    {
+      "prune_round": 0,
+      "alive_before": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "duplicate_edges": [
+        {
+          "pair": [
+            1,
+            4
+          ],
+          "pair_name": "C2+C5",
+          "cross_state_prediction_r2": 0.9999435976134605,
+          "cross_realization_prediction_r2": 0.9999530104781696,
+          "cross_base_prediction_r2": 0.9999509867243624,
+          "direct_replacement_max_nrmse_increase": 0.0011228611692786217,
+          "direct_replacement_increases": [
+            0.0009279679507017136,
+            0.001112193800508976,
+            0.0006426051259040833,
+            0.0011228611692786217,
+            0.0009561749175190926,
+            0.00022624991834163666,
+            -0.00011587981134653091,
+            0.0007480690255761147,
+            0.0001773592084646225,
+            0.000351782888174057
+          ],
+          "separate_pair_nrmse": 0.01389351487159729,
+          "family_response_disagreement_mse": 1.8778739558911184e-06,
+          "abs_delta_a": 0.0010979175567626953,
+          "abs_delta_b": 0.005730237811803818,
+          "valid_duplicate_edge": true,
+          "equivalence_confidence": 0.8876574806855984
+        },
+        {
+          "pair": [
+            0,
+            3
+          ],
+          "pair_name": "C1+C4",
+          "cross_state_prediction_r2": 0.9999215772979906,
+          "cross_realization_prediction_r2": 0.999925275757256,
+          "cross_base_prediction_r2": 0.9999246573463789,
+          "direct_replacement_max_nrmse_increase": 0.0020445678383111954,
+          "direct_replacement_increases": [
+            -3.805570304393768e-05,
+            -0.0004747724160552025,
+            0.0005633924156427383,
+            -0.00030008982867002487,
+            0.00023123342543840408,
+            0.0013544857501983643,
+            0.0020445678383111954,
+            0.00029886141419410706,
+            0.0010510105639696121,
+            0.001979304477572441
+          ],
+          "separate_pair_nrmse": 0.013860887847840786,
+          "family_response_disagreement_mse": 2.69510655925842e-06,
+          "abs_delta_a": 0.01926034688949585,
+          "abs_delta_b": 0.0019098874181509018,
+          "valid_duplicate_edge": true,
+          "equivalence_confidence": 0.795464793466871
+        }
+      ],
+      "selected_pair": {
+        "pair": [
+          1,
+          4
+        ],
+        "pair_name": "C2+C5",
+        "cross_state_prediction_r2": 0.9999435976134605,
+        "cross_realization_prediction_r2": 0.9999530104781696,
+        "cross_base_prediction_r2": 0.9999509867243624,
+        "direct_replacement_max_nrmse_increase": 0.0011228611692786217,
+        "direct_replacement_increases": [
+          0.0009279679507017136,
+          0.001112193800508976,
+          0.0006426051259040833,
+          0.0011228611692786217,
+          0.0009561749175190926,
+          0.00022624991834163666,
+          -0.00011587981134653091,
+          0.0007480690255761147,
+          0.0001773592084646225,
+          0.000351782888174057
+        ],
+        "separate_pair_nrmse": 0.01389351487159729,
+        "family_response_disagreement_mse": 1.8778739558911184e-06,
+        "abs_delta_a": 0.0010979175567626953,
+        "abs_delta_b": 0.005730237811803818,
+        "valid_duplicate_edge": true,
+        "equivalence_confidence": 0.8876574806855984
+      },
+      "survivor_quality": [
+        {
+          "candidate": 4,
+          "name": "C5",
+          "heldout_loss": 7.400674348900793e-06,
+          "assignment_instability": 0.133419689119171,
+          "coverage_penalty": 0.11279567271645352,
+          "Q": 0.060526339975944705
+        },
+        {
+          "candidate": 1,
+          "name": "C2",
+          "heldout_loss": 8.382517080463003e-06,
+          "assignment_instability": 0.133419689119171,
+          "coverage_penalty": 0.270859823948397,
+          "Q": 0.10794607626689354
+        }
+      ],
+      "survivor": "C5",
+      "dropped_candidate": "C2",
+      "alive_after": [
+        "C1",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "assignment_changes": [
+        0.07253886010362694,
+        0.0,
+        0.0
+      ],
+      "max_heldout_nrmse_increase": 7.579196244478226e-05,
+      "gate_checks": {
+        "max_heldout_nrmse_increase": true,
+        "functional": true,
+        "family_accuracy": true,
+        "fragmentation": true,
+        "assignment_stability": true
+      },
+      "commit": true,
+      "rollback": false
+    },
+    {
+      "prune_round": 1,
+      "alive_before": [
+        "C1",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "duplicate_edges": [
+        {
+          "pair": [
+            0,
+            3
+          ],
+          "pair_name": "C1+C4",
+          "cross_state_prediction_r2": 0.9999215772979906,
+          "cross_realization_prediction_r2": 0.999925275757256,
+          "cross_base_prediction_r2": 0.9999246573463789,
+          "direct_replacement_max_nrmse_increase": 0.0020445678383111954,
+          "direct_replacement_increases": [
+            -3.805570304393768e-05,
+            -0.0004747724160552025,
+            0.0005633924156427383,
+            -0.00030008982867002487,
+            0.00023123342543840408,
+            0.0013544857501983643,
+            0.0020445678383111954,
+            0.00029886141419410706,
+            0.0010510105639696121,
+            0.001979304477572441
+          ],
+          "separate_pair_nrmse": 0.013860887847840786,
+          "family_response_disagreement_mse": 2.69510655925842e-06,
+          "abs_delta_a": 0.01926034688949585,
+          "abs_delta_b": 0.0019098874181509018,
+          "valid_duplicate_edge": true,
+          "equivalence_confidence": 0.795464793466871
+        }
+      ],
+      "selected_pair": {
+        "pair": [
+          0,
+          3
+        ],
+        "pair_name": "C1+C4",
+        "cross_state_prediction_r2": 0.9999215772979906,
+        "cross_realization_prediction_r2": 0.999925275757256,
+        "cross_base_prediction_r2": 0.9999246573463789,
+        "direct_replacement_max_nrmse_increase": 0.0020445678383111954,
+        "direct_replacement_increases": [
+          -3.805570304393768e-05,
+          -0.0004747724160552025,
+          0.0005633924156427383,
+          -0.00030008982867002487,
+          0.00023123342543840408,
+          0.0013544857501983643,
+          0.0020445678383111954,
+          0.00029886141419410706,
+          0.0010510105639696121,
+          0.001979304477572441
+        ],
+        "separate_pair_nrmse": 0.013860887847840786,
+        "family_response_disagreement_mse": 2.69510655925842e-06,
+        "abs_delta_a": 0.01926034688949585,
+        "abs_delta_b": 0.0019098874181509018,
+        "valid_duplicate_edge": true,
+        "equivalence_confidence": 0.795464793466871
+      },
+      "survivor_quality": [
+        {
+          "candidate": 0,
+          "name": "C1",
+          "heldout_loss": 6.348628630803432e-06,
+          "assignment_instability": 0.13212435233160622,
+          "coverage_penalty": 0.12688807954555836,
+          "Q": 0.06449446864430415
+        },
+        {
+          "candidate": 3,
+          "name": "C4",
+          "heldout_loss": 8.661373612994794e-06,
+          "assignment_instability": 0.13212435233160622,
+          "coverage_penalty": 0.2622494755432403,
+          "Q": 0.10510404381609983
+        }
+      ],
+      "survivor": "C1",
+      "dropped_candidate": "C4",
+      "alive_after": [
+        "C1",
+        "C3",
+        "C5"
+      ],
+      "assignment_changes": [
+        0.07512953367875648,
+        0.0,
+        0.0
+      ],
+      "max_heldout_nrmse_increase": 1.0007061064243317e-05,
+      "gate_checks": {
+        "max_heldout_nrmse_increase": true,
+        "functional": true,
+        "family_accuracy": true,
+        "fragmentation": true,
+        "assignment_stability": true
+      },
+      "commit": true,
+      "rollback": false
+    }
+  ],
+  "stop_reason": "no_valid_duplicate_edge",
+  "M_discovered": 3,
+  "alive_indices": [
+    0,
+    2,
+    4
+  ],
+  "alive_candidates": [
+    "C1",
+    "C3",
+    "C5"
+  ],
+  "final_metrics": {
+    "alive_candidates": [
+      "C1",
+      "C3",
+      "C5"
+    ],
+    "candidate_count": 3,
+    "train_nrmse": 0.009874639101326466,
+    "iid_heldout_nrmse": 0.01221839152276516,
+    "cross_state_nrmse": 0.012812463566660881,
+    "cross_realization_nrmse": 0.013632326386868954,
+    "cross_base_nrmse": 0.012258872389793396,
+    "functional_r2_matrix": [
+      [
+        -1.3828043179393124,
+        -0.8226883666994866,
+        0.9998843096822115
+      ],
+      [
+        0.9998640988972726,
+        -0.6918344540416288,
+        -1.3845852748540883
+      ],
+      [
+        -1.4808056559781924,
+        0.9999165184863118,
+        -1.7362465230757582
+      ],
+      [
+        -1.3888129431805583,
+        -0.8265623272441371,
+        0.9998518348171558
+      ],
+      [
+        0.9998897829883365,
+        -0.6909473259381154,
+        -1.38804140430151
+      ]
+    ],
+    "best_functional_r2_per_gt": [
+      0.9998897829883365,
+      0.9999165184863118,
+      0.9998843096822115
+    ],
+    "family_contingency": [
+      [
+        0,
+        0,
+        124
+      ],
+      [
+        0,
+        133,
+        0
+      ],
+      [
+        129,
+        0,
+        0
+      ]
+    ],
+    "family_hungarian_accuracy": 1.0,
+    "mean_fragmentation": 0.0,
+    "fragmentation_per_gt": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "candidate_family_count": {
+      "C1": 124,
+      "C3": 133,
+      "C5": 129
+    },
+    "candidate_usage": {
+      "C1": 0.32124352331606215,
+      "C3": 0.344559585492228,
+      "C5": 0.33419689119170987
+    },
+    "coordinate_a": {
+      "C1": 0.9059957265853882,
+      "C3": 0.8871413469314575,
+      "C5": 0.9479619860649109
+    },
+    "coordinate_b": {
+      "C1": -0.014106225222349167,
+      "C3": 0.04903889819979668,
+      "C5": 0.012141305953264236
+    }
+  },
+  "checks": {
+    "stop_reason": true,
+    "evaluator_M_discovered": true,
+    "functional": true,
+    "iid": true,
+    "cross_state": true,
+    "cross_realization": true,
+    "cross_base": true,
+    "family_accuracy": true,
+    "fragmentation": true,
+    "assignment_stability": true
+  },
+  "pass": true,
+  "stop_required": false,
+  "wall_seconds": 1.308666467666626
+}

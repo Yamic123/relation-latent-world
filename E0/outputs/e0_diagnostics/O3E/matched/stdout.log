@@ -1,0 +1,33 @@
+O3-E support=matched samples=10 device=cuda
+O3-E support=matched samples=10 device=cuda
+search_cases_per_sample=135 (includes signs and 5 restarts)
+O3-E support=matched samples=10 device=cuda
+search_cases_per_sample=135 (includes signs and 5 restarts)
+step=0000 mean_best_mse=0.0026453722 max_best_mse=0.016874332
+step=0009 mean_best_mse=0.00014365438 max_best_mse=0.00050981424
+L-BFGS-B refinement sample=0/10
+{'experiment': 'O3-E', 'support': 'matched', 'num_samples': 10, 'gt_participation_top1_recovery': 1.0, 'median_objective_margin': 0.011682735363526528, 'positive_margin_fraction': 1.0, 'approximately_zero_margin_fraction': 0.0, 'alternative_beats_gt_fraction': 0.0, 'active_v_mae_selected_pattern': 3.838418212442907e-08, 'lbfgsb_success_fraction': 1.0, 'pass_components': {'top1_recovery_gt_0.95': True, 'positive_margin_gt_0.95': True}, 'wall_seconds': 2.174474000930786, 'pass': True}
+O3-E support=matched samples=1000 device=cuda
+search_cases_per_sample=135 (includes signs and 5 restarts)
+step=0000 mean_best_mse=0.0040063635 max_best_mse=0.049270626
+step=0050 mean_best_mse=2.9533041e-06 max_best_mse=8.2284663e-05
+step=0100 mean_best_mse=2.8901612e-08 max_best_mse=3.7467311e-07
+step=0150 mean_best_mse=6.555918e-09 max_best_mse=6.5465372e-08
+step=0200 mean_best_mse=6.6501471e-09 max_best_mse=6.5465372e-08
+step=0250 mean_best_mse=6.6335035e-09 max_best_mse=6.3488265e-08
+step=0300 mean_best_mse=6.6274994e-09 max_best_mse=6.3488265e-08
+step=0350 mean_best_mse=6.6620736e-09 max_best_mse=6.3488265e-08
+step=0400 mean_best_mse=6.7109052e-09 max_best_mse=6.3488265e-08
+step=0450 mean_best_mse=6.7510038e-09 max_best_mse=7.6483929e-08
+step=0499 mean_best_mse=6.8397132e-09 max_best_mse=6.3488265e-08
+L-BFGS-B refinement sample=0/1000
+L-BFGS-B refinement sample=100/1000
+L-BFGS-B refinement sample=200/1000
+L-BFGS-B refinement sample=300/1000
+L-BFGS-B refinement sample=400/1000
+L-BFGS-B refinement sample=500/1000
+L-BFGS-B refinement sample=600/1000
+L-BFGS-B refinement sample=700/1000
+L-BFGS-B refinement sample=800/1000
+L-BFGS-B refinement sample=900/1000
+{'experiment': 'O3-E', 'support': 'matched', 'num_samples': 1000, 'gt_participation_top1_recovery': 0.997, 'median_objective_margin': 0.007322928731623034, 'positive_margin_fraction': 0.997, 'approximately_zero_margin_fraction': 0.0, 'alternative_beats_gt_fraction': 0.003, 'active_v_mae_selected_pattern': 0.0007501120902883255, 'lbfgsb_success_fraction': 0.99975, 'pass_components': {'top1_recovery_gt_0.95': True, 'positive_margin_gt_0.95': True}, 'wall_seconds': 7.854497909545898, 'pass': True}

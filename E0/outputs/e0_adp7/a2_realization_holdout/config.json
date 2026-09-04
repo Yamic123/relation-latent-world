@@ -1,0 +1,42 @@
+{
+  "experiment": "E0-ADP7-8GB-DEVELOPMENT",
+  "optimization_seed": 0,
+  "mechanism_dim": 64,
+  "mechanism_heads": 4,
+  "epochs": 40,
+  "mechanism_learning_rate": 0.0003,
+  "coordinate_learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "response_batch_size": 192,
+  "gradient_clip": 1.0,
+  "functional_probe_count": 2000,
+  "correct_pairs": [
+    [
+      1,
+      4
+    ],
+    [
+      0,
+      3
+    ]
+  ],
+  "wrong_pairs": [
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "initializations": [
+    "random",
+    "source_copy"
+  ],
+  "primary_initialization": "source_copy"
+}

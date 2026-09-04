@@ -1,0 +1,37 @@
+{
+  "experiment": "O2",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "environment": {
+    "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.5.1+cu121",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_device": "NVIDIA GeForce RTX 3070 Ti Laptop GPU"
+  },
+  "config": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 1e-05,
+    "batch_size": 512,
+    "max_epochs": 100,
+    "steps_per_epoch": 64,
+    "gradient_clip": 1.0,
+    "lambda_v": 1.0,
+    "token_dim": 64,
+    "attention_heads": 4,
+    "cross_attention_layers": 2,
+    "M": 3,
+    "validation_subset": 5000,
+    "patience": 20,
+    "tp": "identity"
+  },
+  "started_at_unix": 1788281796.2919433,
+  "diagnostic_only": true,
+  "original_e0a_decision_unchanged": "E0 FAIL"
+}

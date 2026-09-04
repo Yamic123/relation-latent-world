@@ -1,0 +1,24 @@
+O3-E support=learner samples=1000 device=cuda
+search_cases_per_sample=40 (includes signs and 5 restarts)
+step=0000 mean_best_mse=0.020977266 max_best_mse=0.19462898
+step=0050 mean_best_mse=6.2380786e-05 max_best_mse=0.0015078563
+step=0100 mean_best_mse=4.1610656e-07 max_best_mse=1.2524836e-05
+step=0150 mean_best_mse=7.8341911e-09 max_best_mse=9.0626813e-08
+step=0200 mean_best_mse=5.64448e-09 max_best_mse=5.0151456e-08
+step=0250 mean_best_mse=5.7131664e-09 max_best_mse=5.2385289e-08
+step=0300 mean_best_mse=5.8518168e-09 max_best_mse=5.3601308e-08
+step=0350 mean_best_mse=5.8108238e-09 max_best_mse=5.0151456e-08
+step=0400 mean_best_mse=5.8496621e-09 max_best_mse=6.1073926e-08
+step=0450 mean_best_mse=5.8812359e-09 max_best_mse=5.0151456e-08
+step=0499 mean_best_mse=5.9030976e-09 max_best_mse=6.0249661e-08
+L-BFGS-B refinement sample=0/1000
+L-BFGS-B refinement sample=100/1000
+L-BFGS-B refinement sample=200/1000
+L-BFGS-B refinement sample=300/1000
+L-BFGS-B refinement sample=400/1000
+L-BFGS-B refinement sample=500/1000
+L-BFGS-B refinement sample=600/1000
+L-BFGS-B refinement sample=700/1000
+L-BFGS-B refinement sample=800/1000
+L-BFGS-B refinement sample=900/1000
+{'experiment': 'O3-E', 'support': 'learner', 'num_samples': 1000, 'gt_participation_top1_recovery': 0.997, 'median_objective_margin': 0.0009999999999999948, 'positive_margin_fraction': 0.997, 'approximately_zero_margin_fraction': 0.0, 'alternative_beats_gt_fraction': 0.003, 'active_v_mae_selected_pattern': 0.0007501127146508583, 'lbfgsb_success_fraction': 0.999875, 'pass_components': {'top1_recovery_gt_0.95': True, 'positive_margin_gt_0.95': True}, 'wall_seconds': 8.237425565719604, 'pass': True}

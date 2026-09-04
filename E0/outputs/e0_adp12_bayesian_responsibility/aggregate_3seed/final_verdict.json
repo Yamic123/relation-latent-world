@@ -1,0 +1,28 @@
+{
+  "stage": "adp12_pilot",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "variants": {
+    "H0": {
+      "z4_pass": 2,
+      "end_to_end_pass": 0
+    },
+    "H1": {
+      "z4_pass": 1,
+      "end_to_end_pass": 0
+    },
+    "H2": {
+      "z4_pass": 2,
+      "end_to_end_pass": 1
+    },
+    "H3": {
+      "z4_pass": 1,
+      "end_to_end_pass": 0
+    }
+  },
+  "h3_pilot_gate": false,
+  "pass": false
+}

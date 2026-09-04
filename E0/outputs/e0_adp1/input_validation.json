@@ -1,0 +1,26 @@
+{
+  "valid": true,
+  "dataset": "E:\\codes_python\\relation latent world\\E0\\datasets\\e0a_world_seed_20260901",
+  "manifest_sha256_all_match": true,
+  "n_hashes_checked": 10,
+  "hash_mismatches": [],
+  "oracle_max_mse": 0.0,
+  "oracle_mse_below_1e-10": true,
+  "held_out_101_leaked": false,
+  "no_101_in_train": true,
+  "split_sizes": {
+    "train": 100000,
+    "val": 20000,
+    "test_iid": 20000,
+    "test_context": 20000,
+    "test_combination_101": 20000
+  },
+  "expected_split_sizes": {
+    "train": 100000,
+    "val": 20000,
+    "test_iid": 20000,
+    "test_context": 20000,
+    "test_combination_101": 20000
+  },
+  "split_sizes_ok": true
+}

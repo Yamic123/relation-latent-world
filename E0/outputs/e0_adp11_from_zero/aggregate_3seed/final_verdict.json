@@ -1,0 +1,50 @@
+{
+  "stage": "adp11_aggregate",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "required_per_condition": 2,
+  "conditions": {
+    "identity": {
+      "completed": 3,
+      "pass_count": 0,
+      "recovery_rate": 0.0,
+      "z4_pass_rate": 0.6666666666666666,
+      "m_histogram": {
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 2,
+        "None": 1
+      },
+      "failure_modes": {
+        "F4_duplicate_graph_false_negative": 2,
+        "F3_mechanism_mixing": 1
+      }
+    },
+    "orthogonal": {
+      "completed": 3,
+      "pass_count": 0,
+      "recovery_rate": 0.0,
+      "z4_pass_rate": 0.6666666666666666,
+      "m_histogram": {
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 2,
+        "None": 1
+      },
+      "failure_modes": {
+        "F4_duplicate_graph_false_negative": 2,
+        "F3_mechanism_mixing": 1
+      }
+    }
+  },
+  "recovery_rate_gap": 0.0,
+  "gap_gate": true,
+  "pass": false,
+  "tp_comparison_is_vacuous_under_specified_objective": true,
+  "reason": "p is not consumed by any preregistered training or inference equation"
+}

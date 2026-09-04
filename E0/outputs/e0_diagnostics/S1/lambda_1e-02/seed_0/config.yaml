@@ -1,0 +1,20 @@
+{
+  "experiment": "S1",
+  "tp": "identity",
+  "m_max": 5,
+  "lambda_participation": 0.01,
+  "optimizer": "AdamW",
+  "learning_rate": 0.0003,
+  "weight_decay": 1e-05,
+  "batch_size": 512,
+  "max_epochs": 200,
+  "steps_per_epoch": 64,
+  "patience": 20,
+  "gradient_clip": 1.0,
+  "temperature_start": 1.0,
+  "temperature_end": 0.35,
+  "token_dim": 64,
+  "attention_heads": 4,
+  "cross_attention_layers": 2,
+  "validation_subset": 5000
+}

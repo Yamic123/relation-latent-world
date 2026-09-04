@@ -1,0 +1,183 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp9_0",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 2,
+  "config": {
+    "experiment": "E0-ADP11-FROM-ZERO-PERFECT-TP-STABILITY",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "family_seed": 20260905,
+    "optimization_seed": 2,
+    "tp_condition": "identity",
+    "m_max": 5,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "rounds": 40,
+    "mechanism_learning_rate": 0.0003,
+    "coordinate_learning_rate": 0.001,
+    "weight_decay": 1e-05,
+    "family_batch_size": 32,
+    "epochs_per_round": 4,
+    "gradient_clip": 1.0,
+    "functional_probe_count": 2000,
+    "initial_assignment": "random_balanced",
+    "initial_coordinate_a": "random_sign_times_uniform_0.8_1.2",
+    "initial_coordinate_b": "uniform_-0.1_0.1",
+    "major_candidate_min_usage": 0.02,
+    "tp_usage_contract": "p is learner-visible and audited, but the preregistered Z2-Z4 family cost uses d and Z8 uses delta_S; p is not an argument of the specified optimization equations",
+    "edge_thresholds": {
+      "cross_state_prediction_r2": 0.995,
+      "cross_realization_prediction_r2": 0.995,
+      "cross_base_prediction_r2": 0.995,
+      "direct_replacement_max_nrmse_increase": 0.01
+    },
+    "survivor_weights": {
+      "heldout_loss": 0.5,
+      "assignment_instability": 0.2,
+      "coverage_penalty": 0.3
+    },
+    "prune_gate": {
+      "max_heldout_nrmse_increase": 0.01,
+      "min_best_functional_r2": 0.95,
+      "max_family_accuracy_drop": 0.03,
+      "max_fragmentation_increase": 0.03,
+      "max_repeated_assignment_change": 0.1
+    },
+    "final_gate": {
+      "iid_nrmse": 0.03,
+      "structured_nrmse": 0.05,
+      "min_best_functional_r2": 0.95,
+      "family_accuracy": 0.9,
+      "mean_fragmentation": 0.1,
+      "assignment_change": 0.1
+    },
+    "b1": {
+      "lambda_p": 0.001,
+      "alpha_bound": 1.5,
+      "learning_rate": 0.05,
+      "steps": 60,
+      "restarts": 3,
+      "chunk_size": 1024,
+      "splits": [
+        "test_iid",
+        "test_combination_101"
+      ]
+    },
+    "scientific_scale_reduction": "none"
+  },
+  "config_sha256": "4cf5cb05b48e843c50bef5fa8ef46ce59dd0e133ef828209fc6491e17736e165",
+  "script_sha256": "b59ce322fb38fef1b8517e4b8cac3bc4c7d807e5d5f57a202e9a1f846ddaeb10",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "source_checkpoint": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp11_from_zero\\identity_tp\\seed_002\\z4_joint\\checkpoints\\round_039.pt",
+  "source_assignment": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp11_from_zero\\identity_tp\\seed_002\\z4_joint\\assignments\\round_039.npz",
+  "alive_candidates": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5"
+  ],
+  "all_pair_count": 3,
+  "valid_duplicate_edges": [],
+  "all_pairs": [
+    {
+      "pair": [
+        1,
+        3
+      ],
+      "pair_name": "C2+C4",
+      "cross_state_prediction_r2": -2.351169998914023,
+      "cross_realization_prediction_r2": -2.351169998914023,
+      "cross_base_prediction_r2": -2.466457188525256,
+      "direct_replacement_max_nrmse_increase": 1.1197086814790964,
+      "direct_replacement_increases": [
+        1.0649141892790794,
+        1.07164466381073,
+        1.0588945355266333,
+        1.0793893598020077,
+        1.1197086814790964,
+        1.0635684356093407,
+        1.070799708366394,
+        1.0566089358180761,
+        1.0775727294385433,
+        1.1186816934496164
+      ],
+      "separate_pair_nrmse": 0.017172375693917274,
+      "family_response_disagreement_mse": 0.1423943042755127,
+      "abs_delta_a": 0.19750958681106567,
+      "abs_delta_b": 0.08813180774450302,
+      "valid_duplicate_edge": false,
+      "equivalence_confidence": -114.4373253364349
+    },
+    {
+      "pair": [
+        1,
+        4
+      ],
+      "pair_name": "C2+C5",
+      "cross_state_prediction_r2": -2.091034193140572,
+      "cross_realization_prediction_r2": -1.9384345995348222,
+      "cross_base_prediction_r2": -2.227231093801099,
+      "direct_replacement_max_nrmse_increase": 1.1235512513667345,
+      "direct_replacement_increases": [
+        0.978876506909728,
+        0.9860327672213316,
+        0.9709179699420929,
+        1.113895608112216,
+        1.110024930909276,
+        0.9889464136213064,
+        0.9969640206545591,
+        0.9794171750545502,
+        1.1231340896338224,
+        1.1235512513667345
+      ],
+      "separate_pair_nrmse": 0.020945044234395027,
+      "family_response_disagreement_mse": 0.12811098992824554,
+      "abs_delta_a": 0.17544525861740112,
+      "abs_delta_b": 0.019564449787139893,
+      "valid_duplicate_edge": false,
+      "equivalence_confidence": -114.58235623047455
+    },
+    {
+      "pair": [
+        3,
+        4
+      ],
+      "pair_name": "C4+C5",
+      "cross_state_prediction_r2": -2.0690850551052953,
+      "cross_realization_prediction_r2": -2.0194278820752474,
+      "cross_base_prediction_r2": -2.2358720056781216,
+      "direct_replacement_max_nrmse_increase": 1.1613167114555836,
+      "direct_replacement_increases": [
+        1.0986376740038395,
+        1.1043082065880299,
+        1.0910317245870829,
+        1.158132541924715,
+        1.1613167114555836,
+        1.0239594914019108,
+        1.0297588892281055,
+        1.0159793440252542,
+        1.0735835917294025,
+        1.0878680534660816
+      ],
+      "separate_pair_nrmse": 0.02139602042734623,
+      "family_response_disagreement_mse": 0.11583259701728821,
+      "abs_delta_a": 0.02206432819366455,
+      "abs_delta_b": 0.10769625753164291,
+      "valid_duplicate_edge": false,
+      "equivalence_confidence": -118.36754315123648
+    }
+  ],
+  "gt_used_for_graph": false,
+  "pass": false
+}

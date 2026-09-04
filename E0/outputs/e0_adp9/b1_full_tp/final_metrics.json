@@ -1,0 +1,163 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp9_b1",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "config": {
+    "experiment": "E0-ADP9-FUNCTIONAL-DUPLICATE-PRUNING",
+    "optimization_seed": 0,
+    "m_max": 5,
+    "functional_probe_count": 2000,
+    "edge_thresholds": {
+      "cross_state_prediction_r2": 0.995,
+      "cross_realization_prediction_r2": 0.995,
+      "cross_base_prediction_r2": 0.995,
+      "direct_replacement_max_nrmse_increase": 0.01
+    },
+    "survivor_weights": {
+      "heldout_loss": 0.5,
+      "assignment_instability": 0.2,
+      "coverage_penalty": 0.3
+    },
+    "prune_gate": {
+      "max_heldout_nrmse_increase": 0.01,
+      "min_best_functional_r2": 0.95,
+      "max_family_accuracy_drop": 0.03,
+      "max_fragmentation_increase": 0.03,
+      "max_repeated_assignment_change": 0.1
+    },
+    "final_gate": {
+      "iid_nrmse": 0.03,
+      "structured_nrmse": 0.05,
+      "min_best_functional_r2": 0.95,
+      "family_accuracy": 0.9,
+      "mean_fragmentation": 0.1,
+      "assignment_change": 0.1
+    },
+    "b1": {
+      "lambda_p": 0.001,
+      "alpha_bound": 1.5,
+      "learning_rate": 0.05,
+      "steps": 60,
+      "restarts": 3,
+      "chunk_size": 1024,
+      "solver_selection": "30-step/2-restart pilot failed convergence; 60-step/3-restart fixed-prefix-2048 sanity reached IID NRMSE 0.02449 and 101 NRMSE 0.02499 before the formal full run",
+      "splits": [
+        "test_iid",
+        "test_combination_101"
+      ]
+    }
+  },
+  "config_sha256": "393a25bec075c4d908a94621e40ff283aa305542ee86114bb02af85bef8cc796",
+  "script_sha256": "be21b5826733aea6f018db81adca0c2f9baa3a4bcbac053931cc934a0cb987f7",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "source_checkpoint": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp6\\a2_joint_family_coordinate\\checkpoints\\round_039.pt",
+  "source_assignment": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp6\\a2_joint_family_coordinate\\assignments\\round_039.npz",
+  "alive_candidates": [
+    "C1",
+    "C2",
+    "C3"
+  ],
+  "local_to_evaluator_gt": {
+    "0": 2,
+    "1": 0,
+    "2": 1
+  },
+  "splits": {
+    "test_iid": {
+      "split": "test_iid",
+      "sample_count": 20000,
+      "nrmse": 0.024040309712290764,
+      "participation_f1_per_gt": [
+        0.9954703465711577,
+        0.9985784236297583,
+        0.9974771365499843
+      ],
+      "participation_f1_mean": 0.9971753022503002,
+      "instance_effect_r2_per_gt": [
+        0.9990655521909425,
+        0.9993371460862361,
+        0.9989925714257601
+      ],
+      "min_instance_effect_r2": 0.9989925714257601,
+      "support_exact_accuracy": 0.99155,
+      "seconds": 307.9017605781555,
+      "support_histogram": [
+        1012,
+        3173,
+        3145,
+        3144,
+        3158,
+        3170,
+        27,
+        3171
+      ],
+      "participation_f1_per_gt_active_only": [
+        0.9954703465711577,
+        0.9985784236297583,
+        0.9974771365499843
+      ],
+      "participation_f1_active_macro": 0.9971753022503002,
+      "participation_f1_micro": 0.9973159024883163
+    },
+    "test_combination_101": {
+      "split": "test_combination_101",
+      "sample_count": 20000,
+      "nrmse": 0.02596602775156498,
+      "participation_f1_per_gt": [
+        0.9982218437726965,
+        0.0,
+        0.9998499774966245
+      ],
+      "participation_f1_mean": 0.666023940423107,
+      "instance_effect_r2_per_gt": [
+        0.9991427668238636,
+        null,
+        0.999231233191071
+      ],
+      "min_instance_effect_r2": 0.9991427668238636,
+      "support_exact_accuracy": 0.9905,
+      "seconds": 404.03165340423584,
+      "support_histogram": [
+        0,
+        5,
+        0,
+        1,
+        66,
+        0,
+        19810,
+        118
+      ],
+      "inactive_Z2_false_positive_rate": 0.006200000178068876,
+      "inactive_Z2_predicted_effect_norm": 0.0002333477750653401,
+      "participation_f1_per_gt_active_only": [
+        0.9982218437726965,
+        null,
+        0.9998499774966245
+      ],
+      "participation_f1_active_macro": 0.9990359106346605,
+      "participation_f1_micro": 0.9974889752270542
+    }
+  },
+  "checks": {
+    "iid_nrmse": true,
+    "101_nrmse": true,
+    "participation_f1": true,
+    "instance_effect": true,
+    "functional": true,
+    "inactive_Z2_fpr_101": true
+  },
+  "pass": true,
+  "wall_seconds": 712.2879676818848,
+  "cuda_peak_allocated_mib": 96.87353515625,
+  "participation_metric_note": "Primary participation F1 is micro over all sample-by-mechanism bits. Active-only per-GT/macro F1 and the separately preregistered inactive-Z2 FPR are also reported; macro-averaging an all-negative class is undefined and is not used as a gate."
+}

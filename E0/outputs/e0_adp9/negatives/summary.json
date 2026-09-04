@@ -1,0 +1,384 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp9_negatives",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "config": {
+    "experiment": "E0-ADP9-FUNCTIONAL-DUPLICATE-PRUNING",
+    "optimization_seed": 0,
+    "m_max": 5,
+    "functional_probe_count": 2000,
+    "edge_thresholds": {
+      "cross_state_prediction_r2": 0.995,
+      "cross_realization_prediction_r2": 0.995,
+      "cross_base_prediction_r2": 0.995,
+      "direct_replacement_max_nrmse_increase": 0.01
+    },
+    "survivor_weights": {
+      "heldout_loss": 0.5,
+      "assignment_instability": 0.2,
+      "coverage_penalty": 0.3
+    },
+    "prune_gate": {
+      "max_heldout_nrmse_increase": 0.01,
+      "min_best_functional_r2": 0.95,
+      "max_family_accuracy_drop": 0.03,
+      "max_fragmentation_increase": 0.03,
+      "max_repeated_assignment_change": 0.1
+    },
+    "final_gate": {
+      "iid_nrmse": 0.03,
+      "structured_nrmse": 0.05,
+      "min_best_functional_r2": 0.95,
+      "family_accuracy": 0.9,
+      "mean_fragmentation": 0.1,
+      "assignment_change": 0.1
+    },
+    "b1": {
+      "lambda_p": 0.001,
+      "alpha_bound": 1.5,
+      "learning_rate": 0.05,
+      "steps": 30,
+      "restarts": 2,
+      "chunk_size": 1024,
+      "splits": [
+        "test_iid",
+        "test_combination_101"
+      ]
+    }
+  },
+  "config_sha256": "2348a5c575af448bef586d2639595af16c0a82f97b43bc696f4bc2699616c4b8",
+  "script_sha256": "be21b5826733aea6f018db81adca0c2f9baa3a4bcbac053931cc934a0cb987f7",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "source_checkpoint": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp6\\a2_joint_family_coordinate\\checkpoints\\round_039.pt",
+  "source_assignment": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp6\\a2_joint_family_coordinate\\assignments\\round_039.npz",
+  "random_delete_pass_rate": 0.45,
+  "usage_delete": {
+    "deleted": [
+      "C4",
+      "C5"
+    ],
+    "alive": [
+      "C1",
+      "C2",
+      "C3"
+    ],
+    "metrics": {
+      "alive_candidates": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "candidate_count": 3,
+      "train_nrmse": 0.006690078880637884,
+      "iid_heldout_nrmse": 0.012071125209331512,
+      "cross_state_nrmse": 0.01258723996579647,
+      "cross_realization_nrmse": 0.013954523019492626,
+      "cross_base_nrmse": 0.012194679118692875,
+      "functional_r2_matrix": [
+        [
+          -1.3832336975440502,
+          -0.8245862770848467,
+          0.9998829907239726
+        ],
+        [
+          0.9999301971686285,
+          -0.6894403158135771,
+          -1.3808445972123358
+        ],
+        [
+          -1.4791154780142404,
+          0.9999478817377218,
+          -1.7427411163138067
+        ],
+        [
+          -1.3758834477897408,
+          -0.819611512405394,
+          0.9998830140934692
+        ],
+        [
+          0.9999254102691969,
+          -0.6910043196392037,
+          -1.3839124545698187
+        ]
+      ],
+      "best_functional_r2_per_gt": [
+        0.9999301971686285,
+        0.9999478817377218,
+        0.9998829907239726
+      ],
+      "family_contingency": [
+        [
+          0,
+          0,
+          124
+        ],
+        [
+          129,
+          0,
+          0
+        ],
+        [
+          0,
+          133,
+          0
+        ]
+      ],
+      "family_hungarian_accuracy": 1.0,
+      "mean_fragmentation": 0.0,
+      "fragmentation_per_gt": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "candidate_family_count": {
+        "C1": 124,
+        "C2": 129,
+        "C3": 133
+      },
+      "candidate_usage": {
+        "C1": 0.32124352331606215,
+        "C2": 0.33419689119170987,
+        "C3": 0.344559585492228
+      },
+      "coordinate_a": {
+        "C1": 0.9521480202674866,
+        "C2": 0.9964029788970947,
+        "C3": 0.9957322478294373
+      },
+      "coordinate_b": {
+        "C1": -0.054705116897821426,
+        "C2": 0.06537605822086334,
+        "C3": 0.04226389527320862
+      }
+    },
+    "pass": true
+  },
+  "wrong_pair": {
+    "forced_invalid_pair": "C2+C3",
+    "survivor": "C2",
+    "dropped": "C3",
+    "alive": [
+      "C1",
+      "C2",
+      "C4",
+      "C5"
+    ],
+    "metrics": {
+      "alive_candidates": [
+        "C1",
+        "C2",
+        "C4",
+        "C5"
+      ],
+      "candidate_count": 4,
+      "train_nrmse": 0.8482940793037415,
+      "iid_heldout_nrmse": 0.847460925579071,
+      "cross_state_nrmse": 0.889202892780304,
+      "cross_realization_nrmse": 0.8440922498703003,
+      "cross_base_nrmse": 0.8609092235565186,
+      "functional_r2_matrix": [
+        [
+          -1.3832336975440502,
+          -0.8245862770848467,
+          0.9998829907239726
+        ],
+        [
+          0.9999301971686285,
+          -0.6894403158135771,
+          -1.3808445972123358
+        ],
+        [
+          -1.4791154780142404,
+          0.9999478817377218,
+          -1.7427411163138067
+        ],
+        [
+          -1.3758834477897408,
+          -0.819611512405394,
+          0.9998830140934692
+        ],
+        [
+          0.9999254102691969,
+          -0.6910043196392037,
+          -1.3839124545698187
+        ]
+      ],
+      "best_functional_r2_per_gt": [
+        0.9999254102691969,
+        -0.6894403158135771,
+        0.9998830140934692
+      ],
+      "family_contingency": [
+        [
+          0,
+          2,
+          93
+        ],
+        [
+          77,
+          73,
+          0
+        ],
+        [
+          0,
+          48,
+          31
+        ],
+        [
+          52,
+          10,
+          0
+        ]
+      ],
+      "family_hungarian_accuracy": 0.5647668393782384,
+      "mean_fragmentation": 0.3680761982475569,
+      "fragmentation_per_gt": [
+        0.4031007751937985,
+        0.45112781954887216,
+        0.25
+      ],
+      "candidate_family_count": {
+        "C1": 95,
+        "C2": 150,
+        "C4": 79,
+        "C5": 62
+      },
+      "candidate_usage": {
+        "C1": 0.24611398963730569,
+        "C2": 0.38860103626943004,
+        "C4": 0.20466321243523317,
+        "C5": 0.16062176165803108
+      },
+      "coordinate_a": {
+        "C1": 0.9521480202674866,
+        "C2": 0.9964029788970947,
+        "C4": 0.9527655839920044,
+        "C5": 0.99678635597229
+      },
+      "coordinate_b": {
+        "C1": -0.054705116897821426,
+        "C2": 0.06537605822086334,
+        "C4": -0.05490845441818237,
+        "C5": 0.06752465665340424
+      }
+    },
+    "pass": false
+  },
+  "joint_finetune": {
+    "reused_from": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp8\\final_metrics.json",
+    "all_splits_pass": false,
+    "catastrophic_drift_supported": true
+  },
+  "batch_delete": {
+    "deleted": [
+      "C5",
+      "C4"
+    ],
+    "alive": [
+      "C1",
+      "C2",
+      "C3"
+    ],
+    "metrics": {
+      "alive_candidates": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "candidate_count": 3,
+      "train_nrmse": 0.006690078880637884,
+      "iid_heldout_nrmse": 0.012071125209331512,
+      "cross_state_nrmse": 0.01258723996579647,
+      "cross_realization_nrmse": 0.013954523019492626,
+      "cross_base_nrmse": 0.012194679118692875,
+      "functional_r2_matrix": [
+        [
+          -1.3832336975440502,
+          -0.8245862770848467,
+          0.9998829907239726
+        ],
+        [
+          0.9999301971686285,
+          -0.6894403158135771,
+          -1.3808445972123358
+        ],
+        [
+          -1.4791154780142404,
+          0.9999478817377218,
+          -1.7427411163138067
+        ],
+        [
+          -1.3758834477897408,
+          -0.819611512405394,
+          0.9998830140934692
+        ],
+        [
+          0.9999254102691969,
+          -0.6910043196392037,
+          -1.3839124545698187
+        ]
+      ],
+      "best_functional_r2_per_gt": [
+        0.9999301971686285,
+        0.9999478817377218,
+        0.9998829907239726
+      ],
+      "family_contingency": [
+        [
+          0,
+          0,
+          124
+        ],
+        [
+          129,
+          0,
+          0
+        ],
+        [
+          0,
+          133,
+          0
+        ]
+      ],
+      "family_hungarian_accuracy": 1.0,
+      "mean_fragmentation": 0.0,
+      "fragmentation_per_gt": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "candidate_family_count": {
+        "C1": 124,
+        "C2": 129,
+        "C3": 133
+      },
+      "candidate_usage": {
+        "C1": 0.32124352331606215,
+        "C2": 0.33419689119170987,
+        "C3": 0.344559585492228
+      },
+      "coordinate_a": {
+        "C1": 0.9521480202674866,
+        "C2": 0.9964029788970947,
+        "C3": 0.9957322478294373
+      },
+      "coordinate_b": {
+        "C1": -0.054705116897821426,
+        "C2": 0.06537605822086334,
+        "C3": 0.04226389527320862
+      }
+    },
+    "pass": true
+  },
+  "pass": true
+}

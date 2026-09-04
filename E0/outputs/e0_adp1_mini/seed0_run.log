@@ -1,0 +1,52 @@
+[discover seed=0] round=0 J_train=0.099448 J_val=0.09325765073299408 scr=None active=1.846 (13s)
+[discover seed=0] round=1 J_train=0.081126 J_val=None scr=0.2201171875 active=2.097 (21s)
+[discover seed=0] round=2 J_train=0.063976 J_val=0.0600988045334816 scr=0.233984375 active=2.315 (33s)
+[discover seed=0] round=3 J_train=0.054929 J_val=None scr=0.205078125 active=2.378 (42s)
+[discover seed=0] round=4 J_train=0.047048 J_val=0.043909668922424316 scr=0.2048828125 active=2.262 (55s)
+[discover seed=0] round=5 J_train=0.040548 J_val=None scr=0.2328125 active=2.381 (64s)
+[discover seed=0] round=6 J_train=0.033038 J_val=0.030424075201153755 scr=0.221484375 active=2.430 (78s)
+[discover seed=0] round=7 J_train=0.026865 J_val=None scr=0.2337890625 active=2.481 (88s)
+[discover seed=0] round=8 J_train=0.022734 J_val=0.021862739697098732 scr=0.237109375 active=2.438 (102s)
+[discover seed=0] round=9 J_train=0.019632 J_val=None scr=0.2287109375 active=2.422 (112s)
+[discover seed=0] round=10 J_train=0.019293 J_val=0.019367244094610214 scr=0.2369140625 active=2.417 (126s)
+[discover seed=0] round=11 J_train=0.018357 J_val=None scr=0.1984375 active=2.407 (136s)
+{
+  "experiment": "E0-ADP1-MINI",
+  "optimization_seed": 0,
+  "discovery_stable": false,
+  "rounds_run": 12,
+  "best_round": 10,
+  "best_val_objective": 0.019367244094610214,
+  "wall_seconds": 149.5999321937561,
+  "peak_gpu_memory_bytes": 150190080
+}
+[joint seed=0] step=32/960 effect=0.121663 active=0.650 val_nrmse=1.0080
+[joint seed=0] step=64/960 effect=0.146458 active=0.339 val_nrmse=1.0079
+[joint seed=0] step=96/960 effect=0.149791 active=0.231 val_nrmse=1.0082
+[joint seed=0] step=128/960 effect=0.121874 active=0.185 val_nrmse=1.0085
+[joint seed=0] step=160/960 effect=0.148052 active=0.147 val_nrmse=1.0082
+[joint seed=0] step=192/960 effect=0.130849 active=0.127 val_nrmse=1.0085
+[joint seed=0] step=224/960 effect=0.135741 active=0.112 val_nrmse=1.0082
+[joint seed=0] step=256/960 effect=0.139857 active=0.120 val_nrmse=1.0063
+[joint seed=0] step=288/960 effect=0.095940 active=2.161 val_nrmse=0.9224
+[joint seed=0] step=320/960 effect=0.112664 active=1.672 val_nrmse=0.8912
+[joint seed=0] step=352/960 effect=0.096127 active=1.673 val_nrmse=0.8587
+[joint seed=0] step=384/960 effect=0.091557 active=1.910 val_nrmse=0.8227
+[joint seed=0] step=416/960 effect=0.073681 active=2.538 val_nrmse=0.7326
+[joint seed=0] step=448/960 effect=0.048300 active=3.251 val_nrmse=0.6436
+[joint seed=0] step=480/960 effect=0.059754 active=3.012 val_nrmse=0.6153
+[joint seed=0] step=512/960 effect=0.047907 active=2.784 val_nrmse=0.5983
+[joint seed=0] step=544/960 effect=0.048609 active=2.288 val_nrmse=0.5932
+[joint seed=0] step=576/960 effect=0.048024 active=2.550 val_nrmse=0.5784
+[joint seed=0] step=608/960 effect=0.044859 active=2.309 val_nrmse=0.5690
+[joint seed=0] step=640/960 effect=0.052646 active=2.080 val_nrmse=0.5666
+[joint seed=0] step=672/960 effect=0.044926 active=2.633 val_nrmse=0.5701
+[joint seed=0] step=704/960 effect=0.044178 active=2.335 val_nrmse=0.5725
+[joint seed=0] step=736/960 effect=0.043636 active=2.433 val_nrmse=0.5616
+[joint seed=0] step=768/960 effect=0.042197 active=2.291 val_nrmse=0.5576
+[joint seed=0] step=800/960 effect=0.042396 active=2.561 val_nrmse=0.5626
+[joint seed=0] step=832/960 effect=0.040377 active=2.651 val_nrmse=0.5599
+[joint seed=0] step=864/960 effect=0.043768 active=2.093 val_nrmse=0.5517
+[joint seed=0] step=896/960 effect=0.038596 active=2.287 val_nrmse=0.5584
+[joint seed=0] step=928/960 effect=0.051081 active=2.164 val_nrmse=0.5541
+[joint seed=0] step=960/960 effect=0.040097 active=2.204 val_nrmse=0.5460

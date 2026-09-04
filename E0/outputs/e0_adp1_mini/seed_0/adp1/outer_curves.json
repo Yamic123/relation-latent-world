@@ -1,0 +1,110 @@
+[
+  {
+    "round": 0,
+    "J_train": 0.0994478091597557,
+    "effect_train": 0.09760209918022156,
+    "active_train": 1.845703125,
+    "J_val": 0.09325765073299408,
+    "scr": null,
+    "best_round": 0
+  },
+  {
+    "round": 1,
+    "J_train": 0.0811258852481842,
+    "effect_train": 0.07902920991182327,
+    "active_train": 2.0966796875,
+    "J_val": null,
+    "scr": 0.2201171875,
+    "best_round": 0
+  },
+  {
+    "round": 2,
+    "J_train": 0.06397633999586105,
+    "effect_train": 0.06166091188788414,
+    "active_train": 2.3154296875,
+    "J_val": 0.0600988045334816,
+    "scr": 0.233984375,
+    "best_round": 2
+  },
+  {
+    "round": 3,
+    "J_train": 0.054928552359342575,
+    "effect_train": 0.05255062133073807,
+    "active_train": 2.3779296875,
+    "J_val": null,
+    "scr": 0.205078125,
+    "best_round": 2
+  },
+  {
+    "round": 4,
+    "J_train": 0.04704809933900833,
+    "effect_train": 0.04478637874126434,
+    "active_train": 2.26171875,
+    "J_val": 0.043909668922424316,
+    "scr": 0.2048828125,
+    "best_round": 4
+  },
+  {
+    "round": 5,
+    "J_train": 0.040547605603933334,
+    "effect_train": 0.038166746497154236,
+    "active_train": 2.380859375,
+    "J_val": null,
+    "scr": 0.2328125,
+    "best_round": 4
+  },
+  {
+    "round": 6,
+    "J_train": 0.03303832560777664,
+    "effect_train": 0.030608639121055603,
+    "active_train": 2.4296875,
+    "J_val": 0.030424075201153755,
+    "scr": 0.221484375,
+    "best_round": 6
+  },
+  {
+    "round": 7,
+    "J_train": 0.02686486393213272,
+    "effect_train": 0.024383418262004852,
+    "active_train": 2.4814453125,
+    "J_val": null,
+    "scr": 0.2337890625,
+    "best_round": 6
+  },
+  {
+    "round": 8,
+    "J_train": 0.022733688354492188,
+    "effect_train": 0.020295212045311928,
+    "active_train": 2.4384765625,
+    "J_val": 0.021862739697098732,
+    "scr": 0.237109375,
+    "best_round": 8
+  },
+  {
+    "round": 9,
+    "J_train": 0.01963220164179802,
+    "effect_train": 0.017210327088832855,
+    "active_train": 2.421875,
+    "J_val": null,
+    "scr": 0.2287109375,
+    "best_round": 8
+  },
+  {
+    "round": 10,
+    "J_train": 0.019293271005153656,
+    "effect_train": 0.016876276582479477,
+    "active_train": 2.4169921875,
+    "J_val": 0.019367244094610214,
+    "scr": 0.2369140625,
+    "best_round": 10
+  },
+  {
+    "round": 11,
+    "J_train": 0.018357068300247192,
+    "effect_train": 0.01594984345138073,
+    "active_train": 2.4072265625,
+    "J_val": null,
+    "scr": 0.1984375,
+    "best_round": 10
+  }
+]

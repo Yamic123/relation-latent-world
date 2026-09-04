@@ -1,0 +1,67 @@
+{
+  "stage": "state_conditional_diagnostic",
+  "training_performed": false,
+  "bucket_method": "learner-visible first PCA score quartiles",
+  "pca_direction": [
+    0.4259756979645309,
+    -0.08309333972051788,
+    0.6462843573470138,
+    0.5530174500314173,
+    0.2593901831547853,
+    0.14437854386976753
+  ],
+  "cuts": [
+    -0.4963852211602142,
+    0.01334069893361773,
+    0.5223908101333022
+  ],
+  "rows": [
+    {
+      "bucket": 0,
+      "family_count": 33,
+      "score_min": -1.724966376229198,
+      "score_max": -0.5013321499684325,
+      "C2_error_nrmse": 1.6558153629302979,
+      "C3_error_nrmse": 0.4021880030632019,
+      "fresh_union_B3_error_nrmse": 0.4073854684829712,
+      "C2_C3_disagreement_nrmse": 1.18159019947052
+    },
+    {
+      "bucket": 1,
+      "family_count": 32,
+      "score_min": -0.4815444347355596,
+      "score_max": 0.011669949869430887,
+      "C2_error_nrmse": 1.0190335512161255,
+      "C3_error_nrmse": 0.1158306673169136,
+      "fresh_union_B3_error_nrmse": 0.14604388177394867,
+      "C2_C3_disagreement_nrmse": 0.804034411907196
+    },
+    {
+      "bucket": 2,
+      "family_count": 32,
+      "score_min": 0.015011447997804572,
+      "score_max": 0.5160955024344697,
+      "C2_error_nrmse": 0.8758828639984131,
+      "C3_error_nrmse": 0.13994581997394562,
+      "fresh_union_B3_error_nrmse": 0.19493041932582855,
+      "C2_C3_disagreement_nrmse": 0.6927004456520081
+    },
+    {
+      "bucket": 3,
+      "family_count": 33,
+      "score_min": 0.5244892460329131,
+      "score_max": 1.1423182296420833,
+      "C2_error_nrmse": 0.6015832424163818,
+      "C3_error_nrmse": 0.18326188623905182,
+      "fresh_union_B3_error_nrmse": 0.11193044483661652,
+      "C2_C3_disagreement_nrmse": 0.4845443069934845
+    }
+  ],
+  "best_source_by_bucket": [
+    "C3",
+    "C3",
+    "C3",
+    "C3"
+  ],
+  "state_region_complementarity": false
+}

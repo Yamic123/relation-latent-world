@@ -1,0 +1,21 @@
+{
+  "stage": "adp11_z0",
+  "condition": "identity",
+  "optimization_seed": 0,
+  "initial_model_hash": "be2de81c7522fda6c4f2153b59dd583c36254895ea1575e8478363d8af01832b",
+  "initial_assignment_hash": "139556e221a757be05762288aa1035c6f63cb2d57f255e03c78826e6bec52bc4",
+  "initial_coordinate_a_hash": "c467e4856e6b1a62a26087d33af377431621b22d18851cdefa83194954d2df7a",
+  "initial_coordinate_b_hash": "5a5a204ad561002263801f7e60f86f4d367da9e12dc145ce83dfdfbb1aeb08fc",
+  "non_tp_dataset_and_family_hash": "ebfe28a87029201256b7bfb96dcf3a6bda8e5a125dcf927fee00dca43fc7e683",
+  "family_p_hash": "1c1e064014c46acc67ae9985f6546bbc219cc3aa6783b11bc59089596f6aec12",
+  "B_hash": null,
+  "B_orthogonality_max_error": null,
+  "config_hash": "c32d68166eb7aab1d8904b1674ff9ac1cf5d36e1bb59f773bcb49242d5b5d2d4",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "forbidden_checkpoint_loaded": false,
+  "tp_used_by_preregistered_objective": false,
+  "tp_usage_contract": "p is learner-visible and audited, but the preregistered Z2-Z4 family cost uses d and Z8 uses delta_S; p is not an argument of the specified optimization equations",
+  "pass": true
+}

@@ -1,0 +1,29 @@
+{
+  "experiment": "E0-ADP6-8GB-DEVELOPMENT",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "m_max": 5,
+  "mechanism_dim": 64,
+  "mechanism_heads": 4,
+  "rounds": 40,
+  "mechanism_learning_rate": 0.0003,
+  "coordinate_learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "family_batch_size": 32,
+  "epochs_per_round": 4,
+  "gradient_clip": 1.0,
+  "functional_probe_count": 2000,
+  "pc1_sign_convention": "Orient q_U so the first listed nonzero learner-visible action member has positive projection.",
+  "pass_thresholds": {
+    "median_order_accuracy": 0.95,
+    "candidate_affine_realization_r2": 0.9,
+    "heldout_realization_nrmse": 0.15,
+    "purity_high_functional_r2": 0.7,
+    "min_purity_high_candidates_above_threshold": 2
+  },
+  "gpu_adjustments": {
+    "scientific_scale_reduction": "none",
+    "memory_control": "Use the plan-specified 32-family minibatch; no differentiable per-point inner solve is needed in A1."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "experiment": "D1",
+  "tp": "orthogonal",
+  "source_checkpoint": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0a\\main\\orthogonal\\seed_1\\best_checkpoint.pt",
+  "splits": [
+    "test_iid",
+    "test_context",
+    "test_combination_101"
+  ],
+  "damage_definition": "MSE(delta,prediction_without_l)-MSE(delta,full_prediction)",
+  "frozen_original_failed_model": true
+}

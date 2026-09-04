@@ -1,0 +1,5 @@
+# ADP6-A0 free-v baseline
+
+- reused: true
+- heldout NRMSE: 0.18311592936515808
+- functional R2: [-0.48057527902951236, -0.48764314129141284, -0.6418615484515631]

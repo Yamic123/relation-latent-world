@@ -1,0 +1,8 @@
+{
+  "stage": "adp2_0",
+  "compact_deviation": "4-round replay; existing 12-round ADP1 is baseline",
+  "max_train_objective_abs_diff": 0.004987262189388275,
+  "reproduction_pass": true,
+  "wall_seconds": 372.82995986938477,
+  "next_stage_allowed": true
+}

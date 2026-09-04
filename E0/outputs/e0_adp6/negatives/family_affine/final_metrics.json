@@ -1,0 +1,98 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp6_nc_family_affine",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "config": {
+    "experiment": "E0-ADP6-8GB-DEVELOPMENT",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "optimization_seed": 0,
+    "m_max": 5,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "rounds": 40,
+    "mechanism_learning_rate": 0.0003,
+    "coordinate_learning_rate": 0.001,
+    "weight_decay": 1e-05,
+    "family_batch_size": 32,
+    "epochs_per_round": 4,
+    "gradient_clip": 1.0,
+    "functional_probe_count": 2000,
+    "pc1_sign_convention": "Orient q_U so the first listed nonzero learner-visible action member has positive projection.",
+    "pass_thresholds": {
+      "median_order_accuracy": 0.95,
+      "candidate_affine_realization_r2": 0.9,
+      "heldout_realization_nrmse": 0.15,
+      "purity_high_functional_r2": 0.7,
+      "min_purity_high_candidates_above_threshold": 2
+    },
+    "gpu_adjustments": {
+      "scientific_scale_reduction": "none",
+      "memory_control": "Use the plan-specified 32-family minibatch; no differentiable per-point inner solve is needed in A1."
+    }
+  },
+  "config_sha256": "49410ca5a5981cdeea375c381e62cd066dfbece01dbb88d58007838c16b12537",
+  "script_sha256": "49396511626b8aa142f1279bd88cdfbcabe03affdc5311b6af4caba626f7e827",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "control": "family_specific_affine",
+  "validation_coordinate_inference": "40 Adam steps on observed realization responses with frozen bank",
+  "rounds_completed": 40,
+  "last_round": {
+    "round": 39,
+    "train_minibatch_mse": 3.2127881667065594e-05,
+    "train_family_a_mean": 0.9978732466697693,
+    "train_family_a_std": 0.008356808684766293,
+    "train_family_b_mean": 0.00337901315651834,
+    "train_family_b_std": 0.008908911608159542,
+    "m_step_seconds": 1.9447851181030273,
+    "heldout_realization_nrmse": 0.021848348900675774,
+    "observed_realization_nrmse": 0.014603476040065289,
+    "functional_r2_matrix": [
+      [
+        -1000000.0,
+        -1000000.0,
+        0.9995771466155058
+      ],
+      [
+        0.9995613755639693,
+        -1000000.0,
+        -1000000.0
+      ],
+      [
+        -1000000.0,
+        0.9997739978064222,
+        -1000000.0
+      ],
+      [
+        -1000000.0,
+        -1000000.0,
+        0.9995390757516318
+      ],
+      [
+        0.9995365562210096,
+        -1000000.0,
+        -1000000.0
+      ]
+    ],
+    "matched_functional_r2": [
+      0.9995613755639693,
+      0.9997739978064222,
+      0.9995771466155058
+    ],
+    "val_family_a_mean": 1.001408338546753,
+    "val_family_a_std": 0.009499115869402885,
+    "val_family_b_mean": 0.0009588873945176601,
+    "val_family_b_std": 0.00790974497795105
+  },
+  "wall_seconds": 80.6297059059143
+}

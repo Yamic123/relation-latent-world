@@ -1,0 +1,137 @@
+{
+  "alive": [
+    1,
+    2,
+    3
+  ],
+  "M_discovered": 3,
+  "telemetry": [
+    {
+      "pair": "C3+C5",
+      "drop": "C5",
+      "commit": true,
+      "checks": {
+        "max_heldout_nrmse_increase": true,
+        "functional": true,
+        "family_accuracy": true,
+        "fragmentation": true,
+        "assignment_stability": true
+      },
+      "max_increase": 8.934922516345978e-05
+    },
+    {
+      "pair": "C1+C2",
+      "drop": "C1",
+      "commit": true,
+      "checks": {
+        "max_heldout_nrmse_increase": true,
+        "functional": true,
+        "family_accuracy": true,
+        "fragmentation": true,
+        "assignment_stability": true
+      },
+      "max_increase": 0.0004417300224304199
+    }
+  ],
+  "metrics": {
+    "alive_candidates": [
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "candidate_count": 3,
+    "train_nrmse": 0.026894129812717438,
+    "iid_heldout_nrmse": 0.030816057696938515,
+    "cross_state_nrmse": 0.0325775220990181,
+    "cross_realization_nrmse": 0.03564918041229248,
+    "cross_base_nrmse": 0.03126169368624687,
+    "functional_r2_matrix": [
+      [
+        -1.453045383063679,
+        0.9991089121212764,
+        -1.7240077189661065
+      ],
+      [
+        -1.4803209978578828,
+        0.9992424000986672,
+        -1.7509830109030897
+      ],
+      [
+        -1.3848505194238245,
+        -0.8342220390010111,
+        0.9992306707577331
+      ],
+      [
+        0.9995105046083537,
+        -0.6838071027040591,
+        -1.368001609105419
+      ],
+      [
+        -1.3793677870874768,
+        -0.8312245328278685,
+        0.9991674584482594
+      ]
+    ],
+    "best_functional_r2_per_gt": [
+      0.9995105046083537,
+      0.9992424000986672,
+      0.9992306707577331
+    ],
+    "family_contingency": [
+      [
+        0,
+        133,
+        0
+      ],
+      [
+        0,
+        0,
+        124
+      ],
+      [
+        129,
+        0,
+        0
+      ]
+    ],
+    "family_hungarian_accuracy": 1.0,
+    "mean_fragmentation": 0.0,
+    "fragmentation_per_gt": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "candidate_family_count": {
+      "C2": 133,
+      "C3": 124,
+      "C4": 129
+    },
+    "candidate_usage": {
+      "C2": 0.344559585492228,
+      "C3": 0.32124352331606215,
+      "C4": 0.33419689119170987
+    },
+    "coordinate_a": {
+      "C2": -0.8065317869186401,
+      "C3": 0.9263706207275391,
+      "C4": -0.882651150226593
+    },
+    "coordinate_b": {
+      "C2": 0.25579115748405457,
+      "C3": -0.28929129242897034,
+      "C4": 0.2591538429260254
+    }
+  },
+  "checks": {
+    "count": true,
+    "family": true,
+    "fragmentation": true,
+    "functional": true,
+    "iid": false,
+    "structured": true,
+    "assignment_stability": true
+  },
+  "pass": false,
+  "stop_reason": "no_valid_duplicate_edge",
+  "unsupported_slot_remaining": false
+}

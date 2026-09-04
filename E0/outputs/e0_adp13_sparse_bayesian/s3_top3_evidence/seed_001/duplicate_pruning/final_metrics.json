@@ -1,0 +1,135 @@
+{
+  "alive": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "M_discovered": 4,
+  "telemetry": [
+    {
+      "pair": "C3+C5",
+      "drop": "C5",
+      "commit": true,
+      "checks": {
+        "max_heldout_nrmse_increase": true,
+        "functional": true,
+        "family_accuracy": true,
+        "fragmentation": true,
+        "assignment_stability": true
+      },
+      "max_increase": 0.0002317093312740326
+    }
+  ],
+  "metrics": {
+    "alive_candidates": [
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "candidate_count": 4,
+    "train_nrmse": 0.01751471869647503,
+    "iid_heldout_nrmse": 0.019928963854908943,
+    "cross_state_nrmse": 0.02017155848443508,
+    "cross_realization_nrmse": 0.022412661463022232,
+    "cross_base_nrmse": 0.020138442516326904,
+    "functional_r2_matrix": [
+      [
+        -1.465954858667776,
+        0.9998471985061612,
+        -1.7318750379442478
+      ],
+      [
+        -1.414198032742212,
+        0.9982951796922783,
+        -1.7217254854766924
+      ],
+      [
+        -1.3932722759718636,
+        -0.8313409369240843,
+        0.9997206392891533
+      ],
+      [
+        0.9995528812412385,
+        -0.6965460004619914,
+        -1.4112438549555208
+      ],
+      [
+        -1.3875176330994603,
+        -0.8289292776642492,
+        0.9997398378379231
+      ]
+    ],
+    "best_functional_r2_per_gt": [
+      0.9995528812412385,
+      0.9998471985061612,
+      0.9997206392891533
+    ],
+    "family_contingency": [
+      [
+        0,
+        126,
+        0
+      ],
+      [
+        0,
+        7,
+        0
+      ],
+      [
+        0,
+        0,
+        124
+      ],
+      [
+        129,
+        0,
+        0
+      ]
+    ],
+    "family_hungarian_accuracy": 0.9818652849740933,
+    "mean_fragmentation": 0.017543859649122823,
+    "fragmentation_per_gt": [
+      0.0,
+      0.052631578947368474,
+      0.0
+    ],
+    "candidate_family_count": {
+      "C1": 126,
+      "C2": 7,
+      "C3": 124,
+      "C4": 129
+    },
+    "candidate_usage": {
+      "C1": 0.32642487046632124,
+      "C2": 0.018134715025906734,
+      "C3": 0.32124352331606215,
+      "C4": 0.33419689119170987
+    },
+    "coordinate_a": {
+      "C1": -0.8299546241760254,
+      "C2": -0.769987165927887,
+      "C3": 0.9459563493728638,
+      "C4": -0.9203470349311829
+    },
+    "coordinate_b": {
+      "C1": 0.31252536177635193,
+      "C2": 0.2436019778251648,
+      "C3": -0.24806296825408936,
+      "C4": 0.21408776938915253
+    }
+  },
+  "checks": {
+    "count": false,
+    "family": true,
+    "fragmentation": true,
+    "functional": true,
+    "iid": true,
+    "structured": true,
+    "assignment_stability": true
+  },
+  "pass": false,
+  "stop_reason": "no_valid_duplicate_edge",
+  "unsupported_slot_remaining": true
+}

@@ -1,0 +1,12 @@
+{
+  "variant": "H0",
+  "seed": 1,
+  "reused_exact_baseline": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp11_from_zero\\identity_tp\\seed_001\\final_verdict.json",
+  "z4_pass": false,
+  "death_commits": 0,
+  "duplicate_prunes": 0,
+  "m_discovered": null,
+  "b1_pass": false,
+  "final_pass": false,
+  "failure_mode": "F4_persistent_mixing"
+}

@@ -1,0 +1,29 @@
+{
+  "training_performed": false,
+  "uses_existing_saved_outputs_only": true,
+  "contains_gt_metadata": false,
+  "saved_epoch_grid": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20
+  ],
+  "limitations": [
+    "No epoch5/epoch10 checkpoint or costs were saved; corresponding arrays are empty.",
+    "Intermediate validation subgroup NRMSE, a, b, and gradient norms were not saved; corresponding entries are NaN.",
+    "global_val_nrmse is the originally logged observed-realization validation NRMSE."
+  ],
+  "files": {
+    "adp14_C5_to_C4_diagnostics.npz": {
+      "sha256": "ab313f289f4cc7d5d5588fdbd63333d2e528e0a1e572700a9e1765f67c725a8d",
+      "includes_A1": true,
+      "includes_A2_with_prefix": true
+    },
+    "adp14_C2_to_C3_diagnostics.npz": {
+      "sha256": "931bb06b1525b6c02a1c0d3241161246817bbad24c091efc1e4d3613d5956cf3",
+      "includes_A1": true
+    }
+  }
+}

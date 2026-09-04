@@ -1,0 +1,21 @@
+{
+  "optimizer": "AdamW",
+  "learning_rate": 0.0003,
+  "weight_decay": 1e-05,
+  "batch_size": 512,
+  "max_epochs": 200,
+  "steps_per_epoch": 64,
+  "patience": 20,
+  "gradient_clip": 1.0,
+  "lambda_participation": 0.001,
+  "temperature_start": 1.0,
+  "temperature_end": 0.35,
+  "token_dim": 64,
+  "attention_heads": 4,
+  "cross_attention_layers": 2,
+  "M": 3,
+  "validation_subset": 5000,
+  "mechanisms": "fixed exact ground truth",
+  "training_contract": "visible inputs/targets only; hidden labels used only in evaluation",
+  "tp": "orthogonal"
+}

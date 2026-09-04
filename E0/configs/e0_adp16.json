@@ -1,0 +1,23 @@
+{
+  "experiment": "E0-ADP16-C2C3-COORDINATE-VS-CONDITIONAL",
+  "affine_steps": 500,
+  "affine_lr": 0.01,
+  "state_bridge_steps": 1000,
+  "state_bridge_lr": 0.001,
+  "state_bridge_hidden": 16,
+  "union_epochs": 40,
+  "family_batch_size": 32,
+  "head_hidden": 64,
+  "head_lr": 0.0003,
+  "coordinate_lr": 0.001,
+  "trunk_lr": 0.0001,
+  "weight_decay": 0.00001,
+  "lambda_protect": 1.0,
+  "gradient_clip": 1.0,
+  "bootstrap_repeats": 500,
+  "bridge_r2": 0.995,
+  "global_delta_nrmse": 0.01,
+  "subgroup_delta_nrmse": 0.02,
+  "old_family_slack_nrmse": 0.01,
+  "other_candidate_drift_nrmse": 0.01
+}

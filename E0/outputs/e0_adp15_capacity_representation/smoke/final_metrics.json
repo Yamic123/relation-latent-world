@@ -1,0 +1,8 @@
+{
+  "device": "cuda",
+  "source_checkpoint": "f4f26a5fd2b4cb2fcff8ea09d9b3172fff4458ac413f31b17e1dfbf682657633",
+  "zero_init_exact_max_abs_error": 0.0,
+  "train_families": 1521,
+  "val_families": 386,
+  "pass": true
+}

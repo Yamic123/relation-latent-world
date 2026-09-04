@@ -1,0 +1,80 @@
+{
+  "operation": "frozen_delete",
+  "child": 4,
+  "parent": 3,
+  "alive_after": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "comparison": {
+    "domains": {
+      "iid": {
+        "delta": 0.04150232672691345,
+        "bootstrap_mean": 0.04079825115203858,
+        "bootstrap_median": 0.04035942070186138,
+        "ci95": [
+          0.013991789612919091,
+          0.07033859966322777
+        ],
+        "upper95": 0.07033859966322777
+      },
+      "state": {
+        "delta": -4.582852125167847e-05,
+        "bootstrap_mean": -4.727675765752792e-05,
+        "bootstrap_median": -4.552491009235382e-05,
+        "ci95": [
+          -0.00015065055340528487,
+          0.0
+        ],
+        "upper95": 0.0
+      },
+      "realization": {
+        "delta": 0.037680286914110184,
+        "bootstrap_mean": 0.03693306368589401,
+        "bootstrap_median": 0.037130801007151604,
+        "ci95": [
+          0.010146201867610217,
+          0.06516642542555927
+        ],
+        "upper95": 0.06516642542555927
+      },
+      "base": {
+        "delta": 0.05336568504571915,
+        "bootstrap_mean": 0.05112469835579395,
+        "bootstrap_median": 0.050909001380205154,
+        "ci95": [
+          0.009158326033502818,
+          0.09261815529316661
+        ],
+        "upper95": 0.09261815529316661
+      }
+    },
+    "max_subgroup_delta_nrmse": 0.05336568504571915,
+    "subgroup_delta_nrmse": [
+      0.03266239911317825,
+      0.04788801446557045,
+      0.052850328385829926,
+      -4.582852125167847e-05,
+      0.02017434686422348,
+      0.05336568504571915,
+      0.035145103931427,
+      0.03964393213391304,
+      0.031239580363035202,
+      0.03916279971599579
+    ],
+    "parent_old_delta_nrmse": 0.0,
+    "child_keep_nrmse": 0.1235419437289238,
+    "child_absorb_nrmse": 0.5543268918991089,
+    "checks": {
+      "bootstrap_all_domains": false,
+      "max_subgroup_delta": false,
+      "parent_retention": true,
+      "child_assimilation": false,
+      "finite": true
+    },
+    "pass": false
+  },
+  "pass": false
+}

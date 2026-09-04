@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "three_gt_functional": true,
+    "all_purity_high_functional": true,
+    "order": true,
+    "affine": true,
+    "heldout": true,
+    "candidate_purity": true,
+    "no_mechanism_mixing": true
+  },
+  "pass": true,
+  "assignment_oscillation_allowed": true
+}

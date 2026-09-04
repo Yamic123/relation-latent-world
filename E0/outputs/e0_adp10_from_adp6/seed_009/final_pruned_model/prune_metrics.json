@@ -1,0 +1,314 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp9_prune",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 9,
+  "config": {
+    "experiment": "E0-ADP10-FROM-ADP6-STABILITY",
+    "optimization_seed": 9,
+    "m_max": 5,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "functional_probe_count": 2000,
+    "edge_thresholds": {
+      "cross_state_prediction_r2": 0.995,
+      "cross_realization_prediction_r2": 0.995,
+      "cross_base_prediction_r2": 0.995,
+      "direct_replacement_max_nrmse_increase": 0.01
+    },
+    "survivor_weights": {
+      "heldout_loss": 0.5,
+      "assignment_instability": 0.2,
+      "coverage_penalty": 0.3
+    },
+    "prune_gate": {
+      "max_heldout_nrmse_increase": 0.01,
+      "min_best_functional_r2": 0.95,
+      "max_family_accuracy_drop": 0.03,
+      "max_fragmentation_increase": 0.03,
+      "max_repeated_assignment_change": 0.1
+    },
+    "final_gate": {
+      "iid_nrmse": 0.03,
+      "structured_nrmse": 0.05,
+      "min_best_functional_r2": 0.95,
+      "family_accuracy": 0.9,
+      "mean_fragmentation": 0.1,
+      "assignment_change": 0.1
+    },
+    "b1": {
+      "lambda_p": 0.001,
+      "alpha_bound": 1.5,
+      "learning_rate": 0.05,
+      "steps": 60,
+      "restarts": 3,
+      "chunk_size": 1024,
+      "splits": [
+        "test_iid",
+        "test_combination_101"
+      ]
+    },
+    "joint_control": {
+      "epochs": 40,
+      "response_batch_size": 192,
+      "gradient_clip": 1.0
+    }
+  },
+  "config_sha256": "b61cd04ff26e38a064d39316c27de8a2c37f314ea42e1772d4dcedd794e5e66e",
+  "script_sha256": "b59ce322fb38fef1b8517e4b8cac3bc4c7d807e5d5f57a202e9a1f846ddaeb10",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "source_checkpoint": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp10_from_adp6\\seed_009\\a2_joint_family_coordinate\\checkpoints\\round_039.pt",
+  "source_assignment": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp10_from_adp6\\seed_009\\a2_joint_family_coordinate\\assignments\\round_039.npz",
+  "mechanisms_frozen": true,
+  "mechanism_parameter_updates": 0,
+  "telemetry": [
+    {
+      "prune_round": 0,
+      "alive_before": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "duplicate_edges": [
+        {
+          "pair": [
+            0,
+            3
+          ],
+          "pair_name": "C1+C4",
+          "cross_state_prediction_r2": 0.999909879113118,
+          "cross_realization_prediction_r2": 0.9999074708422553,
+          "cross_base_prediction_r2": 0.9999048446137611,
+          "direct_replacement_max_nrmse_increase": 0.002345956861972809,
+          "direct_replacement_increases": [
+            0.0010078474879264832,
+            0.0010280609130859375,
+            0.001043017953634262,
+            0.002345956861972809,
+            -0.0001046694815158844,
+            0.0004435889422893524,
+            0.0003836732357740402,
+            0.0005394183099269867,
+            -0.001330651342868805,
+            0.0021628588438034058
+          ],
+          "separate_pair_nrmse": 0.03460967540740967,
+          "family_response_disagreement_mse": 3.2783841561467852e-06,
+          "abs_delta_a": 0.0023433566093444824,
+          "abs_delta_b": 4.384666681289673e-05,
+          "valid_duplicate_edge": true,
+          "equivalence_confidence": 0.7653091584164802
+        }
+      ],
+      "selected_pair": {
+        "pair": [
+          0,
+          3
+        ],
+        "pair_name": "C1+C4",
+        "cross_state_prediction_r2": 0.999909879113118,
+        "cross_realization_prediction_r2": 0.9999074708422553,
+        "cross_base_prediction_r2": 0.9999048446137611,
+        "direct_replacement_max_nrmse_increase": 0.002345956861972809,
+        "direct_replacement_increases": [
+          0.0010078474879264832,
+          0.0010280609130859375,
+          0.001043017953634262,
+          0.002345956861972809,
+          -0.0001046694815158844,
+          0.0004435889422893524,
+          0.0003836732357740402,
+          0.0005394183099269867,
+          -0.001330651342868805,
+          0.0021628588438034058
+        ],
+        "separate_pair_nrmse": 0.03460967540740967,
+        "family_response_disagreement_mse": 3.2783841561467852e-06,
+        "abs_delta_a": 0.0023433566093444824,
+        "abs_delta_b": 4.384666681289673e-05,
+        "valid_duplicate_edge": true,
+        "equivalence_confidence": 0.7653091584164802
+      },
+      "survivor_quality": [
+        {
+          "candidate": 3,
+          "name": "C4",
+          "heldout_loss": 4.6168406697688624e-05,
+          "assignment_instability": 0.20595854922279794,
+          "coverage_penalty": 0.16714195365308981,
+          "Q": 0.09135738014383538
+        },
+        {
+          "candidate": 0,
+          "name": "C1",
+          "heldout_loss": 3.905031917383894e-05,
+          "assignment_instability": 0.20595854922279794,
+          "coverage_penalty": 0.1953485682321553,
+          "Q": 0.0998158054737931
+        }
+      ],
+      "survivor": "C4",
+      "dropped_candidate": "C1",
+      "alive_after": [
+        "C2",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "assignment_changes": [
+        0.14507772020725387,
+        0.0,
+        0.0
+      ],
+      "max_heldout_nrmse_increase": 0.00019388645887374878,
+      "gate_checks": {
+        "max_heldout_nrmse_increase": true,
+        "functional": true,
+        "family_accuracy": true,
+        "fragmentation": true,
+        "assignment_stability": true
+      },
+      "commit": true,
+      "rollback": false
+    }
+  ],
+  "stop_reason": "no_valid_duplicate_edge",
+  "M_discovered": 4,
+  "alive_indices": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "alive_candidates": [
+    "C2",
+    "C3",
+    "C4",
+    "C5"
+  ],
+  "final_metrics": {
+    "alive_candidates": [
+      "C2",
+      "C3",
+      "C4",
+      "C5"
+    ],
+    "candidate_count": 4,
+    "train_nrmse": 0.022873608395457268,
+    "iid_heldout_nrmse": 0.025588449090719223,
+    "cross_state_nrmse": 0.027477962896227837,
+    "cross_realization_nrmse": 0.03116963617503643,
+    "cross_base_nrmse": 0.025797164067626,
+    "functional_r2_matrix": [
+      [
+        -1.3725032412632308,
+        -0.8231775458512312,
+        0.999243173062762
+      ],
+      [
+        0.9994381340408386,
+        -0.6746372592595129,
+        -1.3567152488977219
+      ],
+      [
+        -1.4545674844600143,
+        0.9997489360126884,
+        -1.7062669315986305
+      ],
+      [
+        -1.3647905437284433,
+        -0.8176193509525098,
+        0.9992712217188392
+      ],
+      [
+        0.9992080073103129,
+        -0.6707473888124387,
+        -1.3516526302125396
+      ]
+    ],
+    "best_functional_r2_per_gt": [
+      0.9994381340408386,
+      0.9997489360126884,
+      0.9992712217188392
+    ],
+    "family_contingency": [
+      [
+        125,
+        0,
+        0
+      ],
+      [
+        0,
+        133,
+        0
+      ],
+      [
+        0,
+        0,
+        124
+      ],
+      [
+        4,
+        0,
+        0
+      ]
+    ],
+    "family_hungarian_accuracy": 0.9896373056994818,
+    "mean_fragmentation": 0.010335917312661516,
+    "fragmentation_per_gt": [
+      0.03100775193798455,
+      0.0,
+      0.0
+    ],
+    "candidate_family_count": {
+      "C2": 125,
+      "C3": 133,
+      "C4": 124,
+      "C5": 4
+    },
+    "candidate_usage": {
+      "C2": 0.3238341968911917,
+      "C3": 0.344559585492228,
+      "C4": 0.32124352331606215,
+      "C5": 0.010362694300518135
+    },
+    "coordinate_a": {
+      "C2": 0.9844962954521179,
+      "C3": 0.8782883286476135,
+      "C4": 0.9023153781890869,
+      "C5": 0.9783673286437988
+    },
+    "coordinate_b": {
+      "C2": 0.15181714296340942,
+      "C3": 0.09422854334115982,
+      "C4": -0.07790395617485046,
+      "C5": 0.14835338294506073
+    }
+  },
+  "checks": {
+    "stop_reason": true,
+    "evaluator_M_discovered": false,
+    "functional": true,
+    "iid": true,
+    "cross_state": true,
+    "cross_realization": true,
+    "cross_base": true,
+    "family_accuracy": true,
+    "fragmentation": true,
+    "assignment_stability": true
+  },
+  "pass": false,
+  "stop_required": true,
+  "wall_seconds": 1.4261796474456787
+}

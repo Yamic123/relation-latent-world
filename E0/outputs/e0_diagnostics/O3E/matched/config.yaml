@@ -1,0 +1,25 @@
+{
+  "experiment": "O3-E",
+  "support": "matched",
+  "split": "test_iid",
+  "num_samples": 1000,
+  "patterns": [
+    "000",
+    "001",
+    "010",
+    "011",
+    "100",
+    "101",
+    "110",
+    "111"
+  ],
+  "lambda_participation": 0.001,
+  "multiple_v_initializations": 5,
+  "batched_optimizer": "Adam",
+  "batched_steps": 500,
+  "batched_learning_rate": 0.05,
+  "final_optimizer": "scipy L-BFGS-B",
+  "matched_active_support": "[-1,-0.3] union [0.3,1]",
+  "learner_active_support": "[-1.5,1.5] (actual 1.5*tanh range)",
+  "margin_approximately_zero_tolerance": 1e-06
+}

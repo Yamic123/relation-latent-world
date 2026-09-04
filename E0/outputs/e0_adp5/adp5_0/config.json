@@ -1,0 +1,60 @@
+{
+  "experiment": "E0-ADP5-8GB-DEVELOPMENT",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "family_seed": 20260905,
+  "optimization_seed": 0,
+  "m_max": 5,
+  "mechanism_dim": 64,
+  "mechanism_heads": 4,
+  "base_counts": {
+    "train": 1024,
+    "val": 256,
+    "test": 512
+  },
+  "k_probability": {
+    "1": 0.5,
+    "2": 0.5
+  },
+  "train_active_values": [
+    -1.0,
+    -0.7,
+    -0.4,
+    0.4,
+    0.7,
+    1.0
+  ],
+  "heldout_active_values": [
+    -0.85,
+    -0.55,
+    -0.3,
+    0.3,
+    0.55,
+    0.85
+  ],
+  "a1": {
+    "rounds": 40,
+    "inner_learning_rate": 0.05,
+    "inner_steps": 20,
+    "inner_restarts": 2,
+    "v_bound": 1.5,
+    "point_chunk_size": 256,
+    "m_step_learning_rate": 0.0003,
+    "m_step_weight_decay": 1e-05,
+    "m_step_family_batch_size": 32,
+    "m_step_epochs_per_round": 4,
+    "gradient_clip": 1.0,
+    "functional_probe_count": 2000
+  },
+  "pass_thresholds": {
+    "family_hungarian_accuracy": 0.8,
+    "matched_functional_r2_each": 0.7,
+    "num_matched_functional_r2_above_0_85": 2,
+    "last3_family_assignment_change": 0.15,
+    "mean_gt_fragmentation": 0.3
+  },
+  "gpu_adjustments": {
+    "scientific_scale_reduction": "none",
+    "memory_control": "Inner optimization uses 256-point chunks and M-step uses 32-family batches as specified by the plan."
+  }
+}

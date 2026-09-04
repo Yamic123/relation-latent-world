@@ -1,0 +1,41 @@
+{
+  "experiment": "E0-A",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 9,
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "config": {
+    "tp": "identity",
+    "m_max": 5,
+    "token_dim": 64,
+    "attention_heads": 4,
+    "cross_attention_layers": 2,
+    "batch_size": 512,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 1e-05,
+    "max_epochs": 200,
+    "steps_per_epoch": 64,
+    "patience": 20,
+    "gradient_clip": 1.0,
+    "lambda_participation": 0.001,
+    "temperature_start": 1.0,
+    "temperature_end": 0.35
+  },
+  "tag": "main",
+  "train_transform": "identity",
+  "shuffle_p": false,
+  "environment": {
+    "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch": "2.5.1+cu121",
+    "cuda_available": true,
+    "device": "cuda",
+    "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+    "torch_threads": 14
+  },
+  "started_at_unix": 1788272056.3448968,
+  "training_data_contract": "visible.npz only"
+}

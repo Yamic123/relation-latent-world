@@ -1,0 +1,40 @@
+{
+  "experiment": "E0-ADP4-8GB-DEVELOPMENT",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "m_real_evaluator_only": 3,
+  "m_max": 5,
+  "mechanism_dim": 64,
+  "mechanism_heads": 4,
+  "unit_epsilon": 1e-12,
+  "unit_tau_floor": 1e-6,
+  "unit_tau_multiplier": 10.0,
+  "a1": {
+    "rounds": 40,
+    "inner_optimizer": "Adam",
+    "inner_learning_rate": 0.05,
+    "inner_steps": 20,
+    "inner_restarts": 2,
+    "v_bound": 1.5,
+    "e_step_chunk_size": 256,
+    "m_step_optimizer": "AdamW",
+    "m_step_learning_rate": 0.0003,
+    "m_step_weight_decay": 0.00001,
+    "m_step_batch_size": 128,
+    "m_step_epochs_per_round": 4,
+    "gradient_clip": 1.0,
+    "functional_probe_count": 2000
+  },
+  "pass_thresholds": {
+    "unit_hungarian_accuracy": 0.80,
+    "best_functional_r2_each": 0.70,
+    "num_functional_r2_above_0_85": 2,
+    "last3_base_assignment_change": 0.15,
+    "mean_sign_split": 0.25
+  },
+  "gpu_adjustments": {
+    "scientific_scale_reduction": "none",
+    "memory_control": "Differentiable inner solve is chunked into 256 local units. All plan-specified groups, model dimensions, inner steps/restarts, epochs, and rounds are retained."
+  }
+}

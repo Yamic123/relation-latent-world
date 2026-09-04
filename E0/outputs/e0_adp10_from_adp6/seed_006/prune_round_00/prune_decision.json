@@ -1,0 +1,140 @@
+{
+  "prune_round": 0,
+  "alive_before": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5"
+  ],
+  "duplicate_edges": [
+    {
+      "pair": [
+        0,
+        3
+      ],
+      "pair_name": "C1+C4",
+      "cross_state_prediction_r2": 0.9999404815496509,
+      "cross_realization_prediction_r2": 0.9999475182219876,
+      "cross_base_prediction_r2": 0.999950480457714,
+      "direct_replacement_max_nrmse_increase": 0.0006454009562730789,
+      "direct_replacement_increases": [
+        0.00022508017718791962,
+        0.00014789216220378876,
+        0.000330144539475441,
+        8.188001811504364e-05,
+        0.00045527704060077667,
+        0.0003219451755285263,
+        0.000586390495300293,
+        7.580965757369995e-06,
+        0.0006454009562730789,
+        9.471550583839417e-06
+      ],
+      "separate_pair_nrmse": 0.023332200944423676,
+      "family_response_disagreement_mse": 1.8877069578593364e-06,
+      "abs_delta_a": 0.002558588981628418,
+      "abs_delta_b": 0.0013906359672546387,
+      "valid_duplicate_edge": true,
+      "equivalence_confidence": 0.935400385922343
+    },
+    {
+      "pair": [
+        1,
+        4
+      ],
+      "pair_name": "C2+C5",
+      "cross_state_prediction_r2": 0.999953444743355,
+      "cross_realization_prediction_r2": 0.9999521287396763,
+      "cross_base_prediction_r2": 0.9999507708050637,
+      "direct_replacement_max_nrmse_increase": 0.003666175529360771,
+      "direct_replacement_increases": [
+        0.0021168850362300873,
+        0.0009952113032341003,
+        0.003666175529360771,
+        0.0024880804121494293,
+        0.002291221171617508,
+        7.072463631629944e-06,
+        6.476044654846191e-05,
+        -7.135048508644104e-05,
+        7.992610335350037e-05,
+        -8.985772728919983e-05
+      ],
+      "separate_pair_nrmse": 0.02968933805823326,
+      "family_response_disagreement_mse": 1.8990525632034405e-06,
+      "abs_delta_a": 0.010842323303222656,
+      "abs_delta_b": 0.0031985491514205933,
+      "valid_duplicate_edge": true,
+      "equivalence_confidence": 0.6333332178689866
+    }
+  ],
+  "selected_pair": {
+    "pair": [
+      0,
+      3
+    ],
+    "pair_name": "C1+C4",
+    "cross_state_prediction_r2": 0.9999404815496509,
+    "cross_realization_prediction_r2": 0.9999475182219876,
+    "cross_base_prediction_r2": 0.999950480457714,
+    "direct_replacement_max_nrmse_increase": 0.0006454009562730789,
+    "direct_replacement_increases": [
+      0.00022508017718791962,
+      0.00014789216220378876,
+      0.000330144539475441,
+      8.188001811504364e-05,
+      0.00045527704060077667,
+      0.0003219451755285263,
+      0.000586390495300293,
+      7.580965757369995e-06,
+      0.0006454009562730789,
+      9.471550583839417e-06
+    ],
+    "separate_pair_nrmse": 0.023332200944423676,
+    "family_response_disagreement_mse": 1.8877069578593364e-06,
+    "abs_delta_a": 0.002558588981628418,
+    "abs_delta_b": 0.0013906359672546387,
+    "valid_duplicate_edge": true,
+    "equivalence_confidence": 0.935400385922343
+  },
+  "survivor_quality": [
+    {
+      "candidate": 0,
+      "name": "C1",
+      "heldout_loss": 1.949010584212374e-05,
+      "assignment_instability": 0.12953367875647667,
+      "coverage_penalty": 0.11894489629175498,
+      "Q": 0.061599949691742886
+    },
+    {
+      "candidate": 3,
+      "name": "C4",
+      "heldout_loss": 1.9640809114207514e-05,
+      "assignment_instability": 0.12953367875647667,
+      "coverage_penalty": 0.2699991508473252,
+      "Q": 0.10691630141004999
+    }
+  ],
+  "survivor": "C1",
+  "dropped_candidate": "C4",
+  "alive_after": [
+    "C1",
+    "C2",
+    "C3",
+    "C5"
+  ],
+  "assignment_changes": [
+    0.06735751295336788,
+    0.0,
+    0.0
+  ],
+  "max_heldout_nrmse_increase": 8.305907249450684e-05,
+  "gate_checks": {
+    "max_heldout_nrmse_increase": true,
+    "functional": true,
+    "family_accuracy": true,
+    "fragmentation": true,
+    "assignment_stability": true
+  },
+  "commit": true,
+  "rollback": false
+}

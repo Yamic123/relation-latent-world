@@ -1,0 +1,14 @@
+{
+  "optimizer": "AdamW",
+  "learning_rate": 0.0003,
+  "weight_decay": 1e-05,
+  "batch_size": 512,
+  "max_epochs": 200,
+  "steps_per_epoch": 64,
+  "gradient_clip": 1.0,
+  "token_dim": 64,
+  "attention_heads": 4,
+  "M": 3,
+  "validation_subset": 5000,
+  "patience": 30
+}

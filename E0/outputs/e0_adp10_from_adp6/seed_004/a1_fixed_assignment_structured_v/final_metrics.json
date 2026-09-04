@@ -1,0 +1,235 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp6_a1",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 4,
+  "config": {
+    "experiment": "E0-ADP10-FROM-ADP6-STABILITY",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "optimization_seed": 4,
+    "m_max": 5,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "rounds": 40,
+    "mechanism_learning_rate": 0.0003,
+    "coordinate_learning_rate": 0.001,
+    "weight_decay": 1e-05,
+    "family_batch_size": 32,
+    "epochs_per_round": 4,
+    "gradient_clip": 1.0,
+    "functional_probe_count": 2000,
+    "a1_initialization": "random",
+    "pc1_sign_convention": "Orient q_U so the first listed nonzero learner-visible action member has positive projection.",
+    "pass_thresholds": {
+      "median_order_accuracy": 0.95,
+      "candidate_affine_realization_r2": 0.9,
+      "heldout_realization_nrmse": 0.15,
+      "purity_high_functional_r2": 0.7,
+      "min_purity_high_candidates_above_threshold": 2
+    },
+    "scientific_scale_reduction": "none"
+  },
+  "config_sha256": "f6511b7ccf87fa09fa17544b0f4e78ca28da902e50bbb5459e3145b3c591054d",
+  "script_sha256": "ac2f09ebec5d89490a9aa6baff0c173a031c013593301804688a869e6cf547ac",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "a1_initialization": "random",
+  "initial_checkpoint": null,
+  "initial_model_hash": "01092bd8f956ebef4c003652c46bec1ce86916740900698b791020c1f82ceb19",
+  "fixed_assignment_source": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp10_from_adp6\\seed_004\\a0_free_v_baseline\\fixed_assignments.npz",
+  "rounds_completed": 40,
+  "last_round": {
+    "round": 39,
+    "train_response_mse": 2.388150642218534e-05,
+    "heldout_realization_nrmse": 0.02053912542760372,
+    "candidate_a": [
+      0.9491682648658752,
+      1.051623821258545,
+      0.9198133945465088,
+      0.9457730650901794,
+      1.0553717613220215
+    ],
+    "candidate_b": [
+      0.01014966145157814,
+      -0.005775377154350281,
+      -0.003712865523993969,
+      0.009862943552434444,
+      -0.0009781968547031283
+    ],
+    "median_order_accuracy": 1.0,
+    "median_abs_spearman_alpha_inferred_v": 1.0,
+    "median_abs_kendall_alpha_inferred_v": 1.0,
+    "candidate_affine_aligned_realization_r2": [
+      0.9999999999999855,
+      0.9999999999999882,
+      0.9999999999999846,
+      0.9999999999999967,
+      0.9999999999999936
+    ],
+    "same_alpha_cross_family_variance": [
+      [
+        4.298783551348606e-13,
+        1.3401045139034562e-13,
+        3.54618305477717e-14,
+        2.0232181544271172e-14,
+        1.6797021130769696e-13,
+        8.881784197001252e-14
+      ],
+      [
+        5.684341886080802e-14,
+        1.6242406996203745e-13,
+        1.3629159920872796e-13,
+        1.6832858078328489e-13,
+        2.1381331492646705e-13,
+        1.4210854715202004e-14
+      ],
+      [
+        6.004086117172847e-13,
+        2.2283261661652093e-13,
+        9.005995818892054e-14,
+        3.833191275108344e-15,
+        3.4923442176343356e-13,
+        1.879385536085465e-12
+      ],
+      [
+        4.298783551348606e-13,
+        1.3957089149918772e-15,
+        4.59949531210485e-16,
+        9.357594367209515e-16,
+        1.3957089149918772e-15,
+        2.877698079828406e-13
+      ],
+      [
+        1.4210854715202004e-14,
+        9.818965844392291e-14,
+        2.1484729820957574e-14,
+        3.428674851630939e-14,
+        3.368952633750759e-15,
+        2.2737367544323206e-13
+      ]
+    ],
+    "functional_r2_matrix": [
+      [
+        -1.384563071142852,
+        -0.8269860542656562,
+        0.9997008084489682
+      ],
+      [
+        0.9997930793618894,
+        -0.6926678107027726,
+        -1.396141409526178
+      ],
+      [
+        -1.4734258247479821,
+        0.9996256761598394,
+        -1.7304426017123213
+      ],
+      [
+        -1.3828589988493105,
+        -0.8273894407790132,
+        0.9997189730665802
+      ],
+      [
+        0.9998192920843977,
+        -0.6907370735567151,
+        -1.3892959402020968
+      ]
+    ],
+    "functional_gt_to_candidate": {
+      "1": 2,
+      "2": 3,
+      "0": 4
+    },
+    "matched_functional_r2": [
+      0.9998192920843977,
+      0.9996256761598394,
+      0.9997189730665802
+    ],
+    "family_contingency": [
+      [
+        0,
+        0,
+        68
+      ],
+      [
+        71,
+        0,
+        0
+      ],
+      [
+        0,
+        133,
+        0
+      ],
+      [
+        0,
+        0,
+        56
+      ],
+      [
+        58,
+        0,
+        0
+      ]
+    ],
+    "family_accuracy_fixed": 0.7046632124352331,
+    "fragmentation_per_gt_fixed": [
+      0.4496124031007752,
+      0.0,
+      0.4516129032258065
+    ],
+    "candidate_purity_fixed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "purity_high_candidate_functional_r2": [
+      0.9997008084489682,
+      0.9997930793618894,
+      0.9996256761598394,
+      0.9997189730665802,
+      0.9998192920843977
+    ],
+    "family_assignment_change": 0.0,
+    "candidate_usage": [
+      0.16502301117685733,
+      0.18474687705456935,
+      0.34845496383957925,
+      0.16502301117685733,
+      0.13675213675213677
+    ],
+    "candidate_family_count": [
+      251,
+      281,
+      530,
+      251,
+      208
+    ],
+    "m_step_seconds": 6.004106521606445,
+    "round_seconds": 6.004106521606445,
+    "cuda_peak_allocated_mib": 47.107421875
+  },
+  "checks": {
+    "order": true,
+    "affine_realization": true,
+    "heldout": true,
+    "purity_high_functional": true,
+    "not_all_matched_negative": true,
+    "improves_over_adp5": true
+  },
+  "pass": true,
+  "stop_required": false,
+  "wall_seconds": 239.98408484458923,
+  "cuda_peak_allocated_mib": 47.107421875
+}

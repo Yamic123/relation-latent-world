@@ -1,0 +1,7 @@
+﻿condition,seed,z4_identity_pass,z4_coordinate_pass,z4_pass,m_discovered,pruning_pass,b1_iid_nrmse,b1_101_nrmse,participation_f1,final_pass,failure_mode
+identity,0,True,True,True,5,False,,,,False,F4_duplicate_graph_false_negative
+identity,1,False,True,False,,False,,,,False,F3_mechanism_mixing
+identity,2,True,True,True,5,False,,,,False,F4_duplicate_graph_false_negative
+orthogonal,0,True,True,True,5,False,,,,False,F4_duplicate_graph_false_negative
+orthogonal,1,False,True,False,,False,,,,False,F3_mechanism_mixing
+orthogonal,2,True,True,True,5,False,,,,False,F4_duplicate_graph_false_negative

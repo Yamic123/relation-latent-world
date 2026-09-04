@@ -1,0 +1,17 @@
+{
+  "enumerate_all_supports": true,
+  "num_supports": 32,
+  "v_bound": 1.5,
+  "v_parameterization": "1.5*tanh(z)",
+  "optimizer": "Adam",
+  "learning_rate": 0.05,
+  "max_steps": 100,
+  "restarts": 5,
+  "relative_tolerance": 1e-07,
+  "tolerance_patience": 10,
+  "tie_epsilon": 1e-08,
+  "chunk_size": 4096,
+  "seed": 0,
+  "num_samples": 100,
+  "reference": "scipy.optimize.minimize L-BFGS-B, 12 starts"
+}

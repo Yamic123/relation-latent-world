@@ -1,0 +1,21 @@
+{
+  "experiment": "E0-ADP7",
+  "development_seed": 0,
+  "last_executed_stage": "adp7_a2",
+  "last_passed_stage": "adp7_a1",
+  "pass": false,
+  "stop_required": true,
+  "stop_reason": "Both suspected duplicate pairs fail at least one source-copy cross-realization holdout under the preregistered NRMSE tolerance, despite near-perfect functional and coordinate metrics.",
+  "stage_results": {
+    "adp7_0": true,
+    "adp7_a0": true,
+    "adp7_a1": true,
+    "adp7_a2": false,
+    "adp7_a3": "not_run_due_to_gate",
+    "adp7_a4": "not_run_due_to_gate",
+    "adp7_a5": "not_run_due_to_gate"
+  },
+  "primary_initialization": "source_copy",
+  "random_initialization_robustness": false,
+  "interpretation": "The candidates are functionally equivalent at the ADP6 checkpoint, but a merged single-capacity model fine-tuned on a restricted realization regime is not sufficiently stable when extrapolated to held-out realization regimes. Formal merge is not authorized."
+}

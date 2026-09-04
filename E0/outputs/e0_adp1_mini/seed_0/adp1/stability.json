@@ -1,0 +1,10 @@
+{
+  "experiment": "E0-ADP1-MINI",
+  "optimization_seed": 0,
+  "discovery_stable": false,
+  "rounds_run": 12,
+  "best_round": 10,
+  "best_val_objective": 0.019367244094610214,
+  "wall_seconds": 149.5999321937561,
+  "peak_gpu_memory_bytes": 150190080
+}

@@ -1,0 +1,60 @@
+{
+  "stage": "adp2_a0",
+  "python_executable": "E:\\conda\\python.exe",
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "torch": "2.6.0",
+  "cuda_available": false,
+  "device": "cpu",
+  "gpu": null,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "context_seed": 20260903,
+  "config_sha256": "023c1c2e875df0cbbe46d7076ea2be8f79d1b8f2504a912115b409387ee99776",
+  "config": {
+    "experiment": "E0-ADP2-COMPACT-13H",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "context_seed": 20260903,
+    "optimization_seed": 0,
+    "m_max": 5,
+    "lambda_participation": 0.001,
+    "subset": {
+      "train": 1024,
+      "val": 256,
+      "test_iid": 512,
+      "test_context": 512,
+      "test_combination_101": 512
+    },
+    "e_step": {
+      "num_supports": 32,
+      "chunk_size": 256,
+      "v_bound": 1.5,
+      "optimizer": "Adam",
+      "learning_rate": 0.05,
+      "max_steps": 20,
+      "restarts": 2,
+      "relative_tolerance": 1e-07,
+      "tolerance_patience": 10,
+      "tie_epsilon": 1e-08,
+      "lambda_p": 0.001
+    },
+    "m_step": {
+      "optimizer": "AdamW",
+      "learning_rate": 0.0003,
+      "weight_decay": 1e-05,
+      "batch_size": 128,
+      "steps_per_candidate_per_round": 16,
+      "gradient_clip": 1.0,
+      "target": "residual_backfitting"
+    },
+    "compact": {
+      "baseline_rounds": 4,
+      "tau_conf": 0.05,
+      "n_min_per_context": 32,
+      "min_context_coverage": 3
+    }
+  }
+}

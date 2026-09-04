@@ -1,0 +1,76 @@
+{
+  "experiment": "E0-ADP12-BAYESIAN-RESPONSIBILITY",
+  "optimization_seed": 0,
+  "m_max": 5,
+  "mechanism_dim": 64,
+  "mechanism_heads": 4,
+  "rounds": 40,
+  "mechanism_learning_rate": 0.0003,
+  "coordinate_learning_rate": 0.001,
+  "weight_decay": 1e-05,
+  "family_batch_size": 32,
+  "epochs_per_round": 4,
+  "gradient_clip": 1.0,
+  "functional_probe_count": 2000,
+  "major_candidate_min_usage": 0.02,
+  "temperature_kappa": [
+    4.0,
+    2.0,
+    1.0,
+    0.5
+  ],
+  "temperature_block_rounds": 10,
+  "temperature_epsilon": 1e-08,
+  "responsibility_ema_decay": 0.8,
+  "death_start_round": 20,
+  "death_low_support_rounds": 5,
+  "death_screen": 0.01,
+  "death_global_delta_nrmse": 0.01,
+  "death_subgroup_delta_nrmse": 0.02,
+  "death_bootstrap_repeats": 200,
+  "death_blacklist_rounds": 5,
+  "stable_last_rounds": 3,
+  "stable_nrmse_range": 0.01,
+  "stable_nrmse_median": 0.1,
+  "edge_thresholds": {
+    "cross_state_prediction_r2": 0.995,
+    "cross_realization_prediction_r2": 0.995,
+    "cross_base_prediction_r2": 0.995,
+    "direct_replacement_max_nrmse_increase": 0.01
+  },
+  "survivor_weights": {
+    "heldout_loss": 0.5,
+    "assignment_instability": 0.2,
+    "coverage_penalty": 0.3
+  },
+  "prune_gate": {
+    "max_heldout_nrmse_increase": 0.01,
+    "min_best_functional_r2": 0.95,
+    "max_family_accuracy_drop": 0.03,
+    "max_fragmentation_increase": 0.03,
+    "max_repeated_assignment_change": 0.1
+  },
+  "final_gate": {
+    "iid_nrmse": 0.03,
+    "structured_nrmse": 0.05,
+    "min_best_functional_r2": 0.95,
+    "family_accuracy": 0.9,
+    "mean_fragmentation": 0.1,
+    "assignment_change": 0.1
+  },
+  "b1": {
+    "lambda_p": 0.001,
+    "alpha_bound": 1.5,
+    "learning_rate": 0.05,
+    "steps": 60,
+    "restarts": 3,
+    "chunk_size": 1024,
+    "splits": [
+      "test_iid",
+      "test_combination_101"
+    ]
+  },
+  "variant": "H1",
+  "soft_responsibility": true,
+  "evidence_death": false
+}

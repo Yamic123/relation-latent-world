@@ -1,0 +1,110 @@
+{
+  "experiment": "E0-A",
+  "tag": "nc1_mmax2",
+  "tp": "identity",
+  "actual_transform": "identity",
+  "optimization_seed": 2,
+  "prediction_nrmse": {
+    "train": 0.43253132700920105,
+    "val": 0.4294765293598175,
+    "test_iid": 0.43370547890663147,
+    "test_context": 0.46244344115257263,
+    "test_combination_101": 0.5403752326965332
+  },
+  "functional_r2_matrix": [
+    [
+      -3.1934300008414738,
+      -2.104047460444885,
+      -3.4649406159885308
+    ],
+    [
+      -3.6268521989244435,
+      -2.537885963820683,
+      -3.628577071214991
+    ]
+  ],
+  "alignment_gt_to_learned": {
+    "2": 1,
+    "1": 2
+  },
+  "functional_r2_matched": [
+    -3.6268521989244435,
+    -2.104047460444885,
+    -1000000.0
+  ],
+  "functional_r2_min": -1000000.0,
+  "participation": {
+    "Z1": {
+      "precision": 0.47495,
+      "recall": 1.0,
+      "f1": 0.6440218312485169,
+      "auroc": 0.48366345510895803
+    },
+    "Z2": {
+      "precision": 0.6319702602230484,
+      "recall": 0.9932101689562609,
+      "f1": 0.7724425887265136,
+      "auroc": 0.4636988020252756
+    },
+    "Z3": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "auroc": 0.5
+    }
+  },
+  "participation_f1_mean": 0.4721548066583435,
+  "candidate_usage": [
+    0.9950045943260193,
+    0.9999972581863403
+  ],
+  "redundant_indices_1_based": [],
+  "redundant_usage_max": 0.0,
+  "calibration": {
+    "learned_0_gt_0": {
+      "slope": 0.31683549284935,
+      "intercept": -0.4321402907371521,
+      "n": 3167
+    },
+    "learned_1_gt_0": {
+      "slope": 0.08537084609270096,
+      "intercept": 0.5191851854324341,
+      "n": 3167
+    },
+    "learned_0_gt_1": {
+      "slope": 0.36268794536590576,
+      "intercept": -0.4158920645713806,
+      "n": 3167
+    },
+    "learned_1_gt_1": {
+      "slope": -0.10660190135240555,
+      "intercept": 0.5448775887489319,
+      "n": 3167
+    },
+    "learned_0_gt_2": {
+      "slope": -0.1068926528096199,
+      "intercept": -0.4546722173690796,
+      "n": 3167
+    },
+    "learned_1_gt_2": {
+      "slope": -0.14414967596530914,
+      "intercept": 0.5083370208740234,
+      "n": 3167
+    }
+  },
+  "pass_components": {
+    "predictive_iid": false,
+    "predictive_combination": false,
+    "participation": false,
+    "functional": false,
+    "redundancy": true,
+    "composition": false
+  },
+  "pass": false,
+  "training": {
+    "best_epoch": 49,
+    "epochs_run": 50,
+    "best_val_nrmse_subset": 0.43134230375289917,
+    "wall_seconds": 76.23670387268066
+  }
+}

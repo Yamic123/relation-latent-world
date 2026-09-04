@@ -1,0 +1,73 @@
+{
+  "experiment": "E0-ADP1-MINI",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seeds": [0, 1, 2],
+  "m_max": 5,
+  "lambda_participation": 0.001,
+  "model": {
+    "token_dim": 64,
+    "attention_heads": 4,
+    "cross_attention_layers": 2,
+    "architecture": "SetMechanismBank"
+  },
+  "subset": {
+    "train": 1024,
+    "val": 256,
+    "test_iid": 512,
+    "test_context": 512,
+    "test_combination_101": 512,
+    "selection": "fixed_prefix"
+  },
+  "e_step": {
+    "num_supports": 32,
+    "chunk_size": 2048,
+    "v_bound": 1.5,
+    "v_parameterization": "1.5*tanh(z)",
+    "optimizer": "Adam",
+    "learning_rate": 0.05,
+    "solver_ladder": [[20, 2], [30, 2], [30, 3]],
+    "relative_tolerance": 1e-7,
+    "tolerance_patience": 10,
+    "tie_epsilon": 1e-8,
+    "lambda_p": 0.001
+  },
+  "m_step": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.00001,
+    "batch_size": 128,
+    "steps_per_candidate_per_round": 16,
+    "gradient_clip": 1.0,
+    "target": "residual_backfitting"
+  },
+  "outer_loop": {
+    "max_rounds": 12,
+    "min_rounds": 4,
+    "stability_window": 3,
+    "support_change_threshold": 0.01,
+    "validation_relative_change_threshold": 0.0005,
+    "val_every_rounds": 2,
+    "best_checkpoint_metric": "val_penalized_objective"
+  },
+  "joint_control": {
+    "optimizer_updates": 960,
+    "batch_size": 128,
+    "lambda_participation": 0.001,
+    "temperature_start": 1.0,
+    "temperature_end": 0.35,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.00001,
+    "gradient_clip": 1.0
+  },
+  "amortization": {
+    "enabled_only_after_stability": true,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.00001,
+    "batch_size": 128,
+    "max_epochs": 30,
+    "patience": 10,
+    "lambda_v": 1.0
+  }
+}

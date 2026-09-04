@@ -1,0 +1,186 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp3_a1",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "contrast_seed": 20260904,
+  "optimization_seed": 0,
+  "config": {
+    "experiment": "E0-ADP3-8GB-DEVELOPMENT",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "contrast_seed": 20260904,
+    "optimization_seed": 0,
+    "m_real_evaluator_only": 3,
+    "m_max": 5,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "base_groups": {
+      "train": 1024,
+      "val": 256,
+      "test": 512
+    },
+    "contrasts_per_base": 12,
+    "a1": {
+      "rounds": 40,
+      "inner_optimizer": "Adam",
+      "inner_learning_rate": 0.05,
+      "inner_steps": 20,
+      "inner_restarts": 2,
+      "v_bound": 1.5,
+      "e_step_chunk_size": 256,
+      "m_step_optimizer": "AdamW",
+      "m_step_learning_rate": 0.0003,
+      "m_step_weight_decay": 1e-05,
+      "m_step_batch_size": 128,
+      "m_step_epochs_per_round": 4,
+      "gradient_clip": 1.0,
+      "functional_probe_count": 2000
+    },
+    "pass_thresholds": {
+      "fragment_matching_accuracy_strict_gt": 0.9,
+      "matched_functional_r2_each": 0.8,
+      "matched_functional_r2_min": 0.7,
+      "last3_assignment_change_rate": 0.1
+    },
+    "gpu_adjustments": {
+      "source_plan_contrasts_per_base": 12,
+      "applied_contrasts_per_base": 12,
+      "justification": "A one-round 6-contrast probe used only 49 MiB of PyTorch allocated GPU memory, so the formal run retains all contrasts and all scientific parameters.",
+      "memory_control": "Chunk the differentiable inner solve into 256 fragments; do not reduce model width or change the algorithm."
+    }
+  },
+  "config_sha256": "909e68ea7d23cc14a01ca539d32a4b9457c165df19bda26e8548c4010a6b215d",
+  "script_sha256": "fbaff3b98e4ade9091babe1e3b9962372e35195828ea1dc255fe8d10c8c4e86b",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "rounds_completed": 40,
+  "development_probe_only": false,
+  "last_round": {
+    "round": 39,
+    "train_fragment_mse": 0.0015072899404913187,
+    "val_fragment_nrmse": 0.14591152966022491,
+    "candidate_usage": [
+      0.21004231770833334,
+      0.14054361979166666,
+      0.3116048177083333,
+      0.10994466145833333,
+      0.22786458333333334
+    ],
+    "candidate_sample_count": [
+      2581,
+      1727,
+      3829,
+      1351,
+      2800
+    ],
+    "candidate_heldout_error": [
+      0.002234003273770213,
+      0.002351638162508607,
+      0.0011861638631671667,
+      0.0025082069914788008,
+      0.0009694218169897795
+    ],
+    "candidate_effect_norm": [
+      0.5478590726852417,
+      0.7508400082588196,
+      0.6231898665428162,
+      0.6910666227340698,
+      0.5498708486557007
+    ],
+    "assignment_change_rate": 0.3167317708333333,
+    "exact_assignment_agreement": 0.617431640625,
+    "functional_r2_matrix": [
+      [
+        0.8886233901626354,
+        -0.6671794421504871,
+        -0.26921775639211964
+      ],
+      [
+        -1.9102255990921178,
+        -1.013828524682804,
+        -3.0286927380423005
+      ],
+      [
+        0.3478151839026572,
+        -0.93589356557226,
+        -0.17600167620277585
+      ],
+      [
+        -1.6855970184262716,
+        -0.05068391434350206,
+        -1.0365052711052543
+      ],
+      [
+        -0.10994306611698912,
+        0.3232086104391918,
+        -0.0035196103182499883
+      ]
+    ],
+    "hungarian_gt_to_candidate": {
+      "0": 0,
+      "2": 2,
+      "1": 4
+    },
+    "matched_functional_r2": [
+      0.8886233901626354,
+      0.3232086104391918,
+      -0.17600167620277585
+    ],
+    "matched_functional_r2_min": -0.17600167620277585,
+    "fragment_matching_accuracy": 0.3277994791666667,
+    "fragment_confusion_matrix_rows_gt_cols_pred012extra45": [
+      [
+        661,
+        11,
+        238,
+        114,
+        0,
+        0
+      ],
+      [
+        3,
+        132,
+        473,
+        416,
+        0,
+        0
+      ],
+      [
+        2,
+        609,
+        214,
+        199,
+        0,
+        0
+      ]
+    ],
+    "alive": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "num_alive": 5,
+    "merge_proposals": [],
+    "merge_accepts": [],
+    "merge_seconds": 0.0,
+    "e_step_seconds": 6.654035568237305,
+    "m_step_seconds": 3.228956460952759,
+    "round_seconds": 9.882992029190063,
+    "cuda_peak_allocated_mib": 48.93798828125
+  },
+  "last3_assignment_change_rate": 0.3196614583333333,
+  "pass": false,
+  "stop_required": true,
+  "wall_seconds": 414.7630274295807,
+  "cuda_peak_allocated_mib": 48.93798828125
+}

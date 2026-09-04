@@ -1,0 +1,17 @@
+{
+  "variant": "S3",
+  "seed": 1,
+  "top_k": 3,
+  "z4_pass": true,
+  "major_mixing": false,
+  "existence_tests": 25,
+  "existence_deletes": 0,
+  "existence_rollbacks": 0,
+  "duplicate_prunes": 1,
+  "m_discovered": 4,
+  "family_accuracy": 0.9818652849740933,
+  "fragmentation": 0.017543859649122823,
+  "b1_pass": false,
+  "final_pass": false,
+  "failure_mode": "F7_count_only_failure"
+}

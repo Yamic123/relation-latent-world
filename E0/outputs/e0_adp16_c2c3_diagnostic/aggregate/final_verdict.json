@@ -1,0 +1,38 @@
+{
+  "functional_map_complete": true,
+  "affine_bridge_pass": false,
+  "state_bridge_pass": false,
+  "B1_pass": false,
+  "B2_pass": false,
+  "B3_pass": false,
+  "wrong_pair_selection": {
+    "candidate": 0,
+    "median_gap": 0.19767150282859802
+  },
+  "wrong_pair_table": [
+    {
+      "candidate": 0,
+      "median_gap": 0.19767150282859802
+    },
+    {
+      "candidate": 3,
+      "median_gap": 0.1875753104686737
+    },
+    {
+      "candidate": 4,
+      "median_gap": 0.18418797850608826
+    }
+  ],
+  "wrong_pair_pass": false,
+  "stop_1_invalid": false,
+  "state_conditional_diagnostic": {
+    "state_region_complementarity": false,
+    "best_source_by_bucket": [
+      "C3",
+      "C3",
+      "C3",
+      "C3"
+    ]
+  },
+  "classification": "deeper_conditional_function_or_identity_mismatch"
+}

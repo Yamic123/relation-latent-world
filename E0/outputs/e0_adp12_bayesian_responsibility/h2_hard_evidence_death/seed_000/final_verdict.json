@@ -1,0 +1,14 @@
+{
+  "variant": "H2",
+  "seed": 0,
+  "z4_pass": true,
+  "death_events": 1,
+  "death_commits": 1,
+  "duplicate_prunes": 0,
+  "m_discovered": 4,
+  "family_accuracy": 0.9974093264248705,
+  "fragmentation": 0.002583979328165379,
+  "b1_pass": false,
+  "final_pass": false,
+  "failure_mode": "F5_unsupported_slot_remains"
+}

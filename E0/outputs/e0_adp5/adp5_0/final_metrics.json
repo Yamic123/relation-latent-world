@@ -1,0 +1,214 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp5_0",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "family_seed": 20260905,
+  "optimization_seed": 0,
+  "config": {
+    "experiment": "E0-ADP5-8GB-DEVELOPMENT",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "family_seed": 20260905,
+    "optimization_seed": 0,
+    "m_max": 5,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "base_counts": {
+      "train": 1024,
+      "val": 256,
+      "test": 512
+    },
+    "k_probability": {
+      "1": 0.5,
+      "2": 0.5
+    },
+    "train_active_values": [
+      -1.0,
+      -0.7,
+      -0.4,
+      0.4,
+      0.7,
+      1.0
+    ],
+    "heldout_active_values": [
+      -0.85,
+      -0.55,
+      -0.3,
+      0.3,
+      0.55,
+      0.85
+    ],
+    "a1": {
+      "rounds": 40,
+      "inner_learning_rate": 0.05,
+      "inner_steps": 20,
+      "inner_restarts": 2,
+      "v_bound": 1.5,
+      "point_chunk_size": 256,
+      "m_step_learning_rate": 0.0003,
+      "m_step_weight_decay": 1e-05,
+      "m_step_family_batch_size": 32,
+      "m_step_epochs_per_round": 4,
+      "gradient_clip": 1.0,
+      "functional_probe_count": 2000
+    },
+    "pass_thresholds": {
+      "family_hungarian_accuracy": 0.8,
+      "matched_functional_r2_each": 0.7,
+      "num_matched_functional_r2_above_0_85": 2,
+      "last3_family_assignment_change": 0.15,
+      "mean_gt_fragmentation": 0.3
+    },
+    "gpu_adjustments": {
+      "scientific_scale_reduction": "none",
+      "memory_control": "Inner optimization uses 256-point chunks and M-step uses 32-family batches as specified by the plan."
+    }
+  },
+  "config_sha256": "a4e9c0ae761f594b23fa35dcd207808c96123db7f0209580f926c353c817d310",
+  "script_sha256": "b59f00438731669c6374d22f8fb72762ba8efd54674563afb7829d85d9d37a1a",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "audits": {
+    "train": {
+      "base_count": 1024,
+      "family_count": 1521,
+      "K_histogram": {
+        "1": 527,
+        "2": 497,
+        "3": 0
+      },
+      "GT_family_counts_evaluator_only": [
+        489,
+        530,
+        502
+      ],
+      "max_min_GT_count_ratio": 1.0838445807770962,
+      "local0_GT_counts_evaluator_only": [
+        324,
+        353,
+        347
+      ],
+      "local0_max_min_ratio": 1.0895061728395061,
+      "members_per_family": {
+        "train_active": 6,
+        "heldout_active": 6,
+        "baseline": 1
+      },
+      "learner_visible_fields": [
+        "S",
+        "base_id",
+        "local_family_id",
+        "action_train",
+        "response_train",
+        "action_heldout",
+        "response_heldout",
+        "baseline_response"
+      ],
+      "checks": {
+        "K_only_1_or_2": true,
+        "no_K3": true,
+        "coverage_ratio_lt_1_15": true,
+        "random_local_label_ratio_lt_1_30": true,
+        "learner_schema_clean": true
+      },
+      "pass": true
+    },
+    "val": {
+      "base_count": 256,
+      "family_count": 386,
+      "K_histogram": {
+        "1": 126,
+        "2": 130,
+        "3": 0
+      },
+      "GT_family_counts_evaluator_only": [
+        129,
+        133,
+        124
+      ],
+      "max_min_GT_count_ratio": 1.0725806451612903,
+      "local0_GT_counts_evaluator_only": [
+        85,
+        87,
+        84
+      ],
+      "local0_max_min_ratio": 1.0357142857142858,
+      "members_per_family": {
+        "train_active": 6,
+        "heldout_active": 6,
+        "baseline": 1
+      },
+      "learner_visible_fields": [
+        "S",
+        "base_id",
+        "local_family_id",
+        "action_train",
+        "response_train",
+        "action_heldout",
+        "response_heldout",
+        "baseline_response"
+      ],
+      "checks": {
+        "K_only_1_or_2": true,
+        "no_K3": true,
+        "coverage_ratio_lt_1_15": true,
+        "random_local_label_ratio_lt_1_30": true,
+        "learner_schema_clean": true
+      },
+      "pass": true
+    },
+    "test": {
+      "base_count": 512,
+      "family_count": 766,
+      "K_histogram": {
+        "1": 258,
+        "2": 254,
+        "3": 0
+      },
+      "GT_family_counts_evaluator_only": [
+        255,
+        252,
+        259
+      ],
+      "max_min_GT_count_ratio": 1.0277777777777777,
+      "local0_GT_counts_evaluator_only": [
+        174,
+        167,
+        171
+      ],
+      "local0_max_min_ratio": 1.0419161676646707,
+      "members_per_family": {
+        "train_active": 6,
+        "heldout_active": 6,
+        "baseline": 1
+      },
+      "learner_visible_fields": [
+        "S",
+        "base_id",
+        "local_family_id",
+        "action_train",
+        "response_train",
+        "action_heldout",
+        "response_heldout",
+        "baseline_response"
+      ],
+      "checks": {
+        "K_only_1_or_2": true,
+        "no_K3": true,
+        "coverage_ratio_lt_1_15": true,
+        "random_local_label_ratio_lt_1_30": true,
+        "learner_schema_clean": true
+      },
+      "pass": true
+    }
+  },
+  "pass": true
+}

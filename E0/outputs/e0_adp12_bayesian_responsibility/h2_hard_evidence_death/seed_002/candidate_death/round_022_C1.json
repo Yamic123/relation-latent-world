@@ -1,0 +1,41 @@
+{
+  "candidate": "C1",
+  "round": 22,
+  "domain_delta_nrmse": {
+    "iid": 0.0,
+    "state": 0.0,
+    "realization": 0.0,
+    "base": 0.0
+  },
+  "bootstrap_upper_95": {
+    "iid": 0.0,
+    "state": 0.0,
+    "realization": 0.0,
+    "base": 0.0
+  },
+  "max_subgroup_delta_nrmse": 0.0,
+  "post_delete_subgroup_nrmse": [
+    0.03300553932785988,
+    0.03541839122772217,
+    0.03223549202084541,
+    0.03632570430636406,
+    0.03386170417070389,
+    0.033643677830696106,
+    0.034083496779203415,
+    0.03265554457902908,
+    0.04030660539865494,
+    0.026287410408258438
+  ],
+  "checks": {
+    "global": true,
+    "bootstrap": true,
+    "subgroup": true
+  },
+  "pass": true,
+  "ema_responsibility": 0.0038578342646360397,
+  "commit": true,
+  "validation_round": 23,
+  "post_delete_frozen_global_drift": 0.0,
+  "post_delete_frozen_max_subgroup_drift": 0.0,
+  "rollback": false
+}

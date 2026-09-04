@@ -1,0 +1,250 @@
+{
+  "NC1_Mmax_lt_Mstar": {
+    "experiment": "E0-A",
+    "tag": "nc1_mmax2",
+    "tp": "identity",
+    "n_seeds": 3,
+    "passed_seeds": 0,
+    "recovery_rate": 0.0,
+    "stability_pass": false,
+    "seed_metrics": [
+      {
+        "seed": 0,
+        "iid_nrmse": 0.4265345335006714,
+        "combination_nrmse": 0.5277096629142761,
+        "participation_f1": 0.47316901507749193,
+        "functional_r2_min": -1000000.0,
+        "redundant_usage": 0.0,
+        "pass": false
+      },
+      {
+        "seed": 1,
+        "iid_nrmse": 0.37455058097839355,
+        "combination_nrmse": 0.470035582780838,
+        "participation_f1": 0.4730291976378136,
+        "functional_r2_min": -1000000.0,
+        "redundant_usage": 0.0,
+        "pass": false
+      },
+      {
+        "seed": 2,
+        "iid_nrmse": 0.43370547890663147,
+        "combination_nrmse": 0.5403752326965332,
+        "participation_f1": 0.4721548066583435,
+        "functional_r2_min": -1000000.0,
+        "redundant_usage": 0.0,
+        "pass": false
+      }
+    ],
+    "iid_nrmse_mean": 0.4115968644618988,
+    "iid_nrmse_std": 0.026358755085157698,
+    "combination_nrmse_mean": 0.5127068261305491,
+    "combination_nrmse_std": 0.030612964805073504,
+    "participation_f1_mean": 0.4727843397912163,
+    "participation_f1_std": 0.00044879186203858297,
+    "functional_r2_min_mean": -1000000.0,
+    "functional_r2_min_std": 0.0,
+    "redundant_usage_mean": 0.0,
+    "redundant_usage_std": 0.0
+  },
+  "NC2_factorial_removed": {
+    "experiment": "E0-A",
+    "tag": "nc2_factorial_removed",
+    "tp": "identity",
+    "n_seeds": 3,
+    "passed_seeds": 0,
+    "recovery_rate": 0.0,
+    "stability_pass": false,
+    "seed_metrics": [
+      {
+        "seed": 0,
+        "iid_nrmse": 0.15234725177288055,
+        "combination_nrmse": 0.21821415424346924,
+        "participation_f1": 0.6863433955817371,
+        "functional_r2_min": -1.6235567311236383,
+        "redundant_usage": 0.9999998807907104,
+        "pass": false
+      },
+      {
+        "seed": 1,
+        "iid_nrmse": 0.15094420313835144,
+        "combination_nrmse": 0.19173724949359894,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -3.0766229725076935,
+        "redundant_usage": 0.9999998807907104,
+        "pass": false
+      },
+      {
+        "seed": 2,
+        "iid_nrmse": 0.1421358585357666,
+        "combination_nrmse": 0.18081478774547577,
+        "participation_f1": 0.6860672803216112,
+        "functional_r2_min": -0.6401953009669887,
+        "redundant_usage": 0.9999998807907104,
+        "pass": false
+      }
+    ],
+    "iid_nrmse_mean": 0.14847577114899954,
+    "iid_nrmse_std": 0.00451943988603942,
+    "combination_nrmse_mean": 0.19692206382751465,
+    "combination_nrmse_std": 0.015702226559115587,
+    "participation_f1_mean": 0.6867563188391879,
+    "participation_f1_std": 0.0007873159994287115,
+    "functional_r2_min_mean": -1.7801250015327732,
+    "functional_r2_min_std": 1.0008097278825436,
+    "redundant_usage_mean": 0.9999998807907104,
+    "redundant_usage_std": 0.0
+  },
+  "NC4_shuffle_p": {
+    "experiment": "E0-A",
+    "tag": "nc4_shuffle_p",
+    "tp": "identity",
+    "n_seeds": 3,
+    "passed_seeds": 0,
+    "recovery_rate": 0.0,
+    "stability_pass": false,
+    "seed_metrics": [
+      {
+        "seed": 0,
+        "iid_nrmse": 1.0031858682632446,
+        "combination_nrmse": 1.0029197931289673,
+        "participation_f1": 0.0,
+        "functional_r2_min": -0.030157637714862684,
+        "redundant_usage": 0.018457356840372086,
+        "pass": false
+      },
+      {
+        "seed": 1,
+        "iid_nrmse": 1.0029101371765137,
+        "combination_nrmse": 1.0031038522720337,
+        "participation_f1": 0.0,
+        "functional_r2_min": -0.02134355660442311,
+        "redundant_usage": 0.035840582102537155,
+        "pass": false
+      },
+      {
+        "seed": 2,
+        "iid_nrmse": 1.0026230812072754,
+        "combination_nrmse": 1.0030776262283325,
+        "participation_f1": 0.0,
+        "functional_r2_min": -0.03129099794986345,
+        "redundant_usage": 0.033188607543706894,
+        "pass": false
+      }
+    ],
+    "iid_nrmse_mean": 1.002906362215678,
+    "iid_nrmse_std": 0.00022977235885199415,
+    "combination_nrmse_mean": 1.0030337572097778,
+    "combination_nrmse_std": 8.129292764768896e-05,
+    "participation_f1_mean": 0.0,
+    "participation_f1_std": 0.0,
+    "functional_r2_min_mean": -0.027597397423049747,
+    "functional_r2_min_std": 0.004446273352978558,
+    "redundant_usage_mean": 0.02916218216220538,
+    "redundant_usage_std": 0.00764648965837236
+  },
+  "NC5_lambda_P_zero": {
+    "experiment": "E0-A",
+    "tag": "nc5_lambda0",
+    "tp": "identity",
+    "n_seeds": 3,
+    "passed_seeds": 0,
+    "recovery_rate": 0.0,
+    "stability_pass": false,
+    "seed_metrics": [
+      {
+        "seed": 0,
+        "iid_nrmse": 0.1423916220664978,
+        "combination_nrmse": 0.17008572816848755,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -0.9151821857408822,
+        "redundant_usage": 0.9999998807907104,
+        "pass": false
+      },
+      {
+        "seed": 1,
+        "iid_nrmse": 0.14876514673233032,
+        "combination_nrmse": 0.1737453192472458,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -1.4959824399684831,
+        "redundant_usage": 0.9999998807907104,
+        "pass": false
+      },
+      {
+        "seed": 2,
+        "iid_nrmse": 0.1402668058872223,
+        "combination_nrmse": 0.17145879566669464,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -0.827811645055073,
+        "redundant_usage": 0.9999998807907104,
+        "pass": false
+      }
+    ],
+    "iid_nrmse_mean": 0.14380785822868347,
+    "iid_nrmse_std": 0.0036110702873450753,
+    "combination_nrmse_mean": 0.17176328102747598,
+    "combination_nrmse_std": 0.001509455799756839,
+    "participation_f1_mean": 0.6878582806142152,
+    "participation_f1_std": 0.0,
+    "functional_r2_min_mean": -1.0796587569214795,
+    "functional_r2_min_std": 0.29653831640481043,
+    "redundant_usage_mean": 0.9999998807907104,
+    "redundant_usage_std": 0.0
+  },
+  "NC7_ill_conditioned_tp": {
+    "experiment": "E0-A",
+    "tag": "nc7_ill_conditioned",
+    "tp": "identity",
+    "n_seeds": 3,
+    "passed_seeds": 0,
+    "recovery_rate": 0.0,
+    "stability_pass": false,
+    "seed_metrics": [
+      {
+        "seed": 0,
+        "iid_nrmse": 0.5078393816947937,
+        "combination_nrmse": 0.6522730588912964,
+        "participation_f1": 0.6268365307459492,
+        "functional_r2_min": 0.02559490258945396,
+        "redundant_usage": 0.2495775669813156,
+        "pass": false
+      },
+      {
+        "seed": 1,
+        "iid_nrmse": 0.521361231803894,
+        "combination_nrmse": 0.6627509593963623,
+        "participation_f1": 0.5247133721983129,
+        "functional_r2_min": -0.03855516531138359,
+        "redundant_usage": 0.9907393455505371,
+        "pass": false
+      },
+      {
+        "seed": 2,
+        "iid_nrmse": 0.5326652526855469,
+        "combination_nrmse": 0.6633389592170715,
+        "participation_f1": 0.414155692843677,
+        "functional_r2_min": -0.8306655580884772,
+        "redundant_usage": 0.4738878309726715,
+        "pass": false
+      }
+    ],
+    "iid_nrmse_mean": 0.5206219553947449,
+    "iid_nrmse_std": 0.010148591521954279,
+    "combination_nrmse_mean": 0.65945432583491,
+    "combination_nrmse_std": 0.0050835933573190484,
+    "participation_f1_mean": 0.5219018652626464,
+    "participation_f1_std": 0.08684934515638802,
+    "functional_r2_min_mean": -0.2812086069368023,
+    "functional_r2_min_std": 0.38940639755024664,
+    "redundant_usage_mean": 0.5714015811681747,
+    "redundant_usage_std": 0.31033518879953675
+  },
+  "NC3_no_relation_learner": {
+    "status": "not_run",
+    "reason": "E0-B is gated by E0-A failure; no recovered Z_D base exists"
+  },
+  "NC6_directional_variation_removed": {
+    "status": "not_run",
+    "reason": "directional edge experiment is gated by E0-A failure"
+  }
+}

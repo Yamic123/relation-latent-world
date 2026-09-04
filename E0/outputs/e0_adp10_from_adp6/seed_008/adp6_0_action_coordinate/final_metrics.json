@@ -1,0 +1,79 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp6_0",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 8,
+  "config": {
+    "experiment": "E0-ADP10-FROM-ADP6-STABILITY",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "optimization_seed": 8,
+    "m_max": 5,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "rounds": 40,
+    "mechanism_learning_rate": 0.0003,
+    "coordinate_learning_rate": 0.001,
+    "weight_decay": 1e-05,
+    "family_batch_size": 32,
+    "epochs_per_round": 4,
+    "gradient_clip": 1.0,
+    "functional_probe_count": 2000,
+    "a1_initialization": "random",
+    "pc1_sign_convention": "Orient q_U so the first listed nonzero learner-visible action member has positive projection.",
+    "pass_thresholds": {
+      "median_order_accuracy": 0.95,
+      "candidate_affine_realization_r2": 0.9,
+      "heldout_realization_nrmse": 0.15,
+      "purity_high_functional_r2": 0.7,
+      "min_purity_high_candidates_above_threshold": 2
+    },
+    "scientific_scale_reduction": "none"
+  },
+  "config_sha256": "25dd3d39c6830c2e275fd474bd563181a1f7cbbcfa9c0aa6bbcf3b76254b30c6",
+  "script_sha256": "ac2f09ebec5d89490a9aa6baff0c173a031c013593301804688a869e6cf547ac",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "audits": {
+    "train": {
+      "family_count": 1521,
+      "median_abs_spearman": 1.0,
+      "median_abs_kendall": 1.0,
+      "median_pairwise_order_accuracy_allow_flip": 1.0,
+      "spearman_sign_positive_fraction": 0.0
+    },
+    "val": {
+      "family_count": 386,
+      "median_abs_spearman": 1.0,
+      "median_abs_kendall": 1.0,
+      "median_pairwise_order_accuracy_allow_flip": 1.0,
+      "spearman_sign_positive_fraction": 0.0
+    },
+    "test": {
+      "family_count": 766,
+      "median_abs_spearman": 1.0,
+      "median_abs_kendall": 1.0,
+      "median_pairwise_order_accuracy_allow_flip": 1.0,
+      "spearman_sign_positive_fraction": 0.0
+    }
+  },
+  "overall_median_abs_spearman": 1.0,
+  "overall_median_abs_kendall": 1.0,
+  "overall_median_pairwise_order_accuracy": 1.0,
+  "sign_agreement_after_one_global_flip": 1.0,
+  "pc1_sign_convention": "Orient q_U so the first listed nonzero learner-visible action member has positive projection.",
+  "checks": {
+    "spearman": true,
+    "kendall": true,
+    "pair_order": true
+  },
+  "pass": true
+}

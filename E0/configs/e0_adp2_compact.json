@@ -1,0 +1,13 @@
+{
+  "experiment": "E0-ADP2-COMPACT-13H",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "context_seed": 20260903,
+  "optimization_seed": 0,
+  "m_max": 5,
+  "lambda_participation": 0.001,
+  "subset": {"train": 1024, "val": 256, "test_iid": 512, "test_context": 512, "test_combination_101": 512},
+  "e_step": {"num_supports": 32, "chunk_size": 256, "v_bound": 1.5, "optimizer": "Adam", "learning_rate": 0.05, "max_steps": 20, "restarts": 2, "relative_tolerance": 1e-7, "tolerance_patience": 10, "tie_epsilon": 1e-8, "lambda_p": 0.001},
+  "m_step": {"optimizer": "AdamW", "learning_rate": 0.0003, "weight_decay": 0.00001, "batch_size": 128, "steps_per_candidate_per_round": 16, "gradient_clip": 1.0, "target": "residual_backfitting"},
+  "compact": {"baseline_rounds": 4, "tau_conf": 0.05, "n_min_per_context": 32, "min_context_coverage": 3}
+}

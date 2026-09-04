@@ -1,0 +1,6 @@
+{
+  "optimization_seed": 0,
+  "optimizer_updates": 960,
+  "best_val_nrmse": 0.5460044145584106,
+  "wall_seconds": 21.370233297348022
+}

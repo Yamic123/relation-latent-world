@@ -1,0 +1,48 @@
+{
+  "experiment": "E0-A",
+  "tag": "nc4_shuffle_p",
+  "tp": "identity",
+  "n_seeds": 3,
+  "passed_seeds": 0,
+  "recovery_rate": 0.0,
+  "stability_pass": false,
+  "seed_metrics": [
+    {
+      "seed": 0,
+      "iid_nrmse": 1.0031858682632446,
+      "combination_nrmse": 1.0029197931289673,
+      "participation_f1": 0.0,
+      "functional_r2_min": -0.030157637714862684,
+      "redundant_usage": 0.018457356840372086,
+      "pass": false
+    },
+    {
+      "seed": 1,
+      "iid_nrmse": 1.0029101371765137,
+      "combination_nrmse": 1.0031038522720337,
+      "participation_f1": 0.0,
+      "functional_r2_min": -0.02134355660442311,
+      "redundant_usage": 0.035840582102537155,
+      "pass": false
+    },
+    {
+      "seed": 2,
+      "iid_nrmse": 1.0026230812072754,
+      "combination_nrmse": 1.0030776262283325,
+      "participation_f1": 0.0,
+      "functional_r2_min": -0.03129099794986345,
+      "redundant_usage": 0.033188607543706894,
+      "pass": false
+    }
+  ],
+  "iid_nrmse_mean": 1.002906362215678,
+  "iid_nrmse_std": 0.00022977235885199415,
+  "combination_nrmse_mean": 1.0030337572097778,
+  "combination_nrmse_std": 8.129292764768896e-05,
+  "participation_f1_mean": 0.0,
+  "participation_f1_std": 0.0,
+  "functional_r2_min_mean": -0.027597397423049747,
+  "functional_r2_min_std": 0.004446273352978558,
+  "redundant_usage_mean": 0.02916218216220538,
+  "redundant_usage_std": 0.00764648965837236
+}

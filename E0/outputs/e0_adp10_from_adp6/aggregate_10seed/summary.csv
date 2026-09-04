@@ -1,0 +1,11 @@
+﻿seed,adp6_a1_pass,adp6_a2_functional_pass,adp9_prune_pass,m_discovered,b1_pass,downstream_end_to_end_pass,failure_mode,wall_seconds
+0,True,True,True,3,True,True,,497.7807743549347
+1,True,True,True,3,True,True,,513.2417511940002
+2,True,True,True,3,True,True,,493.0173649787903
+3,True,True,True,3,True,True,,546.5567963123322
+4,True,True,True,3,True,True,,1336.4161245822906
+5,True,True,True,3,True,True,,1545.6545989513397
+6,True,True,True,3,True,True,,1538.0484488010406
+7,True,True,True,3,True,True,,1344.9349069595337
+8,True,True,True,3,True,True,,925.3916809558868
+9,True,True,False,4,False,False,F3_duplicate_graph_false_negative,408.2103612422943

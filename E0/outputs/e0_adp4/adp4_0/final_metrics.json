@@ -1,0 +1,83 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp4_0",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "config": {
+    "experiment": "E0-ADP4-8GB-DEVELOPMENT",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "optimization_seed": 0,
+    "m_real_evaluator_only": 3,
+    "m_max": 5,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "unit_epsilon": 1e-12,
+    "unit_tau_floor": 1e-06,
+    "unit_tau_multiplier": 10.0,
+    "a1": {
+      "rounds": 40,
+      "inner_optimizer": "Adam",
+      "inner_learning_rate": 0.05,
+      "inner_steps": 20,
+      "inner_restarts": 2,
+      "v_bound": 1.5,
+      "e_step_chunk_size": 256,
+      "m_step_optimizer": "AdamW",
+      "m_step_learning_rate": 0.0003,
+      "m_step_weight_decay": 1e-05,
+      "m_step_batch_size": 128,
+      "m_step_epochs_per_round": 4,
+      "gradient_clip": 1.0,
+      "functional_probe_count": 2000
+    },
+    "pass_thresholds": {
+      "unit_hungarian_accuracy": 0.8,
+      "best_functional_r2_each": 0.7,
+      "num_functional_r2_above_0_85": 2,
+      "last3_base_assignment_change": 0.15,
+      "mean_sign_split": 0.25
+    },
+    "gpu_adjustments": {
+      "scientific_scale_reduction": "none",
+      "memory_control": "Differentiable inner solve is chunked into 256 local units. All plan-specified groups, model dimensions, inner steps/restarts, epochs, and rounds are retained."
+    }
+  },
+  "config_sha256": "6176810d4eb4bde19d042783281009f9c41ced5ebe0adc7a9856549788607f8f",
+  "script_sha256": "eb012568255f520061615611d0e8143f1b62501e09a64d872b684973acbe54b8",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "splits": {
+    "train": {
+      "num_groups": 1024,
+      "all_3x4": true,
+      "within_family_max_distance": 1.341104507446289e-07,
+      "between_family_min_distance": 0.15488111972808838
+    },
+    "val": {
+      "num_groups": 256,
+      "all_3x4": true,
+      "within_family_max_distance": 1.3348812899494078e-07,
+      "between_family_min_distance": 0.1759956330060959
+    },
+    "test": {
+      "num_groups": 512,
+      "all_3x4": true,
+      "within_family_max_distance": 1.2013700256829907e-07,
+      "between_family_min_distance": 0.22295278310775757
+    }
+  },
+  "all_bases_3x4": true,
+  "within_family_max_distance": 1.341104507446289e-07,
+  "between_family_min_distance": 0.15488111972808838,
+  "separation_ratio_within_over_between": 8.65892827867433e-07,
+  "pass": true
+}

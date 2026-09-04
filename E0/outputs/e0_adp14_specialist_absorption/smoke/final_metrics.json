@@ -1,0 +1,19 @@
+{
+  "cuda_or_cpu_available": "cuda",
+  "checkpoint_exists": true,
+  "train_shape": [
+    1521,
+    5
+  ],
+  "val_shape": [
+    386,
+    5
+  ],
+  "finite_cost": true,
+  "proposal_count": 3,
+  "top_proposals": [
+    "C5->C4",
+    "C4->C5",
+    "C2->C3"
+  ]
+}

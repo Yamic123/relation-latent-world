@@ -1,0 +1,14 @@
+{
+  "stage": "adp10_s0",
+  "optimization_seed": 9,
+  "initial_model_hash": "ce395597b329e240b0c78dfae69ad9a3aa1ac94b7478eb63abfb43b25d299436",
+  "initial_optimizer_state_hash": "63a1f7333c524756455c8543f026e8d06e9025e4533d5e49474f84703d15c2b5",
+  "data_split_hash": "31f433ee45f565d97af3d3dbaa871917b8ecbe9b0052bf434acc732836cdfa61",
+  "family_dataset_hash": "eec5c354c3c8228f0f9a97e088f1c08c7a0700d5cc151a3659f8f960dabf13b1",
+  "adp6_config_hash": "9fa270c882745e5476801d8ea682894adc7d6936f2dda98db4c5c63e721d424e",
+  "adp9_config_hash": "b61cd04ff26e38a064d39316c27de8a2c37f314ea42e1772d4dcedd794e5e66e",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "pass": true
+}

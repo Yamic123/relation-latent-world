@@ -1,0 +1,456 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp5_a1",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "family_seed": 20260905,
+  "optimization_seed": 0,
+  "config": {
+    "experiment": "E0-ADP5-8GB-DEVELOPMENT",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "family_seed": 20260905,
+    "optimization_seed": 0,
+    "m_max": 5,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "base_counts": {
+      "train": 1024,
+      "val": 256,
+      "test": 512
+    },
+    "k_probability": {
+      "1": 0.5,
+      "2": 0.5
+    },
+    "train_active_values": [
+      -1.0,
+      -0.7,
+      -0.4,
+      0.4,
+      0.7,
+      1.0
+    ],
+    "heldout_active_values": [
+      -0.85,
+      -0.55,
+      -0.3,
+      0.3,
+      0.55,
+      0.85
+    ],
+    "a1": {
+      "rounds": 40,
+      "inner_learning_rate": 0.05,
+      "inner_steps": 20,
+      "inner_restarts": 2,
+      "v_bound": 1.5,
+      "point_chunk_size": 256,
+      "m_step_learning_rate": 0.0003,
+      "m_step_weight_decay": 1e-05,
+      "m_step_family_batch_size": 32,
+      "m_step_epochs_per_round": 4,
+      "gradient_clip": 1.0,
+      "functional_probe_count": 2000
+    },
+    "pass_thresholds": {
+      "family_hungarian_accuracy": 0.8,
+      "matched_functional_r2_each": 0.7,
+      "num_matched_functional_r2_above_0_85": 2,
+      "last3_family_assignment_change": 0.15,
+      "mean_gt_fragmentation": 0.3
+    },
+    "gpu_adjustments": {
+      "scientific_scale_reduction": "none",
+      "memory_control": "Inner optimization uses 256-point chunks and M-step uses 32-family batches as specified by the plan."
+    }
+  },
+  "config_sha256": "a4e9c0ae761f594b23fa35dcd207808c96123db7f0209580f926c353c817d310",
+  "script_sha256": "b59f00438731669c6374d22f8fb72762ba8efd54674563afb7829d85d9d37a1a",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "rounds_completed": 40,
+  "last3_family_assignment_change": 0.3162393162393162,
+  "last_round": {
+    "round": 39,
+    "train_family_mse": 0.0016420745523646474,
+    "heldout_realization_family_nrmse": 0.18311592936515808,
+    "candidate_family_usage": [
+      0.16502301117685733,
+      0.18474687705456935,
+      0.34845496383957925,
+      0.16502301117685733,
+      0.13675213675213677
+    ],
+    "candidate_family_count": [
+      251,
+      281,
+      530,
+      251,
+      208
+    ],
+    "family_assignment_change_rate": 0.3175542406311637,
+    "family_exact_agreement": 0.673241288625904,
+    "functional_r2_matrix": [
+      [
+        -2.051994374141129,
+        -1.4021133183807102,
+        -0.8705745849832267
+      ],
+      [
+        -0.8447998902796165,
+        -0.48764314129141284,
+        -0.8169414824099124
+      ],
+      [
+        -0.48057527902951236,
+        -0.32920457939353476,
+        -0.6565694121771393
+      ],
+      [
+        -2.099227923478997,
+        -1.3801916881433565,
+        -0.6418615484515631
+      ],
+      [
+        -0.7043830484398161,
+        -0.637549262797553,
+        -1.1250473124853948
+      ]
+    ],
+    "family_contingency_rows_candidate_cols_gt": [
+      [
+        0,
+        0,
+        68
+      ],
+      [
+        71,
+        0,
+        0
+      ],
+      [
+        0,
+        133,
+        0
+      ],
+      [
+        0,
+        0,
+        56
+      ],
+      [
+        58,
+        0,
+        0
+      ]
+    ],
+    "assignment_candidate_to_gt": {
+      "0": 2,
+      "1": 0,
+      "2": 1
+    },
+    "family_hungarian_accuracy": 0.7046632124352331,
+    "functional_gt_to_candidate": {
+      "1": 1,
+      "0": 2,
+      "2": 3
+    },
+    "matched_functional_r2": [
+      -0.48057527902951236,
+      -0.48764314129141284,
+      -0.6418615484515631
+    ],
+    "GT_fragmentation_per_gt": [
+      0.4496124031007752,
+      0.0,
+      0.4516129032258065
+    ],
+    "mean_GT_fragmentation": 0.3004084354421939,
+    "sign_split_per_gt": [
+      0.08904109589041098,
+      0.0,
+      0.02442002442002439
+    ],
+    "mean_sign_split": 0.03782037343681179,
+    "sign_dominance_detail": {
+      "0": {
+        "negative_dominant_count": 56,
+        "positive_dominant_count": 73,
+        "negative_dominant_distribution": [
+          0.0,
+          0.5,
+          0.0,
+          0.0,
+          0.5
+        ],
+        "positive_dominant_distribution": [
+          0.0,
+          0.589041095890411,
+          0.0,
+          0.0,
+          0.410958904109589
+        ],
+        "split": 0.08904109589041098
+      },
+      "1": {
+        "negative_dominant_count": 38,
+        "positive_dominant_count": 95,
+        "negative_dominant_distribution": [
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "positive_dominant_distribution": [
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "split": 0.0
+      },
+      "2": {
+        "negative_dominant_count": 7,
+        "positive_dominant_count": 117,
+        "negative_dominant_distribution": [
+          0.5714285714285714,
+          0.0,
+          0.0,
+          0.42857142857142855,
+          0.0
+        ],
+        "positive_dominant_distribution": [
+          0.5470085470085471,
+          0.0,
+          0.0,
+          0.452991452991453,
+          0.0
+        ],
+        "split": 0.02442002442002439
+      }
+    },
+    "magnitude_split_per_gt": [
+      0.09999999999999998,
+      0.0,
+      0.03225806451612906
+    ],
+    "mean_magnitude_split": 0.04408602150537635,
+    "candidate_state_effect_coverage": [
+      {
+        "family_count": 68,
+        "state_min": [
+          [
+            -0.994816780090332,
+            -0.9946168065071106
+          ],
+          [
+            -0.9741054177284241,
+            -0.9726723432540894
+          ],
+          [
+            -0.9646946787834167,
+            -0.9594494700431824
+          ]
+        ],
+        "state_max": [
+          [
+            0.9826321601867676,
+            0.9498904347419739
+          ],
+          [
+            0.970414400100708,
+            0.9450700879096985
+          ],
+          [
+            0.9767656922340393,
+            0.9966315031051636
+          ]
+        ],
+        "effect_norm_quantiles": [
+          0.09523246437311172,
+          0.290212906897068,
+          0.43183258175849915,
+          0.6247367262840271,
+          1.270153522491455
+        ]
+      },
+      {
+        "family_count": 71,
+        "state_min": [
+          [
+            -0.994816780090332,
+            -0.9161087274551392
+          ],
+          [
+            -0.9719167947769165,
+            -0.9935564398765564
+          ],
+          [
+            -0.9538866281509399,
+            -0.9972174167633057
+          ]
+        ],
+        "state_max": [
+          [
+            0.9855371713638306,
+            0.9507328867912292
+          ],
+          [
+            0.9807167053222656,
+            0.9577683806419373
+          ],
+          [
+            0.9804372787475586,
+            0.9732187986373901
+          ]
+        ],
+        "effect_norm_quantiles": [
+          0.03029686212539673,
+          0.2522115111351013,
+          0.4095845967531204,
+          0.6309137344360352,
+          1.545790433883667
+        ]
+      },
+      {
+        "family_count": 133,
+        "state_min": [
+          [
+            -0.9917940497398376,
+            -0.9934087991714478
+          ],
+          [
+            -0.9818587303161621,
+            -0.9954825043678284
+          ],
+          [
+            -0.9933311939239502,
+            -0.9972174167633057
+          ]
+        ],
+        "state_max": [
+          [
+            0.9978745579719543,
+            0.9456950426101685
+          ],
+          [
+            0.9807167053222656,
+            0.9858844876289368
+          ],
+          [
+            0.9906564354896545,
+            0.9727465510368347
+          ]
+        ],
+        "effect_norm_quantiles": [
+          0.06381848454475403,
+          0.3479057475924492,
+          0.5328370928764343,
+          0.7957918792963028,
+          1.8889234066009521
+        ]
+      },
+      {
+        "family_count": 56,
+        "state_min": [
+          [
+            -0.9325900077819824,
+            -0.9962567090988159
+          ],
+          [
+            -0.9105715155601501,
+            -0.9935564398765564
+          ],
+          [
+            -0.95615154504776,
+            -0.9852783679962158
+          ]
+        ],
+        "state_max": [
+          [
+            0.9978745579719543,
+            0.9507328867912292
+          ],
+          [
+            0.996722400188446,
+            0.9117200374603271
+          ],
+          [
+            0.9804372787475586,
+            0.9618016481399536
+          ]
+        ],
+        "effect_norm_quantiles": [
+          0.07337822020053864,
+          0.29019351303577423,
+          0.4513470232486725,
+          0.662038043141365,
+          1.552092432975769
+        ]
+      },
+      {
+        "family_count": 58,
+        "state_min": [
+          [
+            -0.9917940497398376,
+            -0.9756205677986145
+          ],
+          [
+            -0.9741054177284241,
+            -0.9726723432540894
+          ],
+          [
+            -0.9933311939239502,
+            -0.878559410572052
+          ]
+        ],
+        "state_max": [
+          [
+            0.9603114128112793,
+            0.9863504767417908
+          ],
+          [
+            0.996722400188446,
+            0.960742175579071
+          ],
+          [
+            0.9906564354896545,
+            0.9966315031051636
+          ]
+        ],
+        "effect_norm_quantiles": [
+          0.06870400905609131,
+          0.28347521275281906,
+          0.4345613121986389,
+          0.6667633205652237,
+          1.4385348558425903
+        ]
+      }
+    ],
+    "e_step_seconds": 16.80637216567993,
+    "m_step_seconds": 4.506033897399902,
+    "round_seconds": 21.312406063079834,
+    "cuda_peak_allocated_mib": 48.92626953125
+  },
+  "checks": {
+    "family_accuracy": false,
+    "functional_each": false,
+    "functional_two_strong": false,
+    "stability": false,
+    "fragmentation": false
+  },
+  "pass": false,
+  "stop_required": true,
+  "wall_seconds": 853.3659763336182,
+  "cuda_peak_allocated_mib": 48.92626953125
+}

@@ -1,0 +1,37 @@
+{
+  "main_pair": "C5:C4",
+  "level_pass": {
+    "L0": false,
+    "L1": false,
+    "L2": true,
+    "L3": false
+  },
+  "minimum_successful_level": "L2",
+  "classification": "parent_specific_capacity_bottleneck",
+  "L2_gate_checks": {
+    "bootstrap_all_domains": true,
+    "max_subgroup_delta": true,
+    "parent_retention": true,
+    "child_assimilation": true,
+    "finite": true,
+    "other_candidate_protection": true
+  },
+  "L3_absorption_checks_without_protection": {
+    "bootstrap_all_domains": true,
+    "max_subgroup_delta": true,
+    "parent_retention": true,
+    "child_assimilation": true,
+    "finite": true
+  },
+  "L3_max_other_candidate_drift": 0.039605215191841125,
+  "wrong_parent_pass": false,
+  "no_parent_replay_pass": true,
+  "C2_to_C3_L2_pass": false,
+  "strong_cross_pair_capacity_evidence": false,
+  "figures": [
+    "A_capacity_ladder.png",
+    "B_child_parent_tradeoff.png",
+    "C_other_candidate_drift.png",
+    "D_state_region_coverage.png"
+  ]
+}

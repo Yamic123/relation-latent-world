@@ -1,0 +1,19 @@
+{
+  "device": "cuda",
+  "source_checkpoint_sha256": "f4f26a5fd2b4cb2fcff8ea09d9b3172fff4458ac413f31b17e1dfbf682657633",
+  "union_output_shape": [
+    8,
+    3,
+    2
+  ],
+  "finite": true,
+  "train_family_counts": {
+    "C2": 154,
+    "C3": 343
+  },
+  "val_family_counts": {
+    "C2": 40,
+    "C3": 90
+  },
+  "pass": true
+}

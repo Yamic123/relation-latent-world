@@ -1,0 +1,13 @@
+﻿variant,seed,z4_pass,death_commits,duplicate_prunes,m_discovered,family_accuracy,fragmentation,b1_pass,final_pass,failure_mode
+H0,0,True,0,0,5,,,False,False,F5_unsupported_slot_remains
+H0,1,False,0,0,,,,False,False,F4_persistent_mixing
+H0,2,True,0,0,5,,,False,False,F5_unsupported_slot_remains
+H1,0,False,0,0,,0.6139896373056994,0.38472102361429955,False,False,F4_persistent_mixing_or_identity_failure
+H1,1,True,0,2,3,1.0,0.0,False,False,F6_duplicate_or_reassignment_failure
+H1,2,False,0,0,,0.727979274611399,0.2772568142035509,False,False,F4_persistent_mixing_or_identity_failure
+H2,0,True,1,0,4,0.9974093264248705,0.002583979328165379,False,False,F5_unsupported_slot_remains
+H2,1,False,0,0,,0.8523316062176166,0.1489803841937928,False,False,F4_persistent_mixing_or_identity_failure
+H2,2,True,2,0,3,1.0,0.0,True,True,
+H3,0,False,0,0,,0.6139896373056994,0.38472102361429955,False,False,F4_persistent_mixing_or_identity_failure
+H3,1,True,0,2,3,1.0,0.0,False,False,F6_duplicate_or_reassignment_failure
+H3,2,False,0,0,,0.727979274611399,0.2772568142035509,False,False,F4_persistent_mixing_or_identity_failure

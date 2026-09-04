@@ -1,0 +1,36 @@
+{
+  "condition": "orthogonal",
+  "seed": 0,
+  "z0_pass": true,
+  "z4_identity_pass": true,
+  "z4_coordinate_pass": true,
+  "z4_pass": true,
+  "pruning_pass": false,
+  "m_discovered": null,
+  "family_accuracy": 0.9974093264248705,
+  "fragmentation": 0.002583979328165379,
+  "b1_pass": false,
+  "b1_iid_nrmse": null,
+  "b1_101_nrmse": null,
+  "participation_f1": null,
+  "final_pass": false,
+  "failure_mode": "F4_duplicate_graph_false_negative",
+  "z4_metrics": {
+    "heldout_nrmse": 0.03242434561252594,
+    "matched_functional_r2": [
+      0.9993338706892936,
+      0.9994757385162885,
+      0.9991898415418154
+    ],
+    "candidate_purity": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.0
+    ],
+    "assignment_change": 0.0026298487836949377
+  },
+  "tp_used_by_preregistered_objective": false,
+  "wall_seconds": 200.13547325134277
+}

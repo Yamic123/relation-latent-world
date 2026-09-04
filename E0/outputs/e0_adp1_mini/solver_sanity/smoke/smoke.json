@@ -1,0 +1,28 @@
+{
+  "all_32_supports_visited": true,
+  "rounds": [
+    {
+      "round": 0,
+      "e_step_bank_unchanged": true,
+      "m_step_mv_unchanged": true,
+      "bank_changed_after_mstep": true,
+      "nan_free": true,
+      "empty_support_ok": true,
+      "tie_penalty_ok": true,
+      "n_support_columns": 32
+    },
+    {
+      "round": 1,
+      "e_step_bank_unchanged": true,
+      "m_step_mv_unchanged": true,
+      "bank_changed_after_mstep": true,
+      "nan_free": true,
+      "empty_support_ok": true,
+      "tie_penalty_ok": true,
+      "n_support_columns": 32
+    }
+  ],
+  "peak_gpu_bytes": 39639552,
+  "peak_gpu_below_6gb": true,
+  "pass": true
+}

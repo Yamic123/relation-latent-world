@@ -1,0 +1,40 @@
+{
+  "experiment": "S1",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "environment": {
+    "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.6.0",
+    "numpy": "2.3.1",
+    "scipy": "1.17.1",
+    "device": "cpu",
+    "cuda_available": false,
+    "cuda_device": null
+  },
+  "config": {
+    "experiment": "S1",
+    "tp": "identity",
+    "m_max": 5,
+    "lambda_participation": 0.001,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 1e-05,
+    "batch_size": 512,
+    "max_epochs": 200,
+    "steps_per_epoch": 64,
+    "patience": 20,
+    "gradient_clip": 1.0,
+    "temperature_start": 1.0,
+    "temperature_end": 0.35,
+    "token_dim": 64,
+    "attention_heads": 4,
+    "cross_attention_layers": 2,
+    "validation_subset": 5000
+  },
+  "started_at_unix": 1788316072.4172397,
+  "diagnostic_only": true,
+  "original_e0a_decision_unchanged": "E0 FAIL"
+}

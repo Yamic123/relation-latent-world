@@ -1,0 +1,12 @@
+{
+  "variant": "H0",
+  "seed": 0,
+  "reused_exact_baseline": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp11_from_zero\\identity_tp\\seed_000\\final_verdict.json",
+  "z4_pass": true,
+  "death_commits": 0,
+  "duplicate_prunes": 0,
+  "m_discovered": 5,
+  "b1_pass": false,
+  "final_pass": false,
+  "failure_mode": "F5_unsupported_slot_remains"
+}

@@ -1,0 +1,32 @@
+{
+  "experiment": "D1",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 1,
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "environment": {
+    "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.6.0",
+    "numpy": "2.3.1",
+    "scipy": "1.17.1",
+    "device": "cpu",
+    "cuda_available": false,
+    "cuda_device": null
+  },
+  "config": {
+    "experiment": "D1",
+    "tp": "orthogonal",
+    "source_checkpoint": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0a\\main\\orthogonal\\seed_1\\best_checkpoint.pt",
+    "splits": [
+      "test_iid",
+      "test_context",
+      "test_combination_101"
+    ],
+    "damage_definition": "MSE(delta,prediction_without_l)-MSE(delta,full_prediction)",
+    "frozen_original_failed_model": true
+  },
+  "started_at_unix": 1788311269.9635186,
+  "diagnostic_only": true,
+  "original_e0a_decision_unchanged": "E0 FAIL"
+}

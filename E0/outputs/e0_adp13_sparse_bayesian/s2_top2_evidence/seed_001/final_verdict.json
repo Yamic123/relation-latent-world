@@ -1,0 +1,17 @@
+{
+  "variant": "S2",
+  "seed": 1,
+  "top_k": 2,
+  "z4_pass": false,
+  "major_mixing": false,
+  "existence_tests": 25,
+  "existence_deletes": 0,
+  "existence_rollbacks": 0,
+  "duplicate_prunes": 0,
+  "m_discovered": null,
+  "family_accuracy": 0.8549222797927462,
+  "fragmentation": 0.1492642897566497,
+  "b1_pass": false,
+  "final_pass": false,
+  "failure_mode": "F5_persistent_mixing_or_identity_failure"
+}

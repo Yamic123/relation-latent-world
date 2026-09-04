@@ -1,0 +1,18 @@
+{
+  "status": "pilot_not_final",
+  "sample_count_per_split": 20000,
+  "steps": 30,
+  "restarts": 2,
+  "test_iid": {
+    "nrmse": 0.09165776520967484,
+    "participation_f1_mean": 0.9660525562548186,
+    "min_instance_effect_r2": 0.9867643984278425
+  },
+  "test_combination_101": {
+    "nrmse": 0.09258478879928589,
+    "support_exact_accuracy": 0.89335,
+    "inactive_Z2_false_positive_rate": 0.10175000131130219,
+    "min_active_instance_effect_r2": 0.9905105568484275
+  },
+  "reason_for_not_using_as_final": "A 60-step/3-restart fixed-prefix-2048 convergence sanity check reduced NRMSE to 0.02449 IID and 0.02499 101; the plan did not prescribe solver budget, so the unconverged pilot was superseded before final B1 adjudication."
+}

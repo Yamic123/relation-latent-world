@@ -1,0 +1,490 @@
+{
+  "decision": "E0 FAIL",
+  "reason": "E0-A did not reach >=8/10 full structural recovery for both TP coordinate systems; E0-B is gated.",
+  "pass0_oracle": true,
+  "e0a_identity": {
+    "experiment": "E0-A",
+    "tag": "main",
+    "tp": "identity",
+    "n_seeds": 10,
+    "passed_seeds": 0,
+    "recovery_rate": 0.0,
+    "stability_pass": false,
+    "seed_metrics": [
+      {
+        "seed": 0,
+        "iid_nrmse": 0.08703798800706863,
+        "combination_nrmse": 0.10532544553279877,
+        "participation_f1": 0.6875793156129116,
+        "functional_r2_min": -1.510231177718837,
+        "redundant_usage": 1.0,
+        "pass": false
+      },
+      {
+        "seed": 1,
+        "iid_nrmse": 0.09688825160264969,
+        "combination_nrmse": 0.1182059496641159,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -0.6317521113346543,
+        "redundant_usage": 0.9999998807907104,
+        "pass": false
+      },
+      {
+        "seed": 2,
+        "iid_nrmse": 0.10561554878950119,
+        "combination_nrmse": 0.15017014741897583,
+        "participation_f1": 0.6594311296788833,
+        "functional_r2_min": 0.03890679608649783,
+        "redundant_usage": 1.0,
+        "pass": false
+      },
+      {
+        "seed": 3,
+        "iid_nrmse": 0.10759271681308746,
+        "combination_nrmse": 0.13630157709121704,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -2.540566839961198,
+        "redundant_usage": 1.0,
+        "pass": false
+      },
+      {
+        "seed": 4,
+        "iid_nrmse": 0.10568691045045853,
+        "combination_nrmse": 0.12420681118965149,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -1.2856625568224795,
+        "redundant_usage": 0.9999998807907104,
+        "pass": false
+      },
+      {
+        "seed": 5,
+        "iid_nrmse": 0.09209247678518295,
+        "combination_nrmse": 0.11702767759561539,
+        "participation_f1": 0.687735687615214,
+        "functional_r2_min": -0.9312542548233531,
+        "redundant_usage": 1.0,
+        "pass": false
+      },
+      {
+        "seed": 6,
+        "iid_nrmse": 0.1062503233551979,
+        "combination_nrmse": 0.13004407286643982,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -1.2466692452743589,
+        "redundant_usage": 1.0,
+        "pass": false
+      },
+      {
+        "seed": 7,
+        "iid_nrmse": 0.095548614859581,
+        "combination_nrmse": 0.12126612663269043,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -1.4105084478323073,
+        "redundant_usage": 1.0,
+        "pass": false
+      },
+      {
+        "seed": 8,
+        "iid_nrmse": 0.10599768161773682,
+        "combination_nrmse": 0.13012877106666565,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -2.4117110632320635,
+        "redundant_usage": 0.9999998807907104,
+        "pass": false
+      },
+      {
+        "seed": 9,
+        "iid_nrmse": 0.09905821830034256,
+        "combination_nrmse": 0.1213563084602356,
+        "participation_f1": 0.6878655584631433,
+        "functional_r2_min": -0.7338428141167821,
+        "redundant_usage": 1.0,
+        "pass": false
+      }
+    ],
+    "iid_nrmse_mean": 0.10017687305808068,
+    "iid_nrmse_std": 0.006761494007631733,
+    "combination_nrmse_mean": 0.1254032887518406,
+    "combination_nrmse_std": 0.011558698439798797,
+    "participation_f1_mean": 0.6849761375055443,
+    "participation_f1_std": 0.008515446698758634,
+    "functional_r2_min_mean": -1.2663291715029534,
+    "functional_r2_min_std": 0.7428837967970713,
+    "redundant_usage_mean": 0.9999999642372132,
+    "redundant_usage_std": 5.462855929083634e-08
+  },
+  "e0a_orthogonal": {
+    "experiment": "E0-A",
+    "tag": "main",
+    "tp": "orthogonal",
+    "n_seeds": 10,
+    "passed_seeds": 0,
+    "recovery_rate": 0.0,
+    "stability_pass": false,
+    "seed_metrics": [
+      {
+        "seed": 0,
+        "iid_nrmse": 0.10027063637971878,
+        "combination_nrmse": 0.1203211098909378,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -1.5520630933347612,
+        "redundant_usage": 0.9999998807907104,
+        "pass": false
+      },
+      {
+        "seed": 1,
+        "iid_nrmse": 0.10453576594591141,
+        "combination_nrmse": 0.12213679403066635,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -1.5543274232537505,
+        "redundant_usage": 1.0,
+        "pass": false
+      },
+      {
+        "seed": 2,
+        "iid_nrmse": 0.09144984185695648,
+        "combination_nrmse": 0.12383797019720078,
+        "participation_f1": 0.6821043643446032,
+        "functional_r2_min": -0.12906423573409076,
+        "redundant_usage": 1.0,
+        "pass": false
+      },
+      {
+        "seed": 3,
+        "iid_nrmse": 0.10881388932466507,
+        "combination_nrmse": 0.126558318734169,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -2.368531428148488,
+        "redundant_usage": 0.9999998807907104,
+        "pass": false
+      },
+      {
+        "seed": 4,
+        "iid_nrmse": 0.10368069261312485,
+        "combination_nrmse": 0.12912985682487488,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -2.009511446644007,
+        "redundant_usage": 0.9999998807907104,
+        "pass": false
+      },
+      {
+        "seed": 5,
+        "iid_nrmse": 0.09155774861574173,
+        "combination_nrmse": 0.10946021974086761,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -0.8190435357588182,
+        "redundant_usage": 1.0,
+        "pass": false
+      },
+      {
+        "seed": 6,
+        "iid_nrmse": 0.10138393193483353,
+        "combination_nrmse": 0.11988724023103714,
+        "participation_f1": 0.6878582806142152,
+        "functional_r2_min": -2.652469721707299,
+        "redundant_usage": 1.0,
+        "pass": false
+      },
+      {
+        "seed": 7,
+        "iid_nrmse": 0.10662797838449478,
+        "combination_nrmse": 0.13778875768184662,
+        "participation_f1": 0.6609467913784854,
+        "functional_r2_min": -0.7577757219295542,
+        "redundant_usage": 1.0,
+        "pass": false
+      },
+      {
+        "seed": 8,
+        "iid_nrmse": 0.12135964632034302,
+        "combination_nrmse": 0.1664789915084839,
+        "participation_f1": 0.6166091380912326,
+        "functional_r2_min": -0.20309755206846436,
+        "redundant_usage": 1.0,
+        "pass": false
+      },
+      {
+        "seed": 9,
+        "iid_nrmse": 0.10620220750570297,
+        "combination_nrmse": 0.1338830143213272,
+        "participation_f1": 0.6876207316721551,
+        "functional_r2_min": -2.187956603038503,
+        "redundant_usage": 1.0,
+        "pass": false
+      }
+    ],
+    "iid_nrmse_mean": 0.10358823388814926,
+    "iid_nrmse_std": 0.00817342267468674,
+    "combination_nrmse_mean": 0.12894822731614114,
+    "combination_nrmse_std": 0.014579545416802673,
+    "participation_f1_mean": 0.6774430709171767,
+    "participation_f1_std": 0.02179235327987737,
+    "functional_r2_min_mean": -1.4233840761617738,
+    "functional_r2_min_std": 0.8566446727874768,
+    "redundant_usage_mean": 0.9999999642372132,
+    "redundant_usage_std": 5.462855929083634e-08
+  },
+  "e0b": null,
+  "negative_controls": {
+    "NC1_Mmax_lt_Mstar": {
+      "experiment": "E0-A",
+      "tag": "nc1_mmax2",
+      "tp": "identity",
+      "n_seeds": 3,
+      "passed_seeds": 0,
+      "recovery_rate": 0.0,
+      "stability_pass": false,
+      "seed_metrics": [
+        {
+          "seed": 0,
+          "iid_nrmse": 0.4265345335006714,
+          "combination_nrmse": 0.5277096629142761,
+          "participation_f1": 0.47316901507749193,
+          "functional_r2_min": -1000000.0,
+          "redundant_usage": 0.0,
+          "pass": false
+        },
+        {
+          "seed": 1,
+          "iid_nrmse": 0.37455058097839355,
+          "combination_nrmse": 0.470035582780838,
+          "participation_f1": 0.4730291976378136,
+          "functional_r2_min": -1000000.0,
+          "redundant_usage": 0.0,
+          "pass": false
+        },
+        {
+          "seed": 2,
+          "iid_nrmse": 0.43370547890663147,
+          "combination_nrmse": 0.5403752326965332,
+          "participation_f1": 0.4721548066583435,
+          "functional_r2_min": -1000000.0,
+          "redundant_usage": 0.0,
+          "pass": false
+        }
+      ],
+      "iid_nrmse_mean": 0.4115968644618988,
+      "iid_nrmse_std": 0.026358755085157698,
+      "combination_nrmse_mean": 0.5127068261305491,
+      "combination_nrmse_std": 0.030612964805073504,
+      "participation_f1_mean": 0.4727843397912163,
+      "participation_f1_std": 0.00044879186203858297,
+      "functional_r2_min_mean": -1000000.0,
+      "functional_r2_min_std": 0.0,
+      "redundant_usage_mean": 0.0,
+      "redundant_usage_std": 0.0
+    },
+    "NC2_factorial_removed": {
+      "experiment": "E0-A",
+      "tag": "nc2_factorial_removed",
+      "tp": "identity",
+      "n_seeds": 3,
+      "passed_seeds": 0,
+      "recovery_rate": 0.0,
+      "stability_pass": false,
+      "seed_metrics": [
+        {
+          "seed": 0,
+          "iid_nrmse": 0.15234725177288055,
+          "combination_nrmse": 0.21821415424346924,
+          "participation_f1": 0.6863433955817371,
+          "functional_r2_min": -1.6235567311236383,
+          "redundant_usage": 0.9999998807907104,
+          "pass": false
+        },
+        {
+          "seed": 1,
+          "iid_nrmse": 0.15094420313835144,
+          "combination_nrmse": 0.19173724949359894,
+          "participation_f1": 0.6878582806142152,
+          "functional_r2_min": -3.0766229725076935,
+          "redundant_usage": 0.9999998807907104,
+          "pass": false
+        },
+        {
+          "seed": 2,
+          "iid_nrmse": 0.1421358585357666,
+          "combination_nrmse": 0.18081478774547577,
+          "participation_f1": 0.6860672803216112,
+          "functional_r2_min": -0.6401953009669887,
+          "redundant_usage": 0.9999998807907104,
+          "pass": false
+        }
+      ],
+      "iid_nrmse_mean": 0.14847577114899954,
+      "iid_nrmse_std": 0.00451943988603942,
+      "combination_nrmse_mean": 0.19692206382751465,
+      "combination_nrmse_std": 0.015702226559115587,
+      "participation_f1_mean": 0.6867563188391879,
+      "participation_f1_std": 0.0007873159994287115,
+      "functional_r2_min_mean": -1.7801250015327732,
+      "functional_r2_min_std": 1.0008097278825436,
+      "redundant_usage_mean": 0.9999998807907104,
+      "redundant_usage_std": 0.0
+    },
+    "NC4_shuffle_p": {
+      "experiment": "E0-A",
+      "tag": "nc4_shuffle_p",
+      "tp": "identity",
+      "n_seeds": 3,
+      "passed_seeds": 0,
+      "recovery_rate": 0.0,
+      "stability_pass": false,
+      "seed_metrics": [
+        {
+          "seed": 0,
+          "iid_nrmse": 1.0031858682632446,
+          "combination_nrmse": 1.0029197931289673,
+          "participation_f1": 0.0,
+          "functional_r2_min": -0.030157637714862684,
+          "redundant_usage": 0.018457356840372086,
+          "pass": false
+        },
+        {
+          "seed": 1,
+          "iid_nrmse": 1.0029101371765137,
+          "combination_nrmse": 1.0031038522720337,
+          "participation_f1": 0.0,
+          "functional_r2_min": -0.02134355660442311,
+          "redundant_usage": 0.035840582102537155,
+          "pass": false
+        },
+        {
+          "seed": 2,
+          "iid_nrmse": 1.0026230812072754,
+          "combination_nrmse": 1.0030776262283325,
+          "participation_f1": 0.0,
+          "functional_r2_min": -0.03129099794986345,
+          "redundant_usage": 0.033188607543706894,
+          "pass": false
+        }
+      ],
+      "iid_nrmse_mean": 1.002906362215678,
+      "iid_nrmse_std": 0.00022977235885199415,
+      "combination_nrmse_mean": 1.0030337572097778,
+      "combination_nrmse_std": 8.129292764768896e-05,
+      "participation_f1_mean": 0.0,
+      "participation_f1_std": 0.0,
+      "functional_r2_min_mean": -0.027597397423049747,
+      "functional_r2_min_std": 0.004446273352978558,
+      "redundant_usage_mean": 0.02916218216220538,
+      "redundant_usage_std": 0.00764648965837236
+    },
+    "NC5_lambda_P_zero": {
+      "experiment": "E0-A",
+      "tag": "nc5_lambda0",
+      "tp": "identity",
+      "n_seeds": 3,
+      "passed_seeds": 0,
+      "recovery_rate": 0.0,
+      "stability_pass": false,
+      "seed_metrics": [
+        {
+          "seed": 0,
+          "iid_nrmse": 0.1423916220664978,
+          "combination_nrmse": 0.17008572816848755,
+          "participation_f1": 0.6878582806142152,
+          "functional_r2_min": -0.9151821857408822,
+          "redundant_usage": 0.9999998807907104,
+          "pass": false
+        },
+        {
+          "seed": 1,
+          "iid_nrmse": 0.14876514673233032,
+          "combination_nrmse": 0.1737453192472458,
+          "participation_f1": 0.6878582806142152,
+          "functional_r2_min": -1.4959824399684831,
+          "redundant_usage": 0.9999998807907104,
+          "pass": false
+        },
+        {
+          "seed": 2,
+          "iid_nrmse": 0.1402668058872223,
+          "combination_nrmse": 0.17145879566669464,
+          "participation_f1": 0.6878582806142152,
+          "functional_r2_min": -0.827811645055073,
+          "redundant_usage": 0.9999998807907104,
+          "pass": false
+        }
+      ],
+      "iid_nrmse_mean": 0.14380785822868347,
+      "iid_nrmse_std": 0.0036110702873450753,
+      "combination_nrmse_mean": 0.17176328102747598,
+      "combination_nrmse_std": 0.001509455799756839,
+      "participation_f1_mean": 0.6878582806142152,
+      "participation_f1_std": 0.0,
+      "functional_r2_min_mean": -1.0796587569214795,
+      "functional_r2_min_std": 0.29653831640481043,
+      "redundant_usage_mean": 0.9999998807907104,
+      "redundant_usage_std": 0.0
+    },
+    "NC7_ill_conditioned_tp": {
+      "experiment": "E0-A",
+      "tag": "nc7_ill_conditioned",
+      "tp": "identity",
+      "n_seeds": 3,
+      "passed_seeds": 0,
+      "recovery_rate": 0.0,
+      "stability_pass": false,
+      "seed_metrics": [
+        {
+          "seed": 0,
+          "iid_nrmse": 0.5078393816947937,
+          "combination_nrmse": 0.6522730588912964,
+          "participation_f1": 0.6268365307459492,
+          "functional_r2_min": 0.02559490258945396,
+          "redundant_usage": 0.2495775669813156,
+          "pass": false
+        },
+        {
+          "seed": 1,
+          "iid_nrmse": 0.521361231803894,
+          "combination_nrmse": 0.6627509593963623,
+          "participation_f1": 0.5247133721983129,
+          "functional_r2_min": -0.03855516531138359,
+          "redundant_usage": 0.9907393455505371,
+          "pass": false
+        },
+        {
+          "seed": 2,
+          "iid_nrmse": 0.5326652526855469,
+          "combination_nrmse": 0.6633389592170715,
+          "participation_f1": 0.414155692843677,
+          "functional_r2_min": -0.8306655580884772,
+          "redundant_usage": 0.4738878309726715,
+          "pass": false
+        }
+      ],
+      "iid_nrmse_mean": 0.5206219553947449,
+      "iid_nrmse_std": 0.010148591521954279,
+      "combination_nrmse_mean": 0.65945432583491,
+      "combination_nrmse_std": 0.0050835933573190484,
+      "participation_f1_mean": 0.5219018652626464,
+      "participation_f1_std": 0.08684934515638802,
+      "functional_r2_min_mean": -0.2812086069368023,
+      "functional_r2_min_std": 0.38940639755024664,
+      "redundant_usage_mean": 0.5714015811681747,
+      "redundant_usage_std": 0.31033518879953675
+    },
+    "NC3_no_relation_learner": {
+      "status": "not_run",
+      "reason": "E0-B is gated by E0-A failure; no recovered Z_D base exists"
+    },
+    "NC6_directional_variation_removed": {
+      "status": "not_run",
+      "reason": "directional edge experiment is gated by E0-A failure"
+    }
+  },
+  "thresholds_pre_registered": {
+    "oracle_mse": 1e-10,
+    "iid_nrmse": 0.05,
+    "combination_nrmse": 0.1,
+    "participation_f1": 0.9,
+    "functional_r2": 0.9,
+    "redundant_usage": 0.1,
+    "relation_r2": 0.8,
+    "stable_seeds": "8/10"
+  },
+  "generated_at_unix": 1788277079.9656756,
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7"
+}

@@ -1,0 +1,81 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp6_a0",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 6,
+  "config": {
+    "experiment": "E0-ADP10-FROM-ADP6-STABILITY",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "optimization_seed": 6,
+    "m_max": 5,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "rounds": 40,
+    "mechanism_learning_rate": 0.0003,
+    "coordinate_learning_rate": 0.001,
+    "weight_decay": 1e-05,
+    "family_batch_size": 32,
+    "epochs_per_round": 4,
+    "gradient_clip": 1.0,
+    "functional_probe_count": 2000,
+    "a1_initialization": "random",
+    "pc1_sign_convention": "Orient q_U so the first listed nonzero learner-visible action member has positive projection.",
+    "pass_thresholds": {
+      "median_order_accuracy": 0.95,
+      "candidate_affine_realization_r2": 0.9,
+      "heldout_realization_nrmse": 0.15,
+      "purity_high_functional_r2": 0.7,
+      "min_purity_high_candidates_above_threshold": 2
+    },
+    "scientific_scale_reduction": "none"
+  },
+  "config_sha256": "6790a58719308424ad89cec85e61305bdf231aa61089669c53acb243819fb367",
+  "script_sha256": "ac2f09ebec5d89490a9aa6baff0c173a031c013593301804688a869e6cf547ac",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "reused_not_retrained": true,
+  "source_final_metrics": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp5\\a1_family_discovery\\final_metrics.json",
+  "source_checkpoint": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp5\\a1_family_discovery\\checkpoints\\round_039_bank.pt",
+  "source_checkpoint_sha256": "0dde4bcc7df48b67fe407fa43edbd27f64eddcc88d9aae669875600a2a46a483",
+  "assignment_counts": {
+    "train": [
+      251,
+      281,
+      530,
+      251,
+      208
+    ],
+    "val": [
+      68,
+      71,
+      133,
+      56,
+      58
+    ],
+    "test": [
+      122,
+      136,
+      252,
+      137,
+      119
+    ]
+  },
+  "heldout_nrmse": 0.18311592936515808,
+  "matched_functional_r2": [
+    -0.48057527902951236,
+    -0.48764314129141284,
+    -0.6418615484515631
+  ],
+  "family_accuracy": 0.7046632124352331,
+  "mean_fragmentation": 0.3004084354421939,
+  "pass_as_adp6_structured_coordinate": false
+}

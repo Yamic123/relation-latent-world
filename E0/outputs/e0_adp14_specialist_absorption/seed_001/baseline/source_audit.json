@@ -1,0 +1,29 @@
+{
+  "source_checkpoint": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp13_sparse_bayesian\\s4_top1_evidence\\seed_001\\training\\checkpoints\\round_039.pt",
+  "source_checkpoint_sha256": "f4f26a5fd2b4cb2fcff8ea09d9b3172fff4458ac413f31b17e1dfbf682657633",
+  "source_assignment": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp13_sparse_bayesian\\s4_top1_evidence\\seed_001\\training\\assignments\\round_039.npz",
+  "source_assignment_sha256": "fecdcef5f1e8cedb41c04adee7da76f0b6232fd607141f9a2341ea1532770b0f",
+  "source_retrained": false,
+  "alive_indices": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "coordinate_a": [
+    -0.9718626737594604,
+    -0.780461847782135,
+    0.9796159863471985,
+    -0.8713777661323547,
+    0.8140790462493896
+  ],
+  "coordinate_b": [
+    0.18272240459918976,
+    0.10880926251411438,
+    -0.01665738970041275,
+    0.1833922117948532,
+    -0.15563422441482544
+  ],
+  "architecture_freeze_interpretation": "SetMechanismBank has a shared trunk. To keep every non-parent mechanism exactly frozen, ADP14 freezes the shared trunk and updates only the selected parent adapter row and its a,b."
+}

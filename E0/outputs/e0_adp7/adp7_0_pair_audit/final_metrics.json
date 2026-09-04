@@ -1,0 +1,212 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp7_0",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "config": {
+    "experiment": "E0-ADP7-8GB-DEVELOPMENT",
+    "optimization_seed": 0,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "epochs": 40,
+    "mechanism_learning_rate": 0.0003,
+    "coordinate_learning_rate": 0.001,
+    "weight_decay": 1e-05,
+    "response_batch_size": 192,
+    "gradient_clip": 1.0,
+    "functional_probe_count": 2000,
+    "correct_pairs": [
+      [
+        1,
+        4
+      ],
+      [
+        0,
+        3
+      ]
+    ],
+    "wrong_pairs": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "initializations": [
+      "random",
+      "source_copy"
+    ],
+    "primary_initialization": "source_copy"
+  },
+  "config_sha256": "592f20e5f82e7ba09e24cb164a795b506dbc57f1b60a5d30f7c4e8d243df4cc8",
+  "script_sha256": "3064400c3d52bc734f78850366ded691ab5e683275e34a222e6761c879725a3d",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "source_checkpoint": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp6\\a2_joint_family_coordinate\\checkpoints\\round_039.pt",
+  "source_assignment": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp6\\a2_joint_family_coordinate\\assignments\\round_039.npz",
+  "training_performed": false,
+  "pairs": [
+    {
+      "pair": "C2_C5",
+      "indices_zero_based": [
+        1,
+        4
+      ],
+      "family_counts": [
+        77,
+        52
+      ],
+      "cross_state_prediction_r2": 0.9999884876107198,
+      "cross_state_prediction_cosine": 0.9999963403609259,
+      "heldout_family_cross_prediction_r2": [
+        0.9999863167401148,
+        0.9999903967597225
+      ],
+      "abs_delta_a": 0.0003833770751953125,
+      "abs_delta_b": 0.0021485984325408936,
+      "state_coverage_overlap": 0.7298231220889747,
+      "evaluator_gt_ids": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "evaluator_gt_identity_agreement": true
+    },
+    {
+      "pair": "C1_C4",
+      "indices_zero_based": [
+        0,
+        3
+      ],
+      "family_counts": [
+        93,
+        31
+      ],
+      "cross_state_prediction_r2": 0.9999701442613859,
+      "cross_state_prediction_cosine": 0.9999944192874464,
+      "heldout_family_cross_prediction_r2": [
+        0.9999695276373328,
+        0.9999606614015584
+      ],
+      "abs_delta_a": 0.0006175637245178223,
+      "abs_delta_b": 0.00020333752036094666,
+      "state_coverage_overlap": 0.6999141918061618,
+      "evaluator_gt_ids": [
+        [
+          2
+        ],
+        [
+          2
+        ]
+      ],
+      "evaluator_gt_identity_agreement": true
+    },
+    {
+      "pair": "C2_C3",
+      "indices_zero_based": [
+        1,
+        2
+      ],
+      "family_counts": [
+        77,
+        133
+      ],
+      "cross_state_prediction_r2": -2.3460981845319777,
+      "cross_state_prediction_cosine": 0.02447559810741464,
+      "heldout_family_cross_prediction_r2": [
+        -2.7340471659611407,
+        -2.0092649669279234
+      ],
+      "abs_delta_a": 0.0006707310676574707,
+      "abs_delta_b": 0.023112162947654724,
+      "state_coverage_overlap": 0.7867577279804945,
+      "evaluator_gt_ids": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "evaluator_gt_identity_agreement": false
+    },
+    {
+      "pair": "C3_C4",
+      "indices_zero_based": [
+        2,
+        3
+      ],
+      "family_counts": [
+        133,
+        31
+      ],
+      "cross_state_prediction_r2": -2.2795694079111852,
+      "cross_state_prediction_cosine": -0.10421297648554259,
+      "heldout_family_cross_prediction_r2": [
+        -2.235161831099865,
+        -3.962591451437591
+      ],
+      "abs_delta_a": 0.04296666383743286,
+      "abs_delta_b": 0.09717234969139099,
+      "state_coverage_overlap": 0.7463160129372843,
+      "evaluator_gt_ids": [
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "evaluator_gt_identity_agreement": false
+    },
+    {
+      "pair": "C1_C2",
+      "indices_zero_based": [
+        0,
+        1
+      ],
+      "family_counts": [
+        93,
+        77
+      ],
+      "cross_state_prediction_r2": -1.9525021717163127,
+      "cross_state_prediction_cosine": -0.12709977628120525,
+      "heldout_family_cross_prediction_r2": [
+        -2.086323101572847,
+        -2.2264827970969145
+      ],
+      "abs_delta_a": 0.044254958629608154,
+      "abs_delta_b": 0.12008117139339447,
+      "state_coverage_overlap": 0.8291286100770628,
+      "evaluator_gt_ids": [
+        [
+          2
+        ],
+        [
+          0
+        ]
+      ],
+      "evaluator_gt_identity_agreement": false
+    }
+  ],
+  "suspected_pairs_confirmed": true,
+  "pass": true
+}

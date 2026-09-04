@@ -1,0 +1,94 @@
+{
+  "experiment": "E0-ADP1",
+  "label": "discovery",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "environment": {
+    "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch": "2.5.1+cu121",
+    "cuda_available": true,
+    "device": "cuda",
+    "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+    "torch_threads": 14,
+    "tf32_matmul": false,
+    "tf32_cudnn": false,
+    "deterministic_algorithms": false
+  },
+  "config": {
+    "experiment": "E0-ADP1",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "optimization_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "m_max": 5,
+    "lambda_participation": 0.001,
+    "mechanism_bank": {
+      "token_dim": 64,
+      "attention_heads": 4,
+      "architecture": "SetMechanismBank"
+    },
+    "e_step": {
+      "enumerate_all_supports": true,
+      "num_supports": 32,
+      "v_bound": 1.5,
+      "v_parameterization": "1.5*tanh(z)",
+      "optimizer": "Adam",
+      "learning_rate": 0.05,
+      "max_steps": 100,
+      "restarts": 5,
+      "relative_tolerance": 1e-07,
+      "tolerance_patience": 10,
+      "tie_epsilon": 1e-08,
+      "chunk_size": 4096
+    },
+    "m_step": {
+      "optimizer": "AdamW",
+      "learning_rate": 0.0003,
+      "weight_decay": 1e-05,
+      "batch_size": 512,
+      "steps_per_candidate_per_round": 64,
+      "gradient_clip": 1.0,
+      "target": "residual_backfitting"
+    },
+    "outer_loop": {
+      "max_rounds": 40,
+      "min_rounds": 10,
+      "stability_window": 5,
+      "support_change_threshold": 0.01,
+      "validation_relative_change_threshold": 0.0001,
+      "best_checkpoint_metric": "val_penalized_objective"
+    },
+    "amortization": {
+      "enabled_only_after_stability": true,
+      "tp": [
+        "identity",
+        "orthogonal"
+      ],
+      "optimizer": "AdamW",
+      "learning_rate": 0.0003,
+      "weight_decay": 1e-05,
+      "batch_size": 512,
+      "max_epochs": 100,
+      "patience": 20,
+      "lambda_v": 1.0
+    }
+  },
+  "started_at_unix": 1788359951.6648488,
+  "training_data_contract": "visible.npz only (S, delta_S); hidden_gt never read by discovery/amortization",
+  "initial_bank_source": "random seed_everything(seed); q_eta discarded"
+}

@@ -1,0 +1,37 @@
+{
+  "stage": "adp13_pilot",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "variants": {
+    "S1": {
+      "z4_pass": 1,
+      "major_mixing": 0,
+      "end_to_end_pass": 0,
+      "rollbacks": 0
+    },
+    "S2": {
+      "z4_pass": 1,
+      "major_mixing": 0,
+      "end_to_end_pass": 0,
+      "rollbacks": 0
+    },
+    "S3": {
+      "z4_pass": 1,
+      "major_mixing": 1,
+      "end_to_end_pass": 0,
+      "rollbacks": 0
+    },
+    "S4": {
+      "z4_pass": 2,
+      "major_mixing": 0,
+      "end_to_end_pass": 2,
+      "rollbacks": 0
+    }
+  },
+  "s2_pilot_gate": false,
+  "pass": false,
+  "decision": "STOP"
+}

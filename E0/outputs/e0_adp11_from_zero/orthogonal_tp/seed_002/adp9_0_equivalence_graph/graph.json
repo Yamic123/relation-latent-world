@@ -1,0 +1,89 @@
+[
+  {
+    "pair": [
+      1,
+      3
+    ],
+    "pair_name": "C2+C4",
+    "cross_state_prediction_r2": -2.351169998914023,
+    "cross_realization_prediction_r2": -2.351169998914023,
+    "cross_base_prediction_r2": -2.466457188525256,
+    "direct_replacement_max_nrmse_increase": 1.1197086814790964,
+    "direct_replacement_increases": [
+      1.0649141892790794,
+      1.07164466381073,
+      1.0588945355266333,
+      1.0793893598020077,
+      1.1197086814790964,
+      1.0635684356093407,
+      1.070799708366394,
+      1.0566089358180761,
+      1.0775727294385433,
+      1.1186816934496164
+    ],
+    "separate_pair_nrmse": 0.017172375693917274,
+    "family_response_disagreement_mse": 0.1423943042755127,
+    "abs_delta_a": 0.19750958681106567,
+    "abs_delta_b": 0.08813180774450302,
+    "valid_duplicate_edge": false,
+    "equivalence_confidence": -114.4373253364349
+  },
+  {
+    "pair": [
+      1,
+      4
+    ],
+    "pair_name": "C2+C5",
+    "cross_state_prediction_r2": -2.091034193140572,
+    "cross_realization_prediction_r2": -1.9384345995348222,
+    "cross_base_prediction_r2": -2.227231093801099,
+    "direct_replacement_max_nrmse_increase": 1.1235512513667345,
+    "direct_replacement_increases": [
+      0.978876506909728,
+      0.9860327672213316,
+      0.9709179699420929,
+      1.113895608112216,
+      1.110024930909276,
+      0.9889464136213064,
+      0.9969640206545591,
+      0.9794171750545502,
+      1.1231340896338224,
+      1.1235512513667345
+    ],
+    "separate_pair_nrmse": 0.020945044234395027,
+    "family_response_disagreement_mse": 0.12811098992824554,
+    "abs_delta_a": 0.17544525861740112,
+    "abs_delta_b": 0.019564449787139893,
+    "valid_duplicate_edge": false,
+    "equivalence_confidence": -114.58235623047455
+  },
+  {
+    "pair": [
+      3,
+      4
+    ],
+    "pair_name": "C4+C5",
+    "cross_state_prediction_r2": -2.0690850551052953,
+    "cross_realization_prediction_r2": -2.0194278820752474,
+    "cross_base_prediction_r2": -2.2358720056781216,
+    "direct_replacement_max_nrmse_increase": 1.1613167114555836,
+    "direct_replacement_increases": [
+      1.0986376740038395,
+      1.1043082065880299,
+      1.0910317245870829,
+      1.158132541924715,
+      1.1613167114555836,
+      1.0239594914019108,
+      1.0297588892281055,
+      1.0159793440252542,
+      1.0735835917294025,
+      1.0878680534660816
+    ],
+    "separate_pair_nrmse": 0.02139602042734623,
+    "family_response_disagreement_mse": 0.11583259701728821,
+    "abs_delta_a": 0.02206432819366455,
+    "abs_delta_b": 0.10769625753164291,
+    "valid_duplicate_edge": false,
+    "equivalence_confidence": -118.36754315123648
+  }
+]

@@ -1,0 +1,235 @@
+{
+  "python": "3.10.19 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 16:41:31) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "torch": "2.5.1+cu121",
+  "cuda_available": true,
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch_threads": 14,
+  "stage": "adp6_a1",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "config": {
+    "experiment": "E0-ADP6-8GB-DEVELOPMENT",
+    "world_seed": 20260901,
+    "dataset_seed": 20260902,
+    "optimization_seed": 0,
+    "m_max": 5,
+    "mechanism_dim": 64,
+    "mechanism_heads": 4,
+    "rounds": 40,
+    "mechanism_learning_rate": 0.0003,
+    "coordinate_learning_rate": 0.001,
+    "weight_decay": 1e-05,
+    "family_batch_size": 32,
+    "epochs_per_round": 4,
+    "gradient_clip": 1.0,
+    "functional_probe_count": 2000,
+    "pc1_sign_convention": "Orient q_U so the first listed nonzero learner-visible action member has positive projection.",
+    "pass_thresholds": {
+      "median_order_accuracy": 0.95,
+      "candidate_affine_realization_r2": 0.9,
+      "heldout_realization_nrmse": 0.15,
+      "purity_high_functional_r2": 0.7,
+      "min_purity_high_candidates_above_threshold": 2
+    },
+    "gpu_adjustments": {
+      "scientific_scale_reduction": "none",
+      "memory_control": "Use the plan-specified 32-family minibatch; no differentiable per-point inner solve is needed in A1."
+    }
+  },
+  "config_sha256": "49410ca5a5981cdeea375c381e62cd066dfbece01dbb88d58007838c16b12537",
+  "script_sha256": "35709c59b9edb36c629e332206c5460bcb5a41c4eaaa63a1efdbb0acca068b90",
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "initial_checkpoint": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp5\\a1_family_discovery\\checkpoints\\round_039_bank.pt",
+  "fixed_assignment_source": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp6\\a0_free_v_baseline\\fixed_assignments.npz",
+  "rounds_completed": 40,
+  "last_round": {
+    "round": 39,
+    "train_response_mse": 1.3993593711347785e-05,
+    "heldout_realization_nrmse": 0.018561264500021935,
+    "candidate_a": [
+      0.9546568393707275,
+      0.9791904091835022,
+      0.9842280745506287,
+      0.9582643508911133,
+      0.9814674258232117
+    ],
+    "candidate_b": [
+      -0.04563447833061218,
+      0.049415215849876404,
+      0.03173697739839554,
+      -0.04508371278643608,
+      0.05240856483578682
+    ],
+    "median_order_accuracy": 1.0,
+    "median_abs_spearman_alpha_inferred_v": 1.0,
+    "median_abs_kendall_alpha_inferred_v": 1.0,
+    "candidate_affine_aligned_realization_r2": [
+      0.9999999999999957,
+      0.9999999999999893,
+      0.9999999999999662,
+      0.9999999999999967,
+      0.9999999999999797
+    ],
+    "same_alpha_cross_family_variance": [
+      [
+        4.298783551348606e-13,
+        3.949781718056225e-14,
+        3.54618305477717e-14,
+        5.338213391833414e-14,
+        8.296631475368174e-14,
+        2.2737367544323206e-13
+      ],
+      [
+        1.4210854715202004e-14,
+        1.4095766654592667e-13,
+        1.7600944844393257e-14,
+        1.295989886045644e-14,
+        1.9665020141250954e-14,
+        1.4210854715202004e-14
+      ],
+      [
+        1.1510792319313623e-12,
+        3.641932133473247e-13,
+        4.3208210447065465e-13,
+        7.310443212154433e-14,
+        7.082454739869293e-13,
+        2.877698079828406e-13
+      ],
+      [
+        1.2789769243681803e-13,
+        5.519394416877467e-14,
+        5.4004418531495776e-14,
+        6.060231391149737e-14,
+        4.1871269567338686e-15,
+        1.2789769243681803e-13
+      ],
+      [
+        2.2737367544323206e-13,
+        1.574219711021358e-14,
+        4.224972897036959e-14,
+        1.597189889298179e-14,
+        1.3292049278195057e-14,
+        2.877698079828406e-13
+      ]
+    ],
+    "functional_r2_matrix": [
+      [
+        -1.3749960035127256,
+        -0.8222567854223404,
+        0.9997051274663484
+      ],
+      [
+        0.9998005729943787,
+        -0.6794259384979562,
+        -1.3764537215602815
+      ],
+      [
+        -1.4756323339276523,
+        0.9998728223857969,
+        -1.7377565213898603
+      ],
+      [
+        -1.3856856732131368,
+        -0.8281136434260585,
+        0.9996357053894096
+      ],
+      [
+        0.9998102282600418,
+        -0.6801616204416872,
+        -1.3779549479722326
+      ]
+    ],
+    "functional_gt_to_candidate": {
+      "2": 0,
+      "1": 2,
+      "0": 4
+    },
+    "matched_functional_r2": [
+      0.9998102282600418,
+      0.9998728223857969,
+      0.9997051274663484
+    ],
+    "family_contingency": [
+      [
+        0,
+        0,
+        68
+      ],
+      [
+        71,
+        0,
+        0
+      ],
+      [
+        0,
+        133,
+        0
+      ],
+      [
+        0,
+        0,
+        56
+      ],
+      [
+        58,
+        0,
+        0
+      ]
+    ],
+    "family_accuracy_fixed": 0.7046632124352331,
+    "fragmentation_per_gt_fixed": [
+      0.4496124031007752,
+      0.0,
+      0.4516129032258065
+    ],
+    "candidate_purity_fixed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "purity_high_candidate_functional_r2": [
+      0.9997051274663484,
+      0.9998005729943787,
+      0.9998728223857969,
+      0.9996357053894096,
+      0.9998102282600418
+    ],
+    "family_assignment_change": 0.0,
+    "candidate_usage": [
+      0.16502301117685733,
+      0.18474687705456935,
+      0.34845496383957925,
+      0.16502301117685733,
+      0.13675213675213677
+    ],
+    "candidate_family_count": [
+      251,
+      281,
+      530,
+      251,
+      208
+    ],
+    "m_step_seconds": 1.8737330436706543,
+    "round_seconds": 1.8737330436706543,
+    "cuda_peak_allocated_mib": 48.357421875
+  },
+  "checks": {
+    "order": true,
+    "affine_realization": true,
+    "heldout": true,
+    "purity_high_functional": true,
+    "not_all_matched_negative": true,
+    "improves_over_adp5": true
+  },
+  "pass": true,
+  "stop_required": false,
+  "wall_seconds": 93.63238787651062,
+  "cuda_peak_allocated_mib": 48.357421875
+}

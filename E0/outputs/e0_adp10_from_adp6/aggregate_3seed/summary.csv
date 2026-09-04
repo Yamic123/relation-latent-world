@@ -1,0 +1,4 @@
+﻿seed,adp6_a1_pass,adp6_a2_functional_pass,adp9_prune_pass,m_discovered,b1_pass,downstream_end_to_end_pass,failure_mode,wall_seconds
+0,True,True,True,3,True,True,,497.7807743549347
+1,True,True,True,3,True,True,,513.2417511940002
+2,True,True,True,3,True,True,,493.0173649787903

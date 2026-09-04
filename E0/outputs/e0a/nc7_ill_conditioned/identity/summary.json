@@ -1,0 +1,48 @@
+{
+  "experiment": "E0-A",
+  "tag": "nc7_ill_conditioned",
+  "tp": "identity",
+  "n_seeds": 3,
+  "passed_seeds": 0,
+  "recovery_rate": 0.0,
+  "stability_pass": false,
+  "seed_metrics": [
+    {
+      "seed": 0,
+      "iid_nrmse": 0.5078393816947937,
+      "combination_nrmse": 0.6522730588912964,
+      "participation_f1": 0.6268365307459492,
+      "functional_r2_min": 0.02559490258945396,
+      "redundant_usage": 0.2495775669813156,
+      "pass": false
+    },
+    {
+      "seed": 1,
+      "iid_nrmse": 0.521361231803894,
+      "combination_nrmse": 0.6627509593963623,
+      "participation_f1": 0.5247133721983129,
+      "functional_r2_min": -0.03855516531138359,
+      "redundant_usage": 0.9907393455505371,
+      "pass": false
+    },
+    {
+      "seed": 2,
+      "iid_nrmse": 0.5326652526855469,
+      "combination_nrmse": 0.6633389592170715,
+      "participation_f1": 0.414155692843677,
+      "functional_r2_min": -0.8306655580884772,
+      "redundant_usage": 0.4738878309726715,
+      "pass": false
+    }
+  ],
+  "iid_nrmse_mean": 0.5206219553947449,
+  "iid_nrmse_std": 0.010148591521954279,
+  "combination_nrmse_mean": 0.65945432583491,
+  "combination_nrmse_std": 0.0050835933573190484,
+  "participation_f1_mean": 0.5219018652626464,
+  "participation_f1_std": 0.08684934515638802,
+  "functional_r2_min_mean": -0.2812086069368023,
+  "functional_r2_min_std": 0.38940639755024664,
+  "redundant_usage_mean": 0.5714015811681747,
+  "redundant_usage_std": 0.31033518879953675
+}

@@ -1,0 +1,86 @@
+{
+  "alive_candidates": [
+    "C1",
+    "C3",
+    "C4"
+  ],
+  "local_to_evaluator_gt": {
+    "0": 2,
+    "1": 1,
+    "2": 0
+  },
+  "splits": {
+    "test_iid": {
+      "split": "test_iid",
+      "sample_count": 20000,
+      "nrmse": 0.030543355271220207,
+      "participation_f1_per_gt_active_only": [
+        0.9942634598179043,
+        0.9985778620526191,
+        0.9963762407436584
+      ],
+      "participation_f1_active_macro": 0.9964058542047273,
+      "participation_f1_micro": 0.9966222615064082,
+      "instance_effect_r2_per_gt": [
+        0.9985720570611362,
+        0.9988037531076037,
+        0.998255002670588
+      ],
+      "min_instance_effect_r2": 0.998255002670588,
+      "support_exact_accuracy": 0.98945,
+      "seconds": 265.3742415904999,
+      "support_histogram": [
+        1013,
+        3148,
+        3165,
+        3133,
+        3156,
+        35,
+        3164,
+        3186
+      ]
+    },
+    "test_combination_101": {
+      "split": "test_combination_101",
+      "sample_count": 20000,
+      "nrmse": 0.03208838403224945,
+      "participation_f1_per_gt_active_only": [
+        0.9983472730004508,
+        null,
+        0.9998499774966245
+      ],
+      "participation_f1_active_macro": 0.9990986252485377,
+      "participation_f1_micro": 0.9979380412641682,
+      "instance_effect_r2_per_gt": [
+        0.998721092290655,
+        null,
+        0.9985634327930549
+      ],
+      "min_instance_effect_r2": 0.9985634327930549,
+      "support_exact_accuracy": 0.99225,
+      "seconds": 288.52568340301514,
+      "support_histogram": [
+        0,
+        0,
+        4,
+        2,
+        62,
+        19845,
+        0,
+        87
+      ],
+      "inactive_Z2_false_positive_rate": 0.004650000017136335,
+      "inactive_Z2_predicted_effect_norm": 0.00027911437791772187
+    }
+  },
+  "checks": {
+    "iid_nrmse": true,
+    "101_nrmse": true,
+    "participation_f1": true,
+    "instance_effect": true,
+    "functional": true,
+    "inactive_Z2_fpr_101": true
+  },
+  "pass": true,
+  "wall_seconds": 554.0824077129364
+}

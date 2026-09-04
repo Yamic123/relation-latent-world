@@ -1,0 +1,42 @@
+{
+  "experiment": "O5-B",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "optimization_seed": 0,
+  "git_commit": "716ce838770ef90f1a6b64cbdd9fc07c8e2150e7",
+  "environment": {
+    "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.6.0",
+    "numpy": "2.3.1",
+    "scipy": "1.17.1",
+    "device": "cpu",
+    "cuda_available": false,
+    "cuda_device": null
+  },
+  "config": {
+    "token_dim": 64,
+    "attention_heads": 4,
+    "cross_attention_layers": 2,
+    "batch_size": 512,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 1e-05,
+    "max_epochs": 200,
+    "steps_per_epoch": 64,
+    "gradient_clip": 1.0,
+    "lambda_participation": 0.001,
+    "temperature_start": 1.0,
+    "temperature_end": 0.35,
+    "metric_interval_epochs": 10,
+    "metric_subset": 5000,
+    "GT_supervision_after_initialization": false,
+    "experiment": "O5-B",
+    "m_max": 5,
+    "tp": "orthogonal",
+    "extra_candidate_initial_gate_offset": -8.0
+  },
+  "started_at_unix": 1788314163.567425,
+  "diagnostic_only": true,
+  "original_e0a_decision_unchanged": "E0 FAIL"
+}

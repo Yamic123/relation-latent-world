@@ -1,0 +1,47 @@
+{
+  "mode": "e0a",
+  "world_seed": 20260901,
+  "dataset_seed": 20260902,
+  "K": 3,
+  "d_s": 2,
+  "M_star": 3,
+  "M_max": 5,
+  "d_v": 1,
+  "d_p": 6,
+  "alpha": 0.25,
+  "C": [
+    [
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      1
+    ]
+  ],
+  "train_patterns": [
+    "000",
+    "001",
+    "010",
+    "011",
+    "100",
+    "110",
+    "111"
+  ],
+  "held_out_pattern": "101",
+  "split_sizes": {
+    "train": 100000,
+    "val": 20000,
+    "test_iid": 20000,
+    "test_context": 20000,
+    "test_combination_101": 20000
+  },
+  "relation_edge": null
+}

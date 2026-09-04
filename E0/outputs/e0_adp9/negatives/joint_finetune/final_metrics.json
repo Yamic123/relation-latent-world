@@ -1,0 +1,5 @@
+{
+  "reused_from": "E:\\codes_python\\relation latent world\\E0\\outputs\\e0_adp8\\final_metrics.json",
+  "all_splits_pass": false,
+  "catastrophic_drift_supported": true
+}

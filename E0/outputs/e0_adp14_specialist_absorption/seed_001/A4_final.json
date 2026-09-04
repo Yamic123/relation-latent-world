@@ -1,0 +1,114 @@
+{
+  "variant": "A4",
+  "seed": 1,
+  "selected_pair": {
+    "child": 4,
+    "parent": 3,
+    "pair": "C5->C4",
+    "P_train": 1.0,
+    "P_val": 1.0,
+    "low_val_support": false,
+    "train_gap": {
+      "count": 79,
+      "mean": 0.00975708942860365,
+      "median": 0.002095244824886322,
+      "p90": 0.03287038952112198,
+      "max": 0.06369329988956451,
+      "fraction_lt_0p01": 0.7088607594936709,
+      "fraction_lt_0p02": 0.810126582278481
+    },
+    "val_gap": {
+      "count": 17,
+      "mean": 0.009754232130944729,
+      "median": 0.002419118070974946,
+      "p90": 0.025301160290837288,
+      "max": 0.06741483509540558,
+      "fraction_lt_0p01": 0.7058823529411765,
+      "fraction_lt_0p02": 0.8823529411764706
+    },
+    "proposal_gate": true,
+    "directionality": 0.0063869075383991
+  },
+  "frozen": {
+    "operation": "frozen_delete",
+    "child": 4,
+    "parent": 3,
+    "alive_after": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "comparison": {
+      "domains": {
+        "iid": {
+          "delta": 0.04150232672691345,
+          "bootstrap_mean": 0.04101325291395187,
+          "bootstrap_median": 0.04075836203992367,
+          "ci95": [
+            0.011987655982375146,
+            0.07025051051750779
+          ],
+          "upper95": 0.07025051051750779
+        },
+        "state": {
+          "delta": -4.582852125167847e-05,
+          "bootstrap_mean": -4.462247341871262e-05,
+          "bootstrap_median": -4.5180320739746094e-05,
+          "ci95": [
+            -0.00014045452699065208,
+            0.0
+          ],
+          "upper95": 0.0
+        },
+        "realization": {
+          "delta": 0.037680286914110184,
+          "bootstrap_mean": 0.03597751557826996,
+          "bootstrap_median": 0.035902779549360275,
+          "ci95": [
+            0.010812308732420206,
+            0.06495532197877764
+          ],
+          "upper95": 0.06495532197877764
+        },
+        "base": {
+          "delta": 0.05336568504571915,
+          "bootstrap_mean": 0.050753874965012075,
+          "bootstrap_median": 0.05103839933872223,
+          "ci95": [
+            0.013604240957647562,
+            0.09739801213145254
+          ],
+          "upper95": 0.09739801213145254
+        }
+      },
+      "max_subgroup_delta_nrmse": 0.05336568504571915,
+      "subgroup_delta_nrmse": [
+        0.03266239911317825,
+        0.04788801446557045,
+        0.052850328385829926,
+        -4.582852125167847e-05,
+        0.02017434686422348,
+        0.05336568504571915,
+        0.035145103931427,
+        0.03964393213391304,
+        0.031239580363035202,
+        0.03916279971599579
+      ],
+      "parent_old_delta_nrmse": 0.0,
+      "child_keep_nrmse": 0.1235419437289238,
+      "child_absorb_nrmse": 0.5543268918991089,
+      "checks": {
+        "bootstrap_all_domains": false,
+        "max_subgroup_delta": false,
+        "parent_retention": true,
+        "child_assimilation": false,
+        "finite": true
+      },
+      "pass": false
+    },
+    "pass": false
+  },
+  "pass": false,
+  "expected_negative_pass": true
+}

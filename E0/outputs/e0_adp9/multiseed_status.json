@@ -1,0 +1,10 @@
+{
+  "requested_development_seeds": [0, 1, 2],
+  "completed_independent_upstream_seeds": [0],
+  "status": "not_assessed",
+  "reason": "ADP9 starts from an ADP6-A2 checkpoint and assignments. Only the seed-0 upstream checkpoint exists; rerunning ADP9 with a different RNG over the same seed-0 checkpoint would not constitute an independent recovery seed.",
+  "required_next_inputs": [
+    "ADP6-A2 seed-1 checkpoint plus round-039 assignments",
+    "ADP6-A2 seed-2 checkpoint plus round-039 assignments"
+  ]
+}
